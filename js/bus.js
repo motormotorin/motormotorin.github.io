@@ -13,7 +13,7 @@ L.Map.addInitHook(function () {
 				let props = feature.properties;
 				data[props.id] = layer;
 				layer.options.icon = L.icon({
-					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=icon.png',
+					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=school-bus.png',
 					iconSize: [30, 30],
 					iconAnchor: [15, 15],
 					popupAnchor: [7, -15]
