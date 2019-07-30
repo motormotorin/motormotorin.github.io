@@ -5,7 +5,7 @@ L.Map.addInitHook(function () {
 		gmxMap = null,
 		lid = 'B750DB8488714446A1C0F2246B8FA630',
 		mid = '5d4c240a69caa174d2aed035915c95cc',
-		delay = 5000,
+		delay = 1000,
 		prefix = '//maps.kosmosnimki.ru',
 		url = 'http://dvfu.dewish.ru/map/api',
 		fg = L.geoJSON([], {
@@ -16,7 +16,7 @@ L.Map.addInitHook(function () {
 					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=school-bus.png',
 					iconSize: [30, 30],
 					iconAnchor: [15, 15],
-					popupAnchor: [7, -15]
+					popupAnchor: [0, -7]
 				});
 			}
 		}).bindPopup(function (layer) {
