@@ -14,7 +14,7 @@ L.Map.addInitHook(function () {
 				data[props.id] = layer;
 				layer.options.icon = L.icon({
 					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=school-bus.png',
-					iconSize: [30, 30],
+					iconSize: [50, 50],
 					iconAnchor: [15, 15],
 					popupAnchor: [0, -7]
 				});
