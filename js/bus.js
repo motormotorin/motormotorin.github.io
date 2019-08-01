@@ -1,5 +1,5 @@
 var locConfig = {
-	permID: 'XC9ZQ'
+	permID: 'PW7T3'
 };
 
 L.Map.addInitHook(function () {
