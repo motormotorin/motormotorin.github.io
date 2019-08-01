@@ -1,8 +1,3 @@
-var locConfig = {
-	permID: 'XC9ZQ'
-};
-
-
 L.Map.addInitHook(function () {
 	// L.gmx.DummyLayer.prototype._layerAdd = () => {};
 	var map = this,
