@@ -166,7 +166,7 @@ html, body, #map {
 
 .dark .scanex-sidebar .tabs {
 	background: #4c5567;
-	height: calc(100vh - 20px);
+	height: 25px;
 	width: 37px;
 	display: flex;
 	justify-content: flex-start;
@@ -185,7 +185,7 @@ html, body, #map {
 
 .dark .TreeView {
 	max-height: calc(100vh - 20px);
-	height: 100%;
+	height: auto;
 	border-top: inherit;
 	border-bottom: inherit;
 }
@@ -1175,6 +1175,7 @@ img.fillPattern {
 .leaflet-iconLayers_bottomleft .leaflet-iconLayers-layerCell, .leaflet-iconLayers_bottomright .leaflet-iconLayers-layerCell { padding-top: 5px; }
 
 .leaflet-iconLayers-layer {
+	display:none;
     cursor: pointer;
     position: relative;
     width: 80px;
