@@ -165,8 +165,8 @@ html, body, #map {
 }
 
 .dark .scanex-sidebar .tabs {
-	background: white;
-	height: 30px;
+	background: #4c5567;
+	height: calc(100vh - 20px);
 	width: 37px;
 	display: flex;
 	justify-content: flex-start;
@@ -177,12 +177,10 @@ html, body, #map {
 
 .dark .opened {
 	color: white;
-	height: calc(100vh - 128px);
 }
 
 .dark .closed {
 	color: lightgray;
-	height: 30px;
 }
 
 .dark .TreeView {
