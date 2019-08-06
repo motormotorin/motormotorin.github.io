@@ -80,11 +80,8 @@ html, body, #map {
   z-index: 20;
 }
 
-.TreeView {
-    position: absolute;
+.TreeView.svelte-147f2mc {
 	width: 300px;
-    overflow-y: scroll;
-	background-color: white;
 }
 
 .editor_sidebarExpanded.editor-sidebarContainer {
