@@ -80,6 +80,13 @@ html, body, #map {
   z-index: 20;
 }
 
+.TreeView {
+    position: absolute;
+	width: 300px;
+    overflow-y: scroll;
+	background-color: white;
+}
+
 .editor_sidebarExpanded.editor-sidebarContainer {
   width: 500px;
 }
