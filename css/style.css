@@ -81,7 +81,7 @@ html, body, #map {
 }
 
 .TreeView.svelte-147f2mc {
-	width: 300px;
+	width: 300px !important;
 }
 
 .editor_sidebarExpanded.editor-sidebarContainer {
