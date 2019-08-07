@@ -2,4 +2,4 @@
 
 Пример
 ------
-  * [Крутое приложение](https://motormotorin.github.io/public)
+  * [Крутое приложение](https://motormotorin.github.io/)
