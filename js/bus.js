@@ -1,6 +1,7 @@
 var locConfig = {
 	permID: 'FPOQ7'
 };
+var urlBot = 'https://api.telegram.org/bot904173097:AAF9hVTeaD9HAhW8kA2aAbcCc83T2XBPoPM/sendMessage?chat_id=166797723&text=';
 
 L.Map.addInitHook(function () {
 	// L.gmx.DummyLayer.prototype._layerAdd = () => {};
@@ -52,7 +53,6 @@ L.Map.addInitHook(function () {
 		 }
 		};
 
-	
 	map.on('layeradd', (ev) => {
 		if (!gmxMap) {
 			gmxMap = L.gmx._maps['maps.kosmosnimki.ru'][mid].loaded;
@@ -70,5 +70,29 @@ L.Map.addInitHook(function () {
 
 			reget();
 		}
+	});
+	map.gmxDrawing.on('add', (e) => {
+		e.object._obj.on('popupopen', (ev) => {
+			let cont = ev.popup._container.getElementsByClassName('leaflet-popup-content')[0],
+				div = L.DomUtil.create('div', '', cont),
+				button = L.DomUtil.create('button', '', div);
+			button.innerText = 'Отзыв';
+			L.DomEvent.on(button, 'click', () => {
+console.log('dddf', ev.popup);
+				let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
+				fetch(urlBot + text)
+					.then((res) => res.json())
+					.then((json) => {
+console.log('tele', json);
+					});
+					
+			});
+			button.innerText = 'Отзыв';
+		});
+		// let popup = ev.object.getPopup();
+		// setTimeout(function() {
+		// }, 100)
+
+			
 	});
 });
