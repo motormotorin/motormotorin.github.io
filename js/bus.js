@@ -79,7 +79,7 @@ L.Map.addInitHook(function () {
 					button = L.DomUtil.create('button', '', div);
 				button.innerText = 'Отзыв';
 				L.DomEvent.on(button, 'click', () => {
-	// console.log('event', ev.popup);
+// console.log('event', ev.popup);
 					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
 					fetch(urlBot + JSON.stringify({
 						latlng: ev.popup._latlng,
@@ -87,7 +87,7 @@ L.Map.addInitHook(function () {
 					}))
 						.then((res) => res.json())
 						.then((json) => {
-	console.log('tele', json);
+							console.log('telegram', json);
 						});
 						
 				});
@@ -97,13 +97,18 @@ L.Map.addInitHook(function () {
 	});
 
 	// позиция юзера
-	// map
-		// .on('locationfound', (e) => {
-			// map.gmxDrawing.add(L.marker(e.latlng));
-		// })
-		// .on('locationerror', (e) => {
-			// alert(e.message);
-		// });
+	map
+		.on('locationfound', (e) => { map.gmxDrawing.add(L.marker(e.latlng)); })
+		.on('locationerror', (e) => { alert(e.message); })
+		.addControl(L.control.gmxIcon({
+				id: 'info',
+				position: 'right',
+				title: 'Моя позиция'
+			})
+			.on('click', function (ev) {
+				map.locate({setView: true, maxZoom: 16});
+				// console.log('Точка', ev);
+			})
+		);
 
-	// map.locate({setView: true, maxZoom: 16});
 });
