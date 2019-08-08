@@ -76,8 +76,8 @@ L.Map.addInitHook(function () {
 			let cont = ev.popup._container.getElementsByClassName('leaflet-popup-content')[0];
 			if (!cont.getElementsByClassName('button-cont').length) {
 				let div = L.DomUtil.create('div', 'button-cont', cont),
-					button = L.DomUtil.create('button', '', div);
-				button.innerText = 'Отзыв';
+					button = L.DomUtil.create('button', 'button-in-popup', div);
+				button.innerText = 'Отправить сообщение на карту';
 				L.DomEvent.on(button, 'click', () => {
 // console.log('event', ev.popup);
 					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
