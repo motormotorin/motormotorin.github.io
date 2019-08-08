@@ -54,7 +54,7 @@ L.Map.addInitHook(function () {
 		};
 
 	map.on('layeradd', (ev) => {
-		if (!gmxMap) {
+		if (!gmxMap && L.gmx._maps['maps.kosmosnimki.ru']) {
 			gmxMap = L.gmx._maps['maps.kosmosnimki.ru'][mid].loaded;
 			let gmxProps = gmxMap.layersByID[lid].getGmxProperties(),
 				meta = gmxProps.MetaProperties,
@@ -94,10 +94,16 @@ L.Map.addInitHook(function () {
 				button.innerText = 'Отзыв';
 			}
 		});
-		// let popup = ev.object.getPopup();
-		// setTimeout(function() {
-		// }, 100)
-
-			
 	});
+
+	// позиция юзера
+	// map
+		// .on('locationfound', (e) => {
+			// map.gmxDrawing.add(L.marker(e.latlng));
+		// })
+		// .on('locationerror', (e) => {
+			// alert(e.message);
+		// });
+
+	// map.locate({setView: true, maxZoom: 16});
 });
