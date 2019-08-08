@@ -61,6 +61,7 @@ html, body, #map {
     width: 167px;
     border: 0;
     height: 30px;
+    allign: center;
     background-color: paleturquoise;
     border-radius: 8px;
 }
