@@ -57,6 +57,14 @@ html, body, #map {
   left: -3px;
 }
 
+.button-in-popup {
+    width: 167px;
+    border: 0;
+    height: 30px;
+    background-color: paleturquoise;
+    border-radius: 8px;
+}
+
 .icon-refresh:before {
   content: '\î °';
 }
