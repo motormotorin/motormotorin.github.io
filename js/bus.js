@@ -73,21 +73,26 @@ L.Map.addInitHook(function () {
 	});
 	map.gmxDrawing.on('add', (e) => {
 		e.object._obj.on('popupopen', (ev) => {
-			let cont = ev.popup._container.getElementsByClassName('leaflet-popup-content')[0],
-				div = L.DomUtil.create('div', '', cont),
-				button = L.DomUtil.create('button', '', div);
-			button.innerText = 'Отзыв';
-			L.DomEvent.on(button, 'click', () => {
-console.log('dddf', ev.popup);
-				let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
-				fetch(urlBot + text)
-					.then((res) => res.json())
-					.then((json) => {
-console.log('tele', json);
-					});
-					
-			});
-			button.innerText = 'Отзыв';
+			let cont = ev.popup._container.getElementsByClassName('leaflet-popup-content')[0];
+			if (!cont.getElementsByClassName('button-cont').length) {
+				let div = L.DomUtil.create('div', 'button-cont', cont),
+					button = L.DomUtil.create('button', '', div);
+				button.innerText = 'Отзыв';
+				L.DomEvent.on(button, 'click', () => {
+	// console.log('event', ev.popup);
+					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
+					fetch(urlBot + JSON.stringify({
+						latlng: ev.popup._latlng,
+						mess: text
+					}))
+						.then((res) => res.json())
+						.then((json) => {
+	console.log('tele', json);
+						});
+						
+				});
+				button.innerText = 'Отзыв';
+			}
 		});
 		// let popup = ev.object.getPopup();
 		// setTimeout(function() {
