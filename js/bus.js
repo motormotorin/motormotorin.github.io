@@ -1,7 +1,7 @@
 var locConfig = {
 	permID: 'FPOQ7'
 };
-var urlBot = 'https://api.telegram.org/bot904173097:AAF9hVTeaD9HAhW8kA2aAbcCc83T2XBPoPM/sendMessage?chat_id=166797723&text=';
+var urlBot = 'https://api.telegram.org/bot904173097:AAF9hVTeaD9HAhW8kA2aAbcCc83T2XBPoPM/sendMessage?chat_id=-279678173&text=';
 
 L.Map.addInitHook(function () {
 	// L.gmx.DummyLayer.prototype._layerAdd = () => {};
