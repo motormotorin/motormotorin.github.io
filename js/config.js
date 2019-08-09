@@ -1,3 +1,5 @@
 var locConfig = {
-	permID: 'FPOQ7'
+	permID: 'SQPS6'
 };
+
+window.serverBase = 'https://maps.kosmosnimki.ru/';
