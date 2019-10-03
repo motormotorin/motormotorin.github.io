@@ -97,10 +97,7 @@ L.Map.addInitHook(function () {
 						//latlng: ev.popup._latlng,
 						//mess: text
 					
-						.then((res) => res.json())
-						.then((json) => {
-							console.log('telegram', json);
-						});
+						
 						
 				});
 				button.innerText = 'Отзыв';
