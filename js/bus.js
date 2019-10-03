@@ -85,8 +85,8 @@ L.Map.addInitHook(function () {
    						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
    						url: "script.php",                                //серверный скрипт принимающий запрос
    						data: "JSON.stringify({
-						latlng: ev.popup._latlng,
-						mess: text"
+							latlng: ev.popup._latlng,
+							mess: text"
 						}),//можно передать строку с параметрами запроса, ключ=значение		   
    						success: function(res) {                          //функция выполняется при удачном заверщение
      							alert("Данные успешно отправлены на сервер");
