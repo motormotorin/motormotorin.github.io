@@ -83,7 +83,7 @@ L.Map.addInitHook(function () {
 					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
 					var JsonData = {
 							latlng: ev.popup._latlng,
-							mess: text"
+							mess: text
 					};
 					$.ajax({
    						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
