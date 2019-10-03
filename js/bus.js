@@ -81,7 +81,7 @@ L.Map.addInitHook(function () {
 				L.DomEvent.on(button, 'click', () => {
 // console.log('event', ev.popup);
 					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
-					var JsonData = {
+					var JsonData = JSON.stingify{
 							latlng: ev.popup._latlng,
 							mess: text
 					};
