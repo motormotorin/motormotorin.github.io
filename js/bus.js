@@ -81,10 +81,21 @@ L.Map.addInitHook(function () {
 				L.DomEvent.on(button, 'click', () => {
 // console.log('event', ev.popup);
 					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
-					fetch(urlBot + JSON.stringify({
+					$.ajax({
+   						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
+   						url: "script.php",                                //серверный скрипт принимающий запрос
+   						data: "JSON.stringify({
 						latlng: ev.popup._latlng,
-						mess: text
-					}))
+						mess: text"
+						}),//можно передать строку с параметрами запроса, ключ=значение		   
+   						success: function(res) {                          //функция выполняется при удачном заверщение
+     							alert("Данные успешно отправлены на сервер");
+   						}
+					});
+					//fetch(urlBot + JSON.stringify({
+						//latlng: ev.popup._latlng,
+						//mess: text
+					
 						.then((res) => res.json())
 						.then((json) => {
 							console.log('telegram', json);
