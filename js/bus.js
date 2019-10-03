@@ -85,7 +85,7 @@ L.Map.addInitHook(function () {
 							latlng: ev.popup._latlng,
 							mess: text
 					};
-					ajax({
+					$.ajax({
    						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
    						url: "bot.php",                                //серверный скрипт принимающий запрос
    						data: {JsonData},//можно передать строку с параметрами запроса, ключ=значение		   
