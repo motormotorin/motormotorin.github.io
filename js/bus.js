@@ -81,13 +81,14 @@ L.Map.addInitHook(function () {
 				L.DomEvent.on(button, 'click', () => {
 // console.log('event', ev.popup);
 					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
-					$.ajax({
-   						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
-   						url: "script.php",                                //серверный скрипт принимающий запрос
-   						data: "JSON.stringify({
+					var JsonData = {
 							latlng: ev.popup._latlng,
 							mess: text"
-						}),//можно передать строку с параметрами запроса, ключ=значение		   
+					};
+					$.ajax({
+   						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
+   						url: "bot.php",                                //серверный скрипт принимающий запрос
+   						data: {JsonData},//можно передать строку с параметрами запроса, ключ=значение		   
    						success: function(res) {                          //функция выполняется при удачном заверщение
      							alert("Данные успешно отправлены на сервер");
    						}
