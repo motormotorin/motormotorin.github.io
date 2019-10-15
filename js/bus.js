@@ -27,6 +27,20 @@ L.Map.addInitHook(function () {
 		}).bindPopup(function (layer) {
 			return JSON.stringify(layer.feature.properties, null, 2);
 		}),
+	    	mess = L.geoJSON([], {
+			onEachFeature: function (feature, layer) {
+				let props = feature.properties;
+				data[props.id] = layer;
+				layer.options.icon = L.icon({
+					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=school-bus.png',
+					iconSize: [50, 50],
+					iconAnchor: [15, 15],
+					popupAnchor: [0, -7]
+				});
+			}
+		}).bindPopup(function (layer) {
+			return JSON.stringify(layer.feature.properties, null, 2);
+		}),
 		reget = () => {
 		 if (fg._map) {
 			 fetch(prefix + '/proxy?' + url, {mode: 'cors'})
@@ -46,6 +60,33 @@ L.Map.addInitHook(function () {
 							layer.setLatLng([it.latitude, it.longitude]);
 						} else {
 							fg.addData([feature]);
+						}
+						
+					})
+			 });
+		 }
+		if (mess._map) {
+			 fs.readFile('Input.txt', (err, data) => { 
+    			if (err) throw err; 
+  
+    			console.log(data.toString()); 
+				}) 
+				.then((res) => res.json())
+				.then((arr) => {
+					arr.forEach(it => {
+						let feature = {
+							type: 'Feature',
+							geometry: {
+								type: 'Point',
+								coordinates: [it.longitude, it.latitude]
+							},
+							properties: it
+						};
+						let layer = data[it.id];
+						if (layer) {
+							layer.setLatLng([it.latitude, it.longitude]);
+						} else {
+							mess.addData([feature]);
 						}
 						
 					})
