@@ -1,7 +1,6 @@
 var locConfig = {
 	permID: 'FPOQ7'
 };
-var urlBot = 'https://api.telegram.org/bot904173097:AAF9hVTeaD9HAhW8kA2aAbcCc83T2XBPoPM/sendMessage?chat_id=-279678173&text=';
 
 L.Map.addInitHook(function () {
 	// L.gmx.DummyLayer.prototype._layerAdd = () => {};
@@ -14,20 +13,6 @@ L.Map.addInitHook(function () {
 		prefix = '//maps.kosmosnimki.ru',
 		url = 'http://dvfu.dewish.ru/map/api',
 		fg = L.geoJSON([], {
-			onEachFeature: function (feature, layer) {
-				let props = feature.properties;
-				data[props.id] = layer;
-				layer.options.icon = L.icon({
-					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=school-bus.png',
-					iconSize: [50, 50],
-					iconAnchor: [15, 15],
-					popupAnchor: [0, -7]
-				});
-			}
-		}).bindPopup(function (layer) {
-			return JSON.stringify(layer.feature.properties, null, 2);
-		}),
-	    	mess = L.geoJSON([], {
 			onEachFeature: function (feature, layer) {
 				let props = feature.properties;
 				data[props.id] = layer;
@@ -61,34 +46,6 @@ L.Map.addInitHook(function () {
 						} else {
 							fg.addData([feature]);
 						}
-						
-					})
-			 });
-		 }
-		if (mess._map) {
-			 fs.readFile('Input.txt', (err, data) => { 
-    			if (err) throw err; 
-  
-    			console.log(data.toString()); 
-				}) 
-				.then((res) => res.json())
-				.then((arr) => {
-					arr.forEach(it => {
-						let feature = {
-							type: 'Feature',
-							geometry: {
-								type: 'Point',
-								coordinates: [it.longitude, it.latitude]
-							},
-							properties: it
-						};
-						let layer = data[it.id];
-						if (layer) {
-							layer.setLatLng([it.latitude, it.longitude]);
-						} else {
-							mess.addData([feature]);
-						}
-						
 					})
 			 });
 		 }
@@ -122,16 +79,18 @@ L.Map.addInitHook(function () {
 				L.DomEvent.on(button, 'click', () => {
 // console.log('event', ev.popup);
 					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
+					var date = new Date();
 					var JsonData = JSON.stringify({
+							Date: date,
 							latlng: ev.popup._latlng,
 							mess: text
 					});
 					$.ajax({
    						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
    						url: "bot.php",                                //серверный скрипт принимающий запрос
-   						data: {JsonData},//можно передать строку с параметрами запроса, ключ=значение		   
+   						data: {request:JsonData},				//можно передать строку с параметрами запроса, ключ=значение		   
    						success: function(res) {                          //функция выполняется при удачном заверщение
-     							alert("Данные успешно отправлены на сервер");
+     							alert("Ваше сообщение появится на карте сразу после модерации...");
    						}
 					});
 					//fetch(urlBot + JSON.stringify({
