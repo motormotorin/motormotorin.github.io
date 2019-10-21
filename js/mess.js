@@ -5,7 +5,6 @@ L.Map.addInitHook(function () {
 		lid = '9D36AA7EAD0244F5BFBCF7D55453FED6',
 		mid = '5d4c240a69caa174d2aed035915c95cc',
 		delay = 6000,
-		url = 'http://dvfu.dewish.ru/map/api',
 		mess = L.geoJSON([], {
 			onEachFeature: function (feature, layer) {
 				let props = feature.properties;
@@ -24,6 +23,7 @@ L.Map.addInitHook(function () {
 		 if (mess._map) {
 			 fetch('https://fefumap.ru/mess.txt')
 				.then((res) => res.json())
+			 	console.log(res);
 				.then((arr) => {
 					arr.forEach(it => {
 						let feature = {
@@ -63,55 +63,4 @@ L.Map.addInitHook(function () {
 			reget();
 		}
 	});
-	map.gmxDrawing.on('add', (e) => {
-		e.object._obj.on('popupopen', (ev) => {
-			let cont = ev.popup._container.getElementsByClassName('leaflet-popup-content')[0];
-			if (!cont.getElementsByClassName('button-cont').length) {
-				let div = L.DomUtil.create('div', 'button-cont', cont),
-					button = L.DomUtil.create('button', 'button-in-popup', div);
-				button.innerText = 'Отправить сообщение на карту';
-				L.DomEvent.on(button, 'click', () => {
-// console.log('event', ev.popup);
-					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
-					var date = new Date();
-					var JsonData = JSON.stringify({
-							Date: date,
-							latlng: ev.popup._latlng,
-							mess: text
-					});
-					$.ajax({
-   						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
-   						url: "bot.php",                                //серверный скрипт принимающий запрос
-   						data: {request:JsonData},				//можно передать строку с параметрами запроса, ключ=значение		   
-   						success: function(res) {                          //функция выполняется при удачном заверщение
-     							alert("Ваше сообщение появится на карте сразу после модерации...");
-   						}
-					});
-					//fetch(urlBot + JSON.stringify({
-						//latlng: ev.popup._latlng,
-						//mess: text
-					
-						
-						
-				});
-				button.innerText = 'Отзыв';
-			}
-		});
-	});
-
-	// позиция юзера
-	map
-		.on('locationfound', (e) => { map.gmxDrawing.add(L.marker(e.latlng)); })
-		.on('locationerror', (e) => { alert(e.message); })
-		.addControl(L.control.gmxIcon({
-				id: 'info',
-				position: 'right',
-				title: 'Моя позиция'
-			})
-			.on('click', function (ev) {
-				map.locate({setView: true, maxZoom: 16});
-				// console.log('Точка', ev);
-			})
-		);
-
 });
