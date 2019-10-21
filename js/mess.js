@@ -4,7 +4,7 @@ L.Map.addInitHook(function () {
 		gmxMap = null,
 		lid = '9D36AA7EAD0244F5BFBCF7D55453FED6',
 		mid = '5d4c240a69caa174d2aed035915c95cc',
-		delay = 60000,
+		delay = 6000,
 		url = 'http://dvfu.dewish.ru/map/api',
 		mess = L.geoJSON([], {
 			onEachFeature: function (feature, layer) {
