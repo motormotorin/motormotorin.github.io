@@ -23,7 +23,7 @@ L.Map.addInitHook(function () {
 		 if (mess._map) {
 			 fetch('https://fefumap.ru/mess.txt')
 				.then((res) => res.json())
-			 	console.log(res);
+			 	console.log(res)
 				.then((arr) => {
 					arr.forEach(it => {
 						let feature = {
