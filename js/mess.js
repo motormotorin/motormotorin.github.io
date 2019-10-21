@@ -18,7 +18,7 @@ L.Map.addInitHook(function () {
 				});
 			}
 		}).bindPopup(function (layer) {
-			return JSON.stringify(layer.feature.properties, null, 2);
+			return JSON.stringify(layer.feature.properties["mess"], null, 2);
 		}),
 		reget = () => {
 		 if (mess._map) {
