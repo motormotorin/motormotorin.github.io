@@ -5,6 +5,7 @@ L.Map.addInitHook(function () {
 		lid = '9D36AA7EAD0244F5BFBCF7D55453FED6',
 		mid = '5d4c240a69caa174d2aed035915c95cc',
 		delay = 6000,
+	    	prefix = '//maps.kosmosnimki.ru',
 		mess = L.geoJSON([], {
 			onEachFeature: function (feature, layer) {
 				let props = feature.properties;
