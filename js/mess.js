@@ -21,7 +21,7 @@ L.Map.addInitHook(function () {
 		}),
 		reget = () => {
 		 if (mess._map) {
-			 fetch('https://fefumap.ru/mess.txt')
+			 fetch('mess.txt')
 				.then((res) => res.json())
 				.then((arr) => {
 					arr.forEach(it => {
