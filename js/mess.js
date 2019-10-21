@@ -12,7 +12,7 @@ L.Map.addInitHook(function () {
 				data[props.id] = layer;
 				layer.options.icon = L.icon({
 					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=15325783401553666166-128.png',
-					iconSize: [50, 50],
+					iconSize: [20, 20],
 					iconAnchor: [15, 15],
 					popupAnchor: [0, -7]
 				});
