@@ -29,13 +29,13 @@ L.Map.addInitHook(function () {
 							type: 'Feature',
 							geometry: {
 								type: 'Point',
-								coordinates: it.latlng
+								coordinates: [it.latlng["lng"],it.latlng["lat"]]
 							},
 							properties: it
 						};
 						let layer = data[it.id];
 						if (layer) {
-							layer.setLatLng(it.latlng);
+							layer.setLatLng([it.latlng["lat"],it.latlng["lng"]]);
 						} else {
 							mess.addData([feature]);
 						}
