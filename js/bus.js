@@ -86,10 +86,10 @@ L.Map.addInitHook(function () {
 							mess: text
 					});
 					$.ajax({
-   						type: "POST",                                     //метод запроса, POST или GET (если опустить, то по умолчанию GET)
-   						url: "bot.php",                                //серверный скрипт принимающий запрос
-   						data: {request:JsonData},				//можно передать строку с параметрами запроса, ключ=значение		   
-   						success: function(res) {                          //функция выполняется при удачном заверщение
+   						type: "POST",
+   						url: "bot.php",
+   						data: {request:JsonData},	   
+   						success: function(res) {     
      							alert("Ваше сообщение появится на карте сразу после модерации...");
    						}
 					});
