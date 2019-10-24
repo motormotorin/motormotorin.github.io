@@ -9,7 +9,7 @@ L.Map.addInitHook(function () {
 		gmxMap = null,
 		lid = 'B750DB8488714446A1C0F2246B8FA630',
 		mid = '5d4c240a69caa174d2aed035915c95cc',
-		delay = 1000,
+		delay = 8000,
 		prefix = '//maps.kosmosnimki.ru',
 		url = 'http://dvfu.dewish.ru/map/api',
 		fg = L.geoJSON([], {
