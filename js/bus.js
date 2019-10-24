@@ -64,7 +64,7 @@ L.Map.addInitHook(function () {
 			}
 			// console.log('dddf', fg);
 			gmxMap.layersByID[lid] = fg;
-			setInterval(reget, delay);
+			setInterval(reget, 10000);
 
 			reget();
 		}
