@@ -12,17 +12,34 @@ L.Map.addInitHook(function () {
 				data[props.id] = layer;
 				layer.options.icon = L.icon({
 					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=15325783401553666166-128.png',
-					iconSize: [20, 20],
+					iconSize: [25, 25],
+					shadowSize:   [27, 27],
 					iconAnchor: [15, 15],
-					popupAnchor: [0, -7]
+					popupAnchor: [-4, -20]
 				});
 			}
 		}).bindPopup(function (layer) {
-			return JSON.stringify(layer.feature.properties["mess"], null, 2);
+		if (Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000) == 0) {
+                var pri = 'только что'
+                }
+                else if  (Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000) == 1) {
+                var pri = 'час назад'
+                }
+                else if (Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000) > 1 & Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000) < 5 ) {
+                var pri = Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000) + ' часа назад'
+                }
+                else if (Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000) >= 5) {
+                var pri = Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000) + ' часов назад'
+                }
+			var textInPopup = JSON.stringify(layer.feature.properties["mess"], null, 2).replace(/\\"/g, "'").replace(/\\n/g, '<br>').replace(/\"/g, '')
+			var Text = textInPopup.replace(/"/g, '')
+			var clearText = Text.replace(/n/g, '<br>')
+			return '<b><p align="justify">' +  textInPopup  + '</b></p>'  + '<br>Сообщение оставленно ' 
+				+ pri;
 		}),
 		reget = () => {
 		 if (mess._map) {
-			 fetch('mess.txt')
+			 fetch('getmess.php')
 				.then((res) => res.json())
 				.then((arr) => {
 					arr.forEach(it => {
@@ -36,9 +53,16 @@ L.Map.addInitHook(function () {
 						};
 						let layer = data[it.id];
 						if (layer) {
-							layer.setLatLng([it.latlng["lat"],it.latlng["lng"]]);
+							if (((new Date() - new Date(it.Date)) / 3600000) > 12) {
+								layer.remove([it.id])
+							}
+							else {
+								layer.setLatLng([it.latlng["lat"],it.latlng["lng"]]);
+							}
 						} else {
+							if (((new Date() - new Date(it.Date)) / 3600000) < 12) {
 							mess.addData([feature]);
+							}
 						}
 					})
 			 });

@@ -1,27 +1,39 @@
-<?php  
-// имя файла, в который производиться запись POST или GET запроса
-$filename = "mess.txt"; 
-// имя поля в POST или GET запросе
+<?php
+
+ini_set('display_errors',1); //включаем вывод ошибок
+error_reporting(E_ALL);
+echo "<pre>";
+
+$filename = "/var/www/html/mess.txt";
 $name_var='request';
 
-// проверка существования файла 
-if (file_exists($filename)) { 
-  // если файл существует - открываем его 
-  $file = fopen($filename, "w+"); 
-} else { 
-  // если файл не существует - создадим его 
-  $file = fopen($filename, "w+"); 
-} 
-// данные из поля $name_var в POST или GET запросе
-$text = $_POST[$name_var]; 
-//$text = $_GET[$name_var]; 
-//(раскомментируйте нужную строку)
+if (file_exists($filename)) {
+  $file = fopen($filename, "a");
+} else {
+  $file = fopen($filename, "w+");
+}
 
-// записываем строку в файл 
-fwrite($file, $text); 
-// закрываем файл 
-fclose($file); 
+$id = sizeof(file('mess.txt'))+1 ;
 
-// ответ скрипта на запрос
-echo "The request was accepted";
+$text = $_POST[$name_var];
+$text = json_decode($text, TRUE);
+$text['id'] = $id;
+$text = json_encode($text, JSON_UNESCAPED_UNICODE);
+
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://localhost:4040');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $text);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8'));
+$out = curl_exec($ch);
+curl_close($ch);
+
+echo $out;
+
+fwrite($file, $text. PHP_EOL);
+fclose($file);
+
+echo "The request was accepted","$text";
 ?>

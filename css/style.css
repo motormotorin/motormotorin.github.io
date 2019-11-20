@@ -57,11 +57,16 @@ html, body, #map {
   left: -3px;
 }
 
+.button-cont {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 .button-in-popup {
-    width: 167px;
+    width: 100%;
     border: 0;
-    height: 30px;
-    allign: center;
+    height: 35px;
+    align-self: center;
     background-color: paleturquoise;
     border-radius: 8px;
 }
@@ -89,14 +94,33 @@ html, body, #map {
   z-index: 20;
 }
 
+.leaflet-gmx-center div {
+visibility: hidden;
+}
+
 .TreeView.svelte-147f2mc {
 	width: 260px !important;
+}
+
+.leaflet-popup-content textarea {
+	max-width: 300px !important;
+	min-width: 200px !important;
+	border-width: 0px !important;
+	min-height: 60px !important;
+}
+
+.leaflet-gmx-locationTxt {
+visibility: hidden;
 }
 
 .editor_sidebarExpanded.editor-sidebarContainer {
   width: 500px;
 }
 
+
+.leaflet-popup-content-wrapper {
+	max-width: 345px !important;
+}
 
 
 /* ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ ÐºÐ°Ñ€Ñ‚Ñ‹ */
