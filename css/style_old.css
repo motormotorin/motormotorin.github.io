@@ -1,22 +1,5 @@
-#menu {
- position:absolute;
- top:17px;
- right:17px;
- width:50px;
- height:50px;
- z-index: 5;
- background-color:white;
- border-radius:10px;
-}
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
 
-#logo_tele2 {
- position:absolute;
- bottom:0px;
- left:17px;
- width:50px;
- height:50px;
- z-index: 5;
-}
 
 html, body, #map {
   /*height: 100vh;*/
@@ -25,75 +8,24 @@ html, body, #map {
 	margin: 0px;
 	display: flex;
   flex-direction: row;
-  font-family: 'Tele2DisplaySerif-Regular';
-}
-
-ul {
-	align: center;
-	padding-inline-start: 0px;
-}
-
-li .li_sub{
-	text-align: center;
-	padding-bottom: 0px!important;
-	height: 60px;
-}
-
-li > a {
-	color: #000000;
-	vertical-align: -webkit-baseline-middle;
-	margin-top: 50%;
-  position: relative;
-  font-size: 1.5em;
-  letter-spacing: 3px;
-}
-
-.submenu li:hover {background: #C3E400;}
-
-#top_li {
-    margin-top: 10px;	
-}
-
-.submenu a {
-  font-size: 20px;
-  letter-spacing: 1px;
-  transition: .3s linear;
-}
-
-.submenu {
-  position: absolute;
-  z-index: 5;
-  right: -55px;
-  top: -16px;
-  width:220px;
-  height: 260px;
-  background: white;
-  border-radius: 10px;
-  box-sizing: border-box;
-  visibility: hidden;
-  opacity: 0;
-  transform: translate(-50%, 20px);
-  transition: .3s;
-}
-
-li:hover .submenu {
-  visibility: visible;
-  opacity: 1;
-  transform: translate(-50%, 0);
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 /* ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ sidebar */
 @font-face {
-  font-family: 'Tele2DisplaySerif-Regular';
-  src: url('font/Tele2DisplaySerif-Regular.otf?2f1ce1');
-  src: url('font/Tele2DisplaySerif-Regular.otf?7147309#iefix') format('opentype');
+  font-family: 'fontello';
+  src: url('font/fontello.eot?2f1ce1');
+  src: url('font/fontello.eot?7147309#iefix') format('embedded-opentype'),
+       url('font/fontello.woff?3c19f2') format('woff'),
+       url('font/fontello.ttf?ad63f8') format('truetype'),
+       url('font/fontello.svg?7147309#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "Tele2DisplaySerif-Regular";
+  font-family: "fontello";
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -160,6 +92,10 @@ li:hover .submenu {
   -webkit-transition: width .5s ease;
   transition: width .5s ease;
   z-index: 20;
+}
+
+.leaflet-gmx-center div {
+visibility: hidden;
 }
 
 .TreeView.svelte-147f2mc {
@@ -248,7 +184,7 @@ visibility: hidden;
 }
 
 .scanex-sidebar {	
-  font-family: 'Tele2DisplaySerif-Regular';
+  font-family: 'IBM Plex Sans', sans-serif;
 	font-size: 12px;	
 }
 

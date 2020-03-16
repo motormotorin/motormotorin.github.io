@@ -11,7 +11,7 @@ L.Map.addInitHook(function () {
 				let props = feature.properties;
 				data[props.id] = layer;
 				layer.options.icon = L.icon({
-					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=15325783401553666166-128.png',
+					iconUrl: prefix + '/GetImage.ashx?usr=motorin%40scanex.ru&img=MESSAGE.png',
 					iconSize: [25, 25],
 					shadowSize:   [27, 27],
 					iconAnchor: [15, 15],
