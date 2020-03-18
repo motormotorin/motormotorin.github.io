@@ -15,14 +15,22 @@
 	<meta name='viewport' content='width=device-width'>
 	<link rel="stylesheet" href="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer.css" />
 	<script src="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer-src.js?key=9C499BE03BE6C8E1EEFD68B9EEE17C70"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel='stylesheet' href='css/style.css'>
 	<link rel='stylesheet' href='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.css'>
 </head>
 
 <body>
+	<div id="p_prldr"><div class="contpre"><span class="svg_anm"></span><br>Подождите<br><small>идет загрузка</small></div></div>
+	<script type="text/javascript">$(window).on('load', function () {
+		var $preloader = $('#p_prldr'),
+		$svg_anm   = $preloader.find('.svg_anm');
+		$svg_anm.fadeOut();
+		$preloader.delay(500).fadeOut('slow');
+		});
+	</script>
 	</div id="map">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="js/preloader.js"></script>
 		<script src='js/mess.js'></script>
 		<script src='js/bus.js'></script>
 		<script src='js/config.js'></script>
