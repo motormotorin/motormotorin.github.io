@@ -41,6 +41,10 @@
 		</div>
 	</div>
 	</div id="map">
+		<script src='js/mess.js'></script>
+		<script src='js/bus.js'></script>
+		<script src='js/config.js'></script>
+		<script src='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.js'></script>
 	</div>
 	<div id="menu" class="tabs">
 		<li class="down"><img src="css/ext/img/icon_menu.png" width="100%" height="100%"></img>
@@ -55,13 +59,10 @@
 	<div id="logo_tele2">
 		<img src="css/ext/img/tele2_logo.png" width="100%"></img>
 	</div>
-	<script src='js/mess.js'></script>
-	<script src='js/bus.js'></script>
-	<script src='js/config.js'></script>
-	<script src='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.js'></script>
 	<script type="text/javascript">
 		$(window).on('load', function () {
-    		$('.preloader').delay(500).fadeOut('slow');
+			var $preloader = $('.preloader');	
+			//$preloader.delay(500).fadeOut('slow');
 		});
 	</script>
 </body>

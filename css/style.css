@@ -1386,7 +1386,7 @@ img.fillPattern {
   .dots {
 	filter: url(#gooeyness);
 	padding: 20px;
-	padding-bottom: 60px;
+	padding-bottom: 40px;
   }
   
   .dot {
