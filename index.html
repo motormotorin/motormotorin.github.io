@@ -21,20 +21,26 @@
 </head>
 
 <body>
-	<div id="p_prldr"><div class="contpre"><span class="svg_anm"></span><br>Подождите<br><small>идет загрузка</small></div></div>
-	<script type="text/javascript">$(window).on('load', function () {
-		var $preloader = $('#p_prldr'),
-		$svg_anm   = $preloader.find('.svg_anm');
-		$svg_anm.fadeOut();
-		$preloader.delay(500).fadeOut('slow');
-		});
-	</script>
+	<!--<div id="p_prldr"><div class="contpre"><span class="svg_anm"></span><br>Подождите<br><small>идет загрузка</small></div></div>-->
+	<div class="preloader">
+		<svg class="filter" version="1.1">
+			<defs>
+			  <filter id="gooeyness">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+				<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="gooeyness" />
+				<feComposite in="SourceGraphic" in2="gooeyness" operator="atop" />
+			  </filter>
+			</defs>
+		  </svg>
+		<div class="dots">
+		  <div class="dot mainDot"></div>
+		  <div class="dot"></div>
+		  <div class="dot"></div>
+		  <div class="dot"></div>
+		  <div class="dot"></div>
+		</div>
+	</div>
 	</div id="map">
-		<script src="js/preloader.js"></script>
-		<script src='js/mess.js'></script>
-		<script src='js/bus.js'></script>
-		<script src='js/config.js'></script>
-		<script src='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.js'></script>
 	</div>
 	<div id="menu" class="tabs">
 		<li class="down"><img src="css/ext/img/icon_menu.png" width="100%" height="100%"></img>
@@ -49,5 +55,14 @@
 	<div id="logo_tele2">
 		<img src="css/ext/img/tele2_logo.png" width="100%"></img>
 	</div>
+	<script src='js/mess.js'></script>
+	<script src='js/bus.js'></script>
+	<script src='js/config.js'></script>
+	<script src='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.js'></script>
+	<script type="text/javascript">
+		$(window).on('load', function () {
+    		$('.preloader').delay(500).fadeOut('slow');
+		});
+	</script>
 </body>
 </html>
