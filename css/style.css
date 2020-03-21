@@ -1372,13 +1372,21 @@ img.fillPattern {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	justify-content: center;
-	align-items: flex-end;
+	justify-content: flex-end;
+	flex-direction: column;
+	align-items: center;
 	z-index: 999;
 	background: #fff;
 }
 
-.filter {
+  .campus {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+  }
+
+  .filter {
 	position: absolute;
 	visibility: hidden;
   }
@@ -1390,7 +1398,7 @@ img.fillPattern {
   }
   
   .dot {
-	background: rgb(134, 129, 207);
+	background: rgb(162, 224, 142);
 	border-radius: 50%;
 	display: inline-block;
 	margin-right: 15px;
@@ -1423,13 +1431,13 @@ img.fillPattern {
 	  transform: scale(1) translateX(0);
 	}
 	25% {
-	  transform: scale(2.5) translateX(0);
+	  transform: scale(1.5) translateX(0);
 	}
 	50% {
 	  transform: scale(1) translateX(0);
 	}
-	83% {
-	  transform: scale(1) translateX(240px);
+	75% {
+	  transform: scale(1) translateX(160px);
 	}
 	100% {
 	  transform: scale(1) translateX(0);
@@ -1441,13 +1449,13 @@ img.fillPattern {
 	  transform: translateX(0px);
 	}
 	27% {
-	  transform: translateX(-20px);
+	  transform: translateX(-40px);
 	}
 	50% {
 	  transform: translateX(0px);
 	}
 	81% {
-	  transform: translateX(160px);
+	  transform: translateX(120px);
 	}
 	100% {
 	  transform: translateX(0);
@@ -1465,7 +1473,7 @@ img.fillPattern {
 	  transform: translateX(0px);
 	}
 	79% {
-	  transform: translateX(100px);
+	  transform: translateX(80px);
 	}
 	100% {
 	  transform: translateX(0);
@@ -1477,7 +1485,7 @@ img.fillPattern {
 	  transform: translateX(0px);
 	}
 	31% {
-	  transform: translateX(-140px);
+	  transform: translateX(-120px);
 	}
 	50% {
 	  transform: translateX(0px);
@@ -1495,13 +1503,13 @@ img.fillPattern {
 	  transform: scale(1) translateX(0);
 	}
 	33% {
-	  transform: scale(1) translateX(-200px);
+	  transform: scale(1) translateX(-160px);
 	}
 	50% {
 	  transform: scale(1) translateX(0);
 	}
 	75% {
-	  transform: scale(2.5) translateX(0);
+	  transform: scale(1.5) translateX(0);
 	}
 	100% {
 	  transform: scale(1) translateX(0);
