@@ -1380,6 +1380,8 @@ img.fillPattern {
 }
 
   .campus {
+	width: 50%;
+	max-width: 400px;
 	position: absolute;
 	top: 45%;
 	left: 50%;

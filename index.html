@@ -23,7 +23,7 @@
 <body>
 	<!--<div id="p_prldr"><div class="contpre"><span class="svg_anm"></span><br>Подождите<br><small>идет загрузка</small></div></div>-->
 	<div class="preloader">
-		<img class="campus" src="campus_gis.svg" width="400px" />
+		<img class="campus" src="campus_gis.svg"/>
 		<svg class="filter" version="1.1">
 			<defs>
 			  <filter id="gooeyness">
@@ -63,7 +63,7 @@
 	<script type="text/javascript">
 		$(window).on('load', function () {
 			var $preloader = $('.preloader');	
-			$preloader.delay(1000).fadeOut('slow');
+			//$preloader.delay(1000).fadeOut('slow');
 		});
 	</script>
 </body>
