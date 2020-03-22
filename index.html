@@ -32,7 +32,7 @@
 				<feComposite in="SourceGraphic" in2="gooeyness" operator="atop" />
 			  </filter>
 			</defs>
-		  </svg>
+		</svg>
 		<div class="dots">
 		  <div class="dot mainDot"></div>
 		  <div class="dot"></div>
@@ -41,22 +41,37 @@
 		  <div class="dot"></div>
 		</div>
 	</div>
+
 	</div id="map">
 		<script src='js/mess.js'></script>
 		<script src='js/bus.js'></script>
 		<script src='js/config.js'></script>
 		<script src='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.js'></script>
 	</div>
-	<div id="menu" class="tabs">
-		<li class="down"><img src="css/ext/img/icon_menu.png" width="100%" height="100%"></img>
-			<ul class="submenu">
-				<li class="li_sub" id="top_li"><a href="">About</a></li>
-				<li class="li_sub"><a href="">Feed</a></li>
-				<li class="li_sub"><a href="">Organization</a></li>
-				<li class="li_sub"><a href="">More</a></li>
-			</ul>
-		</li>
+
+	<div class="open-overlay">
+		<span class="bar-top"></span>
+		<span class="bar-middle"></span>
+		<span class="bar-bottom"></span>
 	</div>
+
+	<!--<nav class="navbar">
+		<ul class="side-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="">About</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="">Feed</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="">Organization</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="">More</a>
+			</li>
+		</ul>
+	</nav>-->
+	
 	<div id="logo_tele2">
 		<img src="css/ext/img/tele2_logo.png" width="100%"></img>
 	</div>
@@ -65,6 +80,16 @@
 			var $preloader = $('.preloader');	
 			$preloader.delay(1000).fadeOut('slow');
 		});
+	</script>
+	<script type="text/javascript">
+		document.querySelector('.open-overlay').addEventListener('click', () => {
+			document.querySelector('.open-overlay .bar-top').classList.toggle('open');
+			document.querySelector('.open-overlay .bar-middle').classList.toggle('open');
+			document.querySelector('.open-overlay .bar-bottom').classList.toggle('open');
+			//document.querySelector('.navbar').classList.toggle('navbar-open');
+		});
+
+		
 	</script>
 </body>
 </html>

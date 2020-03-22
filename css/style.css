@@ -1367,6 +1367,12 @@ img.fillPattern {
     float: none;
 }
 
+
+
+/*---------------------------------
+	    	  PRELOADER
+-----------------------------------*/
+
 .preloader {
 	position: absolute;
 	width: 100%;
@@ -1517,4 +1523,133 @@ img.fillPattern {
 	  transform: scale(1) translateX(0);
 	}
   }
+
+
+
+
+/*---------------------------------
+	    	RIGHT MENU
+-----------------------------------*/
+
+.open-overlay {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background: #fff;
+   	border-radius: 50%;
+	cursor: pointer;
+	z-index: 10;
+	top: 15px;
+	right: 15px;
+	-webkit-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+	transition: .2s ease;
+}
+
+.open-overlay:focus {
+	outline: none;
+}
+
+.open-overlay .bar-top,
+.open-overlay .bar-middle, 
+.open-overlay .bar-bottom {
+	display: block;
+	height: 2px;
+	width: 16px;
+	background: #000;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: .2s ease;
+}
   
+.open-overlay .bar-bottom {
+	margin: 5px auto;
+	transition: .2s ease;
+}
+  
+.open-overlay .bar-top {
+	margin: -5px auto;
+	transition: .2s ease;
+}
+
+.open-overlay:hover span {
+	background: rgb(112, 231, 72);
+	transition: .2s ease;
+}
+
+.open-overlay .bar-middle.open {
+	background: #fff;
+}
+
+.open-overlay .bar-top.open {
+	margin: 0px auto;
+	background: rgb(112, 231, 72);
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.open-overlay .bar-bottom.open {
+	margin: 0px auto;
+	background: rgb(112, 231, 72);
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.navbar {
+	position: absolute;
+	width: 0%;
+	height: 100%;
+	right: 0;
+	padding-top: 60px; 
+	background-color: #fff;
+	text-align: left;
+	z-index: 9;
+	opacity: 0;
+	transition: .2s ease;
+}
+
+
+
+.navbar-open {
+	opacity: 1;
+	transition: .2s ease;
+}
+
+@media (max-width: 767px) {
+	.navbar-open {
+		width: 100%;
+	}
+}
+
+@media (min-width: 768px) {
+	.navbar-open {
+		width: 250px;
+	}
+}	
+
+.navbar > .side-nav {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-item > .nav-link {
+	font-family: Helvetica, sans-serif;
+	font-weight: 600;
+	text-decoration: none;
+	color: #000;
+	opacity: .6;
+	font-size: 1em;
+	padding: 2em;
+	padding-left: 3em;
+}
+
+.nav-item:focus {
+	outline: none;
+}
+
+.nav-item >.nav-link:hover {
+	color: rgb(112, 231, 72);
+	transition: .2s ease;
+}
