@@ -1,3 +1,5 @@
+*:focus {outline:none !important}
+
 #p_prldr{
 	position: fixed;
 	left: 0;
@@ -61,62 +63,18 @@ html, body, #map {
 	display: flex;
 	flex-direction: row;
 	font-family: 'Tele2DisplaySerif-Regular';
-	overflow: hidden;
+}
+
+body {
+	overflow: hidden !important;
 }
 
 ul {
-	align: center;
+	align-items: center;
 	padding-inline-start: 0px;
 }
 
-li .li_sub{
-	text-align: center;
-	padding-bottom: 0px!important;
-	height: 60px;
-}
 
-li > a {
-	color: #000000;
-	vertical-align: -webkit-baseline-middle;
-	margin-top: 50%;
-  position: relative;
-  font-size: 1.5em;
-  letter-spacing: 3px;
-}
-
-.submenu li:hover {background: #C3E400;}
-
-#top_li {
-    margin-top: 10px;	
-}
-
-.submenu a {
-  font-size: 20px;
-  letter-spacing: 1px;
-  transition: .3s linear;
-}
-
-.submenu {
-  position: absolute;
-  z-index: 5;
-  right: -55px;
-  top: -16px;
-  width:220px;
-  height: 260px;
-  background: white;
-  border-radius: 10px;
-  box-sizing: border-box;
-  visibility: hidden;
-  opacity: 0;
-  transform: translate(-50%, 20px);
-  transition: .3s;
-}
-
-li:hover .submenu {
-  visibility: visible;
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
 
 /* ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ sidebar */
 @font-face {
@@ -1549,9 +1507,10 @@ img.fillPattern {
 	transition: .2s ease;
 }
 
-.open-overlay:focus {
-	outline: none;
+div:focus {
+	outline: none !important;
 }
+
 
 .open-overlay .bar-top,
 .open-overlay .bar-middle, 
@@ -1598,48 +1557,54 @@ img.fillPattern {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+.menu {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
 .navbar {
 	position: absolute;
+	width: 0px;
 	height: 100%;
-	padding-top: 60px; 
-	background-color: #fff;
+	right: 0%;
+	padding-top: 60px;
+	background: #fff;
 	text-align: left;
 	z-index: 9;
+	transition: .2s ease;
+	overflow: hidden;
+}
+
+.navbar-open {
+	opacity: 1;
+	right: -250px;
 	transition: .2s ease;
 }
 
 @media (max-width: 767px) {
-	.navbar {
-		right: -100%;
+	.navbar-open {
+		opacity: 1;
+		right: 0%;
 		width: 100%;
+		transition: .2s ease;
 	}
 }
 
 @media (min-width: 768px) {
-	.navbar {
-		right: -250px;
+	.navbar-open {
+		opacity: 1;
+		right: 0%;
 		width: 250px;
+		transition: .2s ease;
 	}
-}
-
-.navbar:focus {
-	outline: none;
-}
-
-.navbar-open {
-	right: 0px;
-	transition: .2s ease;
 }
 
 .navbar > .side-nav {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-}
-
-.nav-item:focus,
-.nav-item > .nav-link {
-	outline: none;
 }
 
 .nav-item > .nav-link {
