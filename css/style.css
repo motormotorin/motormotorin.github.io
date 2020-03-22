@@ -61,6 +61,7 @@ html, body, #map {
 	display: flex;
 	flex-direction: row;
 	font-family: 'Tele2DisplaySerif-Regular';
+	overflow: hidden;
 }
 
 ul {
@@ -1636,7 +1637,8 @@ img.fillPattern {
 	padding: 0;
 }
 
-.nav-item:focus {
+.nav-item:focus,
+.nav-item > .nav-link {
 	outline: none;
 }
 
