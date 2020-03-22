@@ -1,4 +1,6 @@
-*:focus {outline:none !important}
+* {
+	-webkit-tap-highlight-color: transparent;
+}
 
 #p_prldr{
 	position: fixed;
@@ -1542,7 +1544,7 @@ div:focus {
 }
 
 .open-overlay .bar-middle.open {
-	background: #fff;
+	opacity: 0;
 }
 
 .open-overlay .bar-top.open {
@@ -1614,8 +1616,8 @@ div:focus {
 	color: #000;
 	opacity: .6;
 	font-size: 1em;
-	padding: 2em;
-	padding-left: 3em;
+	margin: 2em;
+	margin-left: 3em;
 }
 
 .nav-item >.nav-link:hover {
