@@ -1503,9 +1503,9 @@ img.fillPattern {
 	z-index: 10;
 	top: 15px;
 	right: 15px;
-	-webkit-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
-	box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.55);
+	-moz-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.55);
+	box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.55);
 	transition: .2s ease;
 }
 
@@ -1520,7 +1520,8 @@ div:focus {
 	display: block;
 	height: 2px;
 	width: 16px;
-	background: #000;
+	background: rgb(95, 94, 94);
+	opacity: 1;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -1577,12 +1578,6 @@ div:focus {
 	z-index: 9;
 	transition: .2s ease;
 	overflow: hidden;
-}
-
-.navbar-open {
-	opacity: 1;
-	right: -250px;
-	transition: .2s ease;
 }
 
 @media (max-width: 767px) {
