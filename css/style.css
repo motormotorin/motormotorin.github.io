@@ -1,63 +1,66 @@
 #p_prldr{
-position: fixed;
-left: 0;
-top: 0;
-right:0;
-bottom:0;
-background: #FFFFFF;
-z-index: 30;}
+	position: fixed;
+	left: 0;
+	top: 0;
+	right:0;
+	bottom:0;
+	background: #FFFFFF;
+	z-index: 30;
+}
  
 .contpre small{font-size:25px;}
  
 .contpre{
-width: 250px;
-height: 100px;
-position: absolute;
-left: 50%;top: 48%;
-margin-left:-125px;
-margin-top:-75px;
-color:#000000;
-font-size:40px;
-letter-spacing:-2px;
-text-align:center;
-line-height:35px;}
+	width: 250px;
+	height: 100px;
+	position: absolute;
+	left: 50%;top: 48%;
+	margin-left:-125px;
+	margin-top:-75px;
+	color:#000000;
+	font-size:40px;
+	letter-spacing:-2px;
+	text-align:center;
+	line-height:35px;
+}
  
 #p_prldr .svg_anm {
-position: absolute;
-width: 41px;
-height: 41px;
-background: url(css/ext/img/anim.svg) center center no-repeat;
-background-size:41px;    
-margin: -16px 0 0 -16px;}
+	position: absolute;
+	width: 41px;
+	height: 41px;
+	background: url(css/ext/img/anim.svg) center center no-repeat;
+	background-size:41px;    
+	margin: -16px 0 0 -16px;
+}
 
 #menu {
- position:absolute;
- top:17px;
- right:17px;
- width:50px;
- height:50px;
- z-index: 5;
- background-color:white;
- border-radius:10px;
+	position:absolute;
+	top:17px;
+	right:17px;
+	width:50px;
+	height:50px;
+	z-index: 5;
+	background-color:white;
+	border-radius:10px;
 }
 
 #logo_tele2 {
- position:absolute;
- bottom:0px;
- left:17px;
- width:50px;
- height:50px;
- z-index: 5;
+	position:absolute;
+	bottom:0px;
+	left:17px;
+	width:50px;
+	height:50px;
+	z-index: 5;
 }
 
 html, body, #map {
   /*height: 100vh;*/
-  height: 100%;
+    height: 100%;
 	width: 100%;
 	margin: 0px;
 	display: flex;
-  flex-direction: row;
-  font-family: 'Tele2DisplaySerif-Regular';
+	flex-direction: row;
+	font-family: 'Tele2DisplaySerif-Regular';
 }
 
 ul {
@@ -707,142 +710,140 @@ input.check {
 }
 
 @media not all and (min-resolution:.001dpcm) {
-	@media {
-		.dark span.expander::before {
-			width: 32px;
-			top: 6px;
-			left: 2px;
-		}
-		.dark input.expander:checked+span.expander::before {
-			width: 32px;
-			top: 6px;
-			left: 2px;
-		}
-		.dark .TreeView li.line ul.group.css-treeview li.line.group::after {
-			height: calc(100% - 27px);
-			left: 20px;
-			top: 21px;
-			width: 15px;
-		}
-		.dark .TreeView li.line ul.group.css-treeview li.line:last-child:before {
-			height: calc(100% - 15px);
-			left: -22px;
-		}
-		.dark .TreeView>li.line {
-			left: -27px;
-			width: 107%;
-		}
-		.legendIconCell {
-			top: 3px;
-		}
-		.legendIconCell .point {
-			top: 0;
-		}
-		.legend-cont span.legendIconCell {
-			top: 0;
-		}
-		.pointer.title::before {
-			border-left: 1px solid transparent;
-			top: 12px;
-			left: -16px;
-		}
-		.dark ul li.line .mega:hover .pointer.title::before {
-			border-left: 1px solid transparent;
-			top: 12px;
-			left: -16px;
-		}
-		.dark .expanderCont {
-			margin-left: -15px;
-		}
-		.dark .legend-cont {
-			left: -10px;
-		}
-		
-		.gmx-style-legend {
-			width: 100vw;
-		}
-		input.check {
-			top: 0;
-		}
-		body.OSX input.check {
-			top: 0;
-			left: -1px;
-		}
-		input[type="radio"] {
-			position: relative;
-			;
-			left: -1px;
-		}
-		.dark .cont {
-			left: -1px;
-		}
-		span.cont>label.pointer.title {
+	.dark span.expander::before {
+		width: 32px;
+		top: 6px;
+		left: 2px;
+	}
+	.dark input.expander:checked+span.expander::before {
+		width: 32px;
+		top: 6px;
+		left: 2px;
+	}
+	.dark .TreeView li.line ul.group.css-treeview li.line.group::after {
+		height: calc(100% - 27px);
+		left: 20px;
+		top: 21px;
+		width: 15px;
+	}
+	.dark .TreeView li.line ul.group.css-treeview li.line:last-child:before {
+		height: calc(100% - 15px);
+		left: -22px;
+	}
+	.dark .TreeView>li.line {
+		left: -27px;
+		width: 107%;
+	}
+	.legendIconCell {
+		top: 3px;
+	}
+	.legendIconCell .point {
+		top: 0;
+	}
+	.legend-cont span.legendIconCell {
+		top: 0;
+	}
+	.pointer.title::before {
+		border-left: 1px solid transparent;
+		top: 12px;
+		left: -16px;
+	}
+	.dark ul li.line .mega:hover .pointer.title::before {
+		border-left: 1px solid transparent;
+		top: 12px;
+		left: -16px;
+	}
+	.dark .expanderCont {
+		margin-left: -15px;
+	}
+	.dark .legend-cont {
+		left: -10px;
+	}
+	
+	.gmx-style-legend {
+		width: 100vw;
+	}
+	input.check {
+		top: 0;
+	}
+	body.OSX input.check {
+		top: 0;
+		left: -1px;
+	}
+	input[type="radio"] {
 		position: relative;
-		left: 1px;
-		display: inline-flex;
-		width: calc(100% - 67px);
-		word-break: break-word;
-		}
-		span.legendIconCell+label.pointer.title {
-		position: relative;
-		left: 6px;
-		margin-left: -6px;
-		display: inline-flex;
-		width: calc(100% - 67px);
-		word-break: break-word;
-		}
-		input.check+label.pointer.title {
-		position: relative;
-		left: 0px!important;
-		display: inline-flex;
-		width: calc(100% - 67px);
-		word-break: break-word;
-		}
-		input.check+label.pointer.title+.description {
-			margin-left: 0;
-			width: calc(100% - 18px);
-			padding-left: 18px;
-		}
-		span.legendIconCell+label.pointer.title+.description {
-			margin-left: 0;
-			width: calc(100% - 35px);
-			padding-left: 35px;
-		}
-		input.check+label.pointer.title.multiStyles+.description {
-    		margin-left: 0;
-    		width: calc(100% - 35px);
-    		padding-left: 35px;
-		}
+		;
+		left: -1px;
+	}
+	.dark .cont {
+		left: -1px;
+	}
+	span.cont>label.pointer.title {
+	position: relative;
+	left: 1px;
+	display: inline-flex;
+	width: calc(100% - 67px);
+	word-break: break-word;
+	}
+	span.legendIconCell+label.pointer.title {
+	position: relative;
+	left: 6px;
+	margin-left: -6px;
+	display: inline-flex;
+	width: calc(100% - 67px);
+	word-break: break-word;
+	}
+	input.check+label.pointer.title {
+	position: relative;
+	left: 0px!important;
+	display: inline-flex;
+	width: calc(100% - 67px);
+	word-break: break-word;
+	}
+	input.check+label.pointer.title+.description {
+		margin-left: 0;
+		width: calc(100% - 18px);
+		padding-left: 18px;
+	}
+	span.legendIconCell+label.pointer.title+.description {
+		margin-left: 0;
+		width: calc(100% - 35px);
+		padding-left: 35px;
+	}
+	input.check+label.pointer.title.multiStyles+.description {
+		margin-left: 0;
+		width: calc(100% - 35px);
+		padding-left: 35px;
+	}
 
-		/*.dark input.expander:checked+span.expander::after {
-		    content: '';
-		    display: block;
-		    width: 5px;
-		    height: 20px;
-		    position: absolute;
-		    z-index: -1;
-		    border-left: 1px solid #D8E1E8;
-		    left: -19px;
-		    bottom: -29px;
-		}*/
-		/*.OSX input.expander:checked+span.expander::after {
-    		content: '';
-    		display: block;
-    		width: 5px;
-    		height: 20px;
-    		position: absolute;
-    		z-index: -1;
-    		border-left: 1px solid #D8E1E8;
-    		left: -19px;
-    		bottom: -29px;
-		}*/
-		.dark .group.css-treeview ul {
-			padding-inline-start: 37px;
-		}
+	/*.dark input.expander:checked+span.expander::after {
+		content: '';
+		display: block;
+		width: 5px;
+		height: 20px;
+		position: absolute;
+		z-index: -1;
+		border-left: 1px solid #D8E1E8;
+		left: -19px;
+		bottom: -29px;
+	}*/
+	/*.OSX input.expander:checked+span.expander::after {
+		content: '';
+		display: block;
+		width: 5px;
+		height: 20px;
+		position: absolute;
+		z-index: -1;
+		border-left: 1px solid #D8E1E8;
+		left: -19px;
+		bottom: -29px;
+	}*/
+	.dark .group.css-treeview ul {
+		padding-inline-start: 37px;
+	}
 
-		body.OSX .group.css-treeview ul {
-			padding-inline-start: 37px;
-		}
+	body.OSX .group.css-treeview ul {
+		padding-inline-start: 37px;
 	}
 }
 
@@ -1598,40 +1599,45 @@ img.fillPattern {
 
 .navbar {
 	position: absolute;
-	width: 0%;
 	height: 100%;
-	right: 0;
 	padding-top: 60px; 
 	background-color: #fff;
 	text-align: left;
 	z-index: 9;
-	opacity: 0;
-	transition: .2s ease;
-}
-
-
-
-.navbar-open {
-	opacity: 1;
 	transition: .2s ease;
 }
 
 @media (max-width: 767px) {
-	.navbar-open {
+	.navbar {
+		right: -100%;
 		width: 100%;
 	}
 }
 
 @media (min-width: 768px) {
-	.navbar-open {
+	.navbar {
+		right: -250px;
 		width: 250px;
 	}
-}	
+}
+
+.navbar:focus {
+	outline: none;
+}
+
+.navbar-open {
+	right: 0px;
+	transition: .2s ease;
+}
 
 .navbar > .side-nav {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+
+.nav-item:focus {
+	outline: none;
 }
 
 .nav-item > .nav-link {
@@ -1643,10 +1649,6 @@ img.fillPattern {
 	font-size: 1em;
 	padding: 2em;
 	padding-left: 3em;
-}
-
-.nav-item:focus {
-	outline: none;
 }
 
 .nav-item >.nav-link:hover {
