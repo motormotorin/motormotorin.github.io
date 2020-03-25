@@ -1493,19 +1493,23 @@ img.fillPattern {
 	    	RIGHT MENU
 -----------------------------------*/
 
-.open-overlay {
+.open-overlay,
+.not-authorized-user {
 	position: absolute;
 	width: 40px;
 	height: 40px;
 	background: #fff;
    	border-radius: 50%;
 	cursor: pointer;
-	z-index: 10;
 	top: 15px;
 	right: 15px;
-	-webkit-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.55);
-	-moz-box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.55);
-	box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.55);
+}
+
+.open-overlay {
+	z-index: 20;
+	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
 	transition: .2s ease;
 }
 
@@ -1516,7 +1520,9 @@ div:focus {
 
 .open-overlay .bar-top,
 .open-overlay .bar-middle, 
-.open-overlay .bar-bottom {
+.open-overlay .bar-bottom,
+.btn-close .line-top,
+.btn-close .line-bottom {
 	display: block;
 	height: 2px;
 	width: 16px;
@@ -1560,6 +1566,26 @@ div:focus {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+.not-authorized-user {
+	z-index: 19;
+	background-color: rgb(95, 94, 94, .2);
+}
+
+.not-authorized-user.open {
+	right: 65px;
+	transition: .2s;
+}
+
+.not-authorized-user .cover {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 20px;
+	opacity: .5;
+}
+
+
 .menu {
 	position: absolute;
 	width: 100%;
@@ -1571,7 +1597,7 @@ div:focus {
 	position: absolute;
 	height: 100%;
 	background: #fff;
-	z-index: 9;
+	z-index: 18;
 	overflow: hidden;
 	transition: .2s ease;
 }
@@ -1586,7 +1612,7 @@ div:focus {
 		align-items: center;
 	}
 
-	.navbar-open {
+	.navbar.open {
 		right: 0%;
 		width: 100%;
 		transition: .2s ease;
@@ -1603,12 +1629,12 @@ div:focus {
 		width: 100%;
 		right: -100%;
 		padding-top: 80px;
-		-webkit-box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.36);
-		-moz-box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.36);
-		box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.36);
+		-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+		-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+		box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
 	}
 
-	.navbar-open {
+	.navbar.open {
 		right: 0%;
 		width: 250px;
 		transition: .2s ease;
@@ -1642,4 +1668,137 @@ div:focus {
 .nav-item >.nav-link:hover {
 	color: rgb(112, 231, 72);
 	transition: .2s ease;
+}
+
+
+/*---------------------------------
+		AUTHORIZATION MENU
+-----------------------------------*/
+
+.auth-panel {
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(255, 255, 255, 0.8);
+	opacity: 1;
+	color: rgb(95, 94, 94);
+	font-family: Arial, Helvetica, sans-serif;
+	z-index: 100;
+	overflow-x: hidden;
+	overflow-y: auto;
+	align-items: center;
+	justify-content: center;
+}
+
+.hide {
+	display: none;
+}
+
+.auth {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	opacity: 1;
+	z-index: 110;
+	font-size: 18px;
+	border-radius: 0.5%;
+	-webkit-box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.1);
+	box-shadow: 0px 0px 17px 0px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 768px) {
+	.auth {
+		width: 500px;
+		height: 610px;
+	}
+}
+
+@media (max-width: 767px) {
+	.auth {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.btn-close {
+	display: block;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	top: 15px;
+	right: 15px;
+}
+
+.btn-close .line-top {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.btn-close .line-bottom {
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.substrate {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-direction: column;
+}
+
+.campus-auth {
+	width: 200px;
+}
+
+.sign-in-text {
+	margin-top: 10px;
+	width: 300px;
+	text-align: center;
+}
+
+.sign-in-text--h3 {
+	color: inherit;
+	font-size: 18px;
+	font-weight: 300;
+	font-stretch: normal;
+}
+
+.auth-methods {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 300px;
+	padding-top: 20px;
+}
+
+.auth-button {
+	display: flex;
+	align-items: center;
+	width: 200px;
+	height: 40px; 
+	margin: 7px;
+	border-radius: 5px;
+	border: 1px solid rgb(162, 224, 142);
+	cursor: pointer;
+}
+
+.auth-button:hover {
+	border: 1px solid rgb(135, 185, 118);
+}
+
+.mer {
+	font-size: 16px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.social-icon {
+	width: 15px;
+	height: 15px;
+	margin-right: 10px;
 }

@@ -8,10 +8,11 @@
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
 		gtag('config', 'UA-150818853-1');
 	</script>
-	<meta charset='utf8'>
+	<script type="text/javascript" src="https://vk.com/js/api/openapi.js?167"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com">
 	<meta name='viewport' content='width=device-width'>
 	<link rel="stylesheet" href="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer.css" />
 	<script src="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer-src.js?key=9C499BE03BE6C8E1EEFD68B9EEE17C70"></script>
@@ -40,11 +41,13 @@
 		  <div class="dot"></div>
 		</div>
 	</div>
-
 	<div class="open-overlay">
 		<span class="bar-top"></span>
 		<span class="bar-middle"></span>
 		<span class="bar-bottom"></span>
+	</div>
+	<div id="user-icon" class="not-authorized-user">
+		<img class="cover" src="/media/socials/user.svg" alt="">
 	</div>
 	<div class="menu">
 		<nav class="navbar">
@@ -64,32 +67,84 @@
 			</ul>
 		</nav>
 	</div>
-
 	</div id="map">
 		<script src='js/mess.js'></script>
 		<script src='js/bus.js'></script>
 		<script src='js/config.js'></script>
 		<script src='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.js'></script>
-	</div>
-	
+	</div>	
 	<div id="logo_tele2">
 		<img src="css/ext/img/tele2_logo.png" width="100%"></img>
 	</div>
+	<div class="auth-panel hide">
+		<div class="auth">
+			<div class="btn-close">
+				<span class="line-top"></span>
+				<span class="line-bottom"></span>
+			</div>
+			<div class="substrate">
+				<img class="campus-auth" src="campus_gis.svg" alt="">
+				<div class="sign-in-text">
+					<h3 class="sign-in-text--h3">
+						Sign in to get access to additional features of our site 
+					</h3>
+				</div>
+				<div class="auth-methods">
+					<!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
+					<div class="auth-button">
+						<div class="mer"><img class="social-icon" src="/media/socials/google-icon.svg" alt="Google logo">Sign in with Google</div>
+					</div>
+					<div class="auth-button">
+						<div class="mer"><img class="social-icon" src="/media/socials/vkcom.svg" alt="Vk logo">Sign in with Vk</div>
+					</div>
+					<div class="auth-button">
+						<div class="mer">
+							<img class="social-icon" src="/media/socials/twitter.svg" alt="Twitter logo">Sign in with Twitter
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript">
+		const burgerBlock = document.querySelector('.open-overlay')
+		const topBurgerLine = document.querySelector('.open-overlay .bar-top')
+		const middleBurgerLine = document.querySelector('.open-overlay .bar-middle');
+		const buttomBurgerLine = document.querySelector('.open-overlay .bar-bottom');
+		const rightSideMenu = document.querySelector('.navbar');
+		const userIcon = document.querySelector('.not-authorized-user');
+		const signInPanel = document.querySelector('.auth-panel');
+		const closeSingInPanel = document.querySelector('.btn-close');
+		
+		burgerBlock.addEventListener('click', () => {
+			topBurgerLine.classList.toggle('open');
+			middleBurgerLine.classList.toggle('open');
+			buttomBurgerLine.classList.toggle('open');
+			rightSideMenu.classList.toggle('open');
+			userIcon.classList.toggle('open');
+		});
 		$(window).on('load', function () {
 			var $preloader = $('.preloader');	
-			$preloader.delay(1000).fadeOut('slow');
-		});
-	</script>
-	<script type="text/javascript">
-		document.querySelector('.open-overlay').addEventListener('click', () => {
-			document.querySelector('.open-overlay .bar-top').classList.toggle('open');
-			document.querySelector('.open-overlay .bar-middle').classList.toggle('open');
-			document.querySelector('.open-overlay .bar-bottom').classList.toggle('open');
-			document.querySelector('.navbar').classList.toggle('navbar-open');
+			$preloader.delay(1000).fadeOut('slow', function() {
+				$(this).remove();
+			});
 		});
 
-		
+		userIcon.addEventListener('click', () => {
+			signInPanel.classList.remove('hide');
+			topBurgerLine.classList.toggle('open');
+			middleBurgerLine.classList.toggle('open');
+			buttomBurgerLine.classList.toggle('open');
+			rightSideMenu.classList.toggle('open');
+			userIcon.classList.toggle('open');
+		});
+
+		closeSingInPanel.addEventListener('click', () => {
+			signInPanel.classList.add('hide');
+		});
+
+
+	
 	</script>
 </body>
 </html>
