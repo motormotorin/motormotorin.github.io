@@ -3,6 +3,12 @@
 <title> Campus GIS </title>
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com">
+	<meta name='viewport' content='width=device-width'>
+	<link rel="stylesheet" href="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer.css" />
+	<script src="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer-src.js?key=9C499BE03BE6C8E1EEFD68B9EEE17C70"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150818853-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -12,11 +18,6 @@
 	</script>
 	<script type="text/javascript" src="https://vk.com/js/api/openapi.js?167"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com">
-	<meta name='viewport' content='width=device-width'>
-	<link rel="stylesheet" href="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer.css" />
-	<script src="https://www.kosmosnimki.ru/lib/geomixer_1.3/geomixer-src.js?key=9C499BE03BE6C8E1EEFD68B9EEE17C70"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel='stylesheet' href='css/style.css'>
 	<link rel='stylesheet' href='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.css'>
 </head>
@@ -92,7 +93,7 @@
 				<div class="auth-methods">
 					<!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
 					<div class="auth-button">
-						<div class="mer"><img class="social-icon" src="/media/socials/google-icon.svg" alt="Google logo">Sign in with Google</div>
+						<div class="mer" data-onsuccess="onSignIn"><img class="social-icon" src="/media/socials/google-icon.svg" alt="Google logo">Sign in with Google</div>
 					</div>
 					<div class="auth-button">
 						<div class="mer"><img class="social-icon" src="/media/socials/vkcom.svg" alt="Vk logo">Sign in with Vk</div>
@@ -115,6 +116,17 @@
 		const userIcon = document.querySelector('.not-authorized-user');
 		const signInPanel = document.querySelector('.auth-panel');
 		const closeSingInPanel = document.querySelector('.btn-close');
+
+		function onSignIn(googleUser) {
+			// Useful data for your client-side scripts:
+			var profile = googleUser.getBasicProfile();
+			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+			console.log('Full Name: ' + profile.getName());
+			console.log("Image URL: " + profile.getImageUrl());
+			// The ID token you need to pass to your backend:
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log("ID Token: " + id_token);
+		}
 		
 		burgerBlock.addEventListener('click', () => {
 			topBurgerLine.classList.toggle('open');
