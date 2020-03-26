@@ -92,7 +92,7 @@
 				</div>
 				<div class="auth-methods">
 					<!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-					<div class="auth-button">
+					<div id="google-btn" class="g-signin2">
 						<div class="mer" data-onsuccess="onSignIn"><img class="social-icon" src="/media/socials/google-icon.svg" alt="Google logo">Sign in with Google</div>
 					</div>
 					<div class="auth-button">
@@ -116,6 +116,19 @@
 		const userIcon = document.querySelector('.not-authorized-user');
 		const signInPanel = document.querySelector('.auth-panel');
 		const closeSingInPanel = document.querySelector('.btn-close');
+
+		function renderButton() {
+      		gapi.signin2.render('my-signin2', {
+				'display': 'flex',
+				'align-items': 'center',
+				'width': '200px',
+				'height': '40px', 
+				'margin': '7px',
+				'border-radius': '5px',
+				'border': '1px solid rgb(162, 224, 142)',
+				'cursor': 'pointer'
+      		});
+		}
 
 		function onSignIn(googleUser) {
 			// Useful data for your client-side scripts:
