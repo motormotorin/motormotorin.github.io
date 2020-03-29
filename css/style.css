@@ -1502,6 +1502,9 @@ img.fillPattern {
    	border-radius: 50%;
 	cursor: pointer;
 	top: 15px;
+}
+
+.open-overlay {
 	right: 15px;
 }
 
@@ -1567,16 +1570,12 @@ div:focus {
 }
 
 .not-authorized-user {
+	right: 65px;
 	z-index: 19;
 	background-color: rgb(95, 94, 94, .2);
 }
 
-.not-authorized-user.open {
-	right: 65px;
-	transition: .2s;
-}
-
-.not-authorized-user .cover {
+.not-authorized-user .user-img {
 	position: absolute;
 	top: 50%;
 	left: 50%;

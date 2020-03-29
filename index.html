@@ -46,7 +46,7 @@
 		<span class="bar-bottom"></span>
 	</div>
 	<div id="user-icon" class="not-authorized-user">
-		<img class="cover" src="/media/socials/user.svg" alt="">
+		<img class="user-img" src="/media/socials/user.svg" alt="">
 	</div>
 	<div class="menu">
 		<nav class="navbar">
@@ -75,97 +75,6 @@
 	<div id="logo_tele2">
 		<img src="css/ext/img/tele2_logo.png" width="100%"></img>
 	</div>
-	<div class="auth-panel hide">
-		<div class="auth">
-			<div class="btn-close">
-				<span class="line-top"></span>
-				<span class="line-bottom"></span>
-			</div>
-			<div class="substrate">
-				<img class="campus-auth" src="campus_gis.svg" alt="">
-				<div class="sign-in-text">
-					<h3 class="sign-in-text--h3">
-						Sign in to get access to additional features of our site 
-					</h3>
-				</div>
-				<div class="auth-methods">
-					<!--<div class="g-signin2" data-onsuccess="onSignIn"></div>-->
-					<div class="auth-button" data-onsuccess="onSignIn">
-						<div id="google-auth-btn" class="mer"><img class="social-icon" src="/media/socials/google-icon.svg" alt="Google logo">Sign in with Google</div>
-					</div>
-					<div class="auth-button">
-						<div class="mer"><img class="social-icon" src="/media/socials/vkcom.svg" alt="Vk logo">Sign in with Vk</div>
-					</div>
-					<div class="auth-button">
-						<div class="mer">
-							<img class="social-icon" src="/media/socials/twitter.svg" alt="Twitter logo">Sign in with Twitter
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		const burgerBlock = document.querySelector('.open-overlay')
-		const topBurgerLine = document.querySelector('.open-overlay .bar-top')
-		const middleBurgerLine = document.querySelector('.open-overlay .bar-middle');
-		const buttomBurgerLine = document.querySelector('.open-overlay .bar-bottom');
-		const rightSideMenu = document.querySelector('.navbar');
-		const userIcon = document.querySelector('.not-authorized-user');
-		const signInPanel = document.querySelector('.auth-panel');
-		const closeSingInPanel = document.querySelector('.btn-close');
-
-		burgerBlock.addEventListener('click', () => {
-			topBurgerLine.classList.toggle('open');
-			middleBurgerLine.classList.toggle('open');
-			buttomBurgerLine.classList.toggle('open');
-			rightSideMenu.classList.toggle('open');
-			userIcon.classList.toggle('open');
-		});
-
-		$(window).on('load', function () {
-			var $preloader = $('.preloader');	
-			$preloader.delay(1000).fadeOut('slow', function() {
-				$(this).remove();
-			});
-		});
-
-		userIcon.addEventListener('click', () => {
-			signInPanel.classList.remove('hide');
-			topBurgerLine.classList.toggle('open');
-			middleBurgerLine.classList.toggle('open');
-			buttomBurgerLine.classList.toggle('open');
-			rightSideMenu.classList.toggle('open');
-			userIcon.classList.toggle('open');
-		});
-
-		closeSingInPanel.addEventListener('click', () => {
-			signInPanel.classList.add('hide');
-		});
-
-		var googleUser = {};
-		var startApp = function() {
-			gapi.load('auth2', function(){
-			// Retrieve the singleton for the GoogleAuth library and set up the client.
-			auth2 = gapi.auth2.init({
-				client_id: '1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com',
-				cookiepolicy: 'single_host_origin',
-				// Request scopes in addition to 'profile' and 'email'
-				//scope: 'additional_scope'
-			});
-			attachSignin(document.getElementById('google-auth-btn'));
-			});
-		};
-
-		function attachSignin(element) {
-			console.log(element.id);
-			auth2.attachClickHandler(element, {},
-				function(googleUser) {
-					console.log("User name" + googleUser.getBasicProfile().getName());
-				});
-		}
-		startApp();
-	</script>
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+	<script type="text/javascript" src='js/index.js'></script>
 </body>
 </html>
