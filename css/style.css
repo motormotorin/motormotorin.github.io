@@ -1494,7 +1494,7 @@ img.fillPattern {
 -----------------------------------*/
 
 .open-overlay,
-.not-authorized-user {
+.user {
 	position: absolute;
 	width: 40px;
 	height: 40px;
@@ -1502,17 +1502,14 @@ img.fillPattern {
    	border-radius: 50%;
 	cursor: pointer;
 	top: 15px;
-}
-
-.open-overlay {
-	right: 15px;
+	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
 }
 
 .open-overlay {
 	z-index: 20;
-	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
-	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
-	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	right: 15px;
 	transition: .2s ease;
 }
 
@@ -1569,19 +1566,19 @@ div:focus {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.not-authorized-user {
+.user {
 	right: 65px;
-	z-index: 19;
-	background-color: rgb(95, 94, 94, .2);
+	z-index: 17;
+	background-color: rgb(255, 255, 255);
 }
 
-.not-authorized-user .user-img {
+.user .user-img {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 20px;
-	opacity: .5;
+	opacity: .8;
 }
 
 

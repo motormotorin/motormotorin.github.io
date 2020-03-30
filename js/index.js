@@ -3,7 +3,8 @@ const topBurgerLine = document.querySelector('.open-overlay .bar-top')
 const middleBurgerLine = document.querySelector('.open-overlay .bar-middle');
 const buttomBurgerLine = document.querySelector('.open-overlay .bar-bottom');
 const rightSideMenu = document.querySelector('.navbar');
-const userIcon = document.querySelector('.not-authorized-user');
+const userIcon = document.querySelector('.user');
+const userImg = document.querySelector('.user-img');
 const signInPanel = document.querySelector('.auth-panel');
 const closeSingInPanel = document.querySelector('.btn-close');
 
@@ -43,12 +44,16 @@ const authPanel = `
 function initGoogleAuth() {
     var googleUser = {};
     var startApp = function() {
-        gapi.load('auth2', function(){
+        gapi.load('auth2', function() {
+            //On success function
             auth2 = gapi.auth2.init({
                 client_id: googleAuthKey,
                 cookiepolicy: 'single_host_origin',
             });
             attachSignin(document.getElementById('google-auth-btn'));
+        }, function() {
+            //Add text to auth panel 
+            console.log('Unsuccess log-in');
         });
     };
 
@@ -60,8 +65,16 @@ function initGoogleAuth() {
                 var userImgUrl = basicProfile.getImageUrl();
 
                 console.log(`Name: ${name}\nImg url: ${userImgUrl}`);
+                renderUserInfo(name, userImgUrl);
+                removeAuthPanel();
+                //TO DO 
+                //SAVE USER DATA
+
+            }, function() {
+                console.log('Login failed!');
             });
-    }
+    };
+    
     startApp();
 }
 
@@ -74,11 +87,14 @@ function burgerAnimate() {
 
 function renderUserInfo(userName, userImgUrl) { 
     // Add name 
+
     // Add photo
+    userImg.src = userImgUrl;
 }
 
 function initAuth() {
     initGoogleAuth();
+
     //Add other social auth;
 }
 
@@ -86,13 +102,6 @@ function removeAuthPanel() {
     let element = document.querySelector('.auth-panel');
     element.parentNode.removeChild(element);
 }
-
-$(window).on('load', function () {
-    let $preloader = $('.preloader');	
-    $preloader.delay(1000).fadeOut('slow', function() {
-        $(this).remove();
-    });
-});
 
 burgerBlock.addEventListener('click', () => {
     burgerAnimate();
@@ -104,4 +113,11 @@ userIcon.addEventListener('click', () => {
         removeAuthPanel();
     });
     initAuth();
+});
+
+$(window).on('load', function () {
+    let $preloader = $('.preloader');	
+    $preloader.delay(1000).fadeOut('slow', function() {
+        $(this).remove();
+    });
 });
