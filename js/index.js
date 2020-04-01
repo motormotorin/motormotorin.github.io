@@ -2,17 +2,18 @@ const burgerBlock = document.querySelector('.open-overlay')
 const topBurgerLine = document.querySelector('.open-overlay .bar-top')
 const middleBurgerLine = document.querySelector('.open-overlay .bar-middle');
 const buttomBurgerLine = document.querySelector('.open-overlay .bar-bottom');
-const rightSideMenu = document.querySelector('.navbar');
+const rightSideMenu = document.querySelector('.menu');
 
 const signInPanel = document.querySelector('.auth-panel');
 const closeSingInPanel = document.querySelector('.btn-close');
 
-const userIcon = document.querySelector('.user');
-const userImg = document.querySelector('.user-img');
+const loginBtn = document.querySelector('.user');
+const loginImg = document.querySelector('.user-img');
 const userPanel = document.querySelector('.user-panel');
-const userName = document.querySelector('.user-panel .user-data .user-data__name');
-const userEmail = document.querySelector('.user-panel .user-data .user-data__email');
-const userLogout = document.querySelector('.user-panel .user-data .user-data__logout');
+const userDataImg = document.querySelector('.user-icon .user-img');
+const userDataName = document.querySelector('.user-data__name');
+const userDataEmail = document.querySelector('.user-data__email');
+const userLogout = document.querySelector('.user-logout-btn');
 
 const googleAuthKey = '1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com';
 
@@ -93,15 +94,17 @@ function burgerAnimate() {
 }
 
 function renderUserInfo(name, email, imgUrl) { 
-    userName.innerText = name;
-    userEmail.innerText = email;
-    userImg.src = imgUrl;
+    userDataName.innerText = name;
+    userDataEmail.innerText = email;
+    userDataImg.src = imgUrl;
+    loginImg.src = imgUrl;
 }
 
 function removeUserInfo() {
-    userName.innerText = "";
-    userEmail.innerText = "";
-    userImg.src = "../media/socials/user.svg";
+    userDataName.innerText = name;
+    userDataEmail.innerText = email;
+    userDataImg.src = "../media/socials/user.svg";
+    loginImg.src = "../media/socials/user.svg";
 }
 
 function initAuth() {
@@ -119,26 +122,26 @@ burgerBlock.addEventListener('click', () => {
     burgerAnimate();
 });
 
-userIcon.addEventListener('click', () => {
-    if (userName.innerText == "") {
+loginBtn.addEventListener('click', () => {
+    if (userDataName.innerText == "") {
         document.body.insertAdjacentHTML('beforeend', authPanel);
         document.querySelector('.btn-close').addEventListener('click', () => {
             removeAuthPanel();
         });
         initAuth();
     } else {
-        userPanel.classList.toggle('not-display');
+        console.log('Authorized');
     }
 });
 
 userLogout.addEventListener('click', () => {
-    userPanel.classList.toggle('not-display');
+    userPanel.classList.toggle('hide');
     removeUserInfo();
 });
 
 $(window).on('load', () => {
     let $preloader = $('.preloader');	
-    $preloader.delay(1000).fadeOut('slow', () => {
+    $preloader.delay(1000).fadeOut('slow', function() {
         $(this).remove();
     });
 });
