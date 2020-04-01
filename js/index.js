@@ -98,6 +98,8 @@ function renderUserInfo(name, email, imgUrl) {
     userDataEmail.innerText = email;
     userDataImg.src = imgUrl;
     loginImg.src = imgUrl;
+
+    userPanel.classList.toggle('hide');
 }
 
 function removeUserInfo() {
