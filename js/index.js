@@ -25,7 +25,7 @@ const authPanel = `
                 <span class="line-bottom"></span>
             </div>
             <div class="substrate">
-                <img class="campus-auth" src="campus_gis.svg" alt="">
+                <img class="campus-auth" src="/media/logo/campus_gis.svg" alt="">
                 <div class="sign-in-text">
                     <h3 class="sign-in-text--h3">
                         Sign in to get access to additional features of our site 
@@ -107,6 +107,8 @@ function removeUserInfo() {
     userDataEmail.innerText = "";
     userDataImg.src = "../media/socials/user.svg";
     loginImg.src = "../media/socials/user.svg";
+
+    burgerAnimate();
 }
 
 function initAuth() {
