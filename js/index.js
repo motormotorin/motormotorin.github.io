@@ -127,12 +127,12 @@ userIcon.addEventListener('click', () => {
         });
         initAuth();
     } else {
-        userPanel.classList.toggle('.not-display');
+        userPanel.classList.toggle('not-display');
     }
 });
 
 userLogout.addEventListener('click', () => {
-    userPanel.classList.toggle('.not-display');
+    userPanel.classList.toggle('not-display');
     removeUserInfo();
 });
 
