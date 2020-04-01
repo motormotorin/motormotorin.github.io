@@ -3,10 +3,16 @@ const topBurgerLine = document.querySelector('.open-overlay .bar-top')
 const middleBurgerLine = document.querySelector('.open-overlay .bar-middle');
 const buttomBurgerLine = document.querySelector('.open-overlay .bar-bottom');
 const rightSideMenu = document.querySelector('.navbar');
-const userIcon = document.querySelector('.user');
-const userImg = document.querySelector('.user-img');
+
 const signInPanel = document.querySelector('.auth-panel');
 const closeSingInPanel = document.querySelector('.btn-close');
+
+const userIcon = document.querySelector('.user');
+const userImg = document.querySelector('.user-img');
+const userPanel = document.querySelector('.user-panel');
+const userName = document.querySelector('.user-panel .user-data .user-data__name');
+const userEmail = document.querySelector('.user-panel .user-data .user-data__email');
+const userLogout = document.querySelector('.user-panel .user-data .user-data__logout');
 
 const googleAuthKey = '1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com';
 
@@ -60,13 +66,14 @@ function initGoogleAuth() {
     function attachSignin(element) {
         auth2.attachClickHandler(element, {},
             function(googleUser) {
-                var basicProfile = googleUser.getBasicProfile();
+                let basicProfile = googleUser.getBasicProfile();
                 var name = basicProfile.getName();
-                var userImgUrl = basicProfile.getImageUrl();
+                var email = basicProfile.getEmail();
+                var imgUrl = basicProfile.getImageUrl();
 
-                console.log(`Name: ${name}\nImg url: ${userImgUrl}`);
-                renderUserInfo(name, userImgUrl);
+                renderUserInfo(name, email, imgUrl);
                 removeAuthPanel();
+
                 //TO DO 
                 //SAVE USER DATA
 
@@ -85,11 +92,16 @@ function burgerAnimate() {
     rightSideMenu.classList.toggle('open');
 }
 
-function renderUserInfo(userName, userImgUrl) { 
-    // Add name 
+function renderUserInfo(name, email, imgUrl) { 
+    userName.innerText = name;
+    userEmail.innerText = email;
+    userImg.src = imgUrl;
+}
 
-    // Add photo
-    userImg.src = userImgUrl;
+function removeUserInfo() {
+    userName.innerText = "";
+    userEmail.innerText = "";
+    userImg.src = "../media/socials/user.svg";
 }
 
 function initAuth() {
@@ -108,16 +120,25 @@ burgerBlock.addEventListener('click', () => {
 });
 
 userIcon.addEventListener('click', () => {
-    document.body.insertAdjacentHTML('beforeend', authPanel);
-    document.querySelector('.btn-close').addEventListener('click', () => {
-        removeAuthPanel();
-    });
-    initAuth();
+    if (userName.innerText == "") {
+        document.body.insertAdjacentHTML('beforeend', authPanel);
+        document.querySelector('.btn-close').addEventListener('click', () => {
+            removeAuthPanel();
+        });
+        initAuth();
+    } else {
+        userPanel.classList.toggle('.not-display');
+    }
 });
 
-$(window).on('load', function () {
+userLogout.addEventListener('click', () => {
+    userPanel.classList.toggle('.not-display');
+    removeUserInfo();
+});
+
+$(window).on('load', () => {
     let $preloader = $('.preloader');	
-    $preloader.delay(1000).fadeOut('slow', function() {
+    $preloader.delay(1000).fadeOut('slow', () => {
         $(this).remove();
     });
 });

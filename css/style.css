@@ -68,15 +68,13 @@ html, body, #map {
 }
 
 body {
-	overflow: hidden !important;
+	overflow: hidden;
 }
 
 ul {
 	align-items: center;
 	padding-inline-start: 0px;
 }
-
-
 
 /* ÐºÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ sidebar */
 @font-face {
@@ -1329,12 +1327,6 @@ img.fillPattern {
     float: none;
 }
 
-
-
-/*---------------------------------
-	    	  PRELOADER
------------------------------------*/
-
 .preloader {
 	position: absolute;
 	width: 100%;
@@ -1486,13 +1478,6 @@ img.fillPattern {
 	}
   }
 
-
-
-
-/*---------------------------------
-	    	RIGHT MENU
------------------------------------*/
-
 .open-overlay,
 .user {
 	position: absolute;
@@ -1512,11 +1497,6 @@ img.fillPattern {
 	right: 15px;
 	transition: .2s ease;
 }
-
-div:focus {
-	outline: none !important;
-}
-
 
 .open-overlay .bar-top,
 .open-overlay .bar-middle, 
@@ -1577,10 +1557,100 @@ div:focus {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 20px;
 	opacity: .8;
 }
 
+.user-panel {
+	position: absolute;
+	top: 70px;
+	right: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding-left: 25px;
+	padding-right: 25px;
+	height: 200px;
+	border-radius: 10px;
+	background: rgb(255, 255, 255);
+	font-size: 18px;
+	font-family: Arial;
+	z-index: 17;
+	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+}
+
+.user-data {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.user-data__name,
+.user-data__email,
+.user-data__logout{
+	margin-bottom: 6px;
+}
+
+.user-data__name {
+	font-size: 1em;
+}
+
+.user-data__email,
+.user-data__logout {
+	font-size: .9em;
+}
+
+.user-data__email {
+	opacity: .6;
+}
+
+.user-data__logout {
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+	padding: 4px 60px;
+	border: 1px solid rgb(219, 61, 61, .8);
+	border-radius: 2rem;
+	cursor: pointer;
+	transition: .3s ease;
+}
+
+.logout-icon {
+	width: 10px;
+	margin-left: 10px;
+}
+
+.user-data__logout:hover {
+	background: rgb(236, 234, 234);
+	transition: .3s ease;
+}
+
+.user-data:after {
+	content: "";
+	display: block;
+	width: 90%;
+	height: 1px;
+	background: #000;
+	margin-top: 20px;
+	opacity: .2;
+}
+
+.user-panel .other-info {
+	margin-top: 5px;
+}
+.user-panel .policy {
+	text-decoration: none;
+	font-size: .9rem;
+	color: #000;
+	opacity: .5;
+}
+
+.not-display {
+	display: none;
+}
 
 .menu {
 	position: absolute;
@@ -1665,11 +1735,6 @@ div:focus {
 	color: rgb(112, 231, 72);
 	transition: .2s ease;
 }
-
-
-/*---------------------------------
-		AUTHORIZATION MENU
------------------------------------*/
 
 .auth-panel {
 	display: flex;
