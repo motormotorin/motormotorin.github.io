@@ -1559,7 +1559,6 @@ img.fillPattern {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	opacity: .8;
 }
 
 .menu-wrapper {
@@ -1634,6 +1633,14 @@ img.fillPattern {
 	border-radius: 50%;
 	margin-right: 10px;
 	overflow: hidden;
+}
+
+.user-block .iser-icon .user-img {
+	position: absolute;
+	width: 30px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .user-block .user-data {

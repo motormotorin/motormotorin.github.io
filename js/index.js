@@ -8,7 +8,7 @@ const signInPanel = document.querySelector('.auth-panel');
 const closeSingInPanel = document.querySelector('.btn-close');
 
 const loginBtn = document.querySelector('.user');
-const loginImg = document.querySelector('.user-img');
+const loginImg = document.querySelector('.user .user-img');
 const userPanel = document.querySelector('.user-panel');
 const userDataImg = document.querySelector('.user-icon .user-img');
 const userDataName = document.querySelector('.user-data__name');
@@ -103,8 +103,8 @@ function renderUserInfo(name, email, imgUrl) {
 }
 
 function removeUserInfo() {
-    userDataName.innerText = name;
-    userDataEmail.innerText = email;
+    userDataName.innerText = "";
+    userDataEmail.innerText = "";
     userDataImg.src = "../media/socials/user.svg";
     loginImg.src = "../media/socials/user.svg";
 }
