@@ -1612,7 +1612,7 @@ img.fillPattern {
 	width: 100%;
 	bottom: 0;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 	flex-direction: row;
 	background: rgb(216, 216, 216);
@@ -1625,19 +1625,33 @@ img.fillPattern {
 	justify-content: center;
 }
 
+.user-data .user-data__name,
+.user-data .user-data__email {
+	width: 145px;
+	overflow: hidden;
+}
+
+.user-block {
+	margin-right: 10px;
+}
+
+.user-logout-btn {
+	margin-left: 10px;
+}
+
 .user-block .user-icon,
 .user-logout {
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	background: rgb(255, 255, 245);
 	border-radius: 50%;
 	margin-right: 10px;
 	overflow: hidden;
 }
 
-.user-block .iser-icon .user-img {
-	position: absolute;
-	width: 30px;
+.user-block .user-icon .user-img {
+	position: relative;
+	width: 40px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -1663,13 +1677,6 @@ img.fillPattern {
 	font-size: .9em;
 	border: 1px solid rgb(247, 104, 104);
 	cursor: pointer;
-}
-
-.user-logout__btn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
 }
 
 .logout-icon {
@@ -1714,8 +1721,8 @@ img.fillPattern {
 .btn-close {
 	display: block;
 	position: absolute;
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	cursor: pointer;
 	top: 15px;
 	right: 15px;
@@ -1817,7 +1824,7 @@ img.fillPattern {
 	.user-panel {
 		width: 90%;
 		max-width: 500px;
-		min-width: 300px;
+		min-width: 350px;
 		border-radius: 50px 50px 0px 0px;
 	}
 }
