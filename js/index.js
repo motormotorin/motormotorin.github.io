@@ -9,13 +9,14 @@ const closeSingInPanel = document.querySelector('.btn-close');
 
 const loginBtn = document.querySelector('.user');
 const loginImg = document.querySelector('.user .user-img');
+
 const userPanel = document.querySelector('.user-panel');
 const userDataImg = document.querySelector('.user-icon .user-img');
 const userDataName = document.querySelector('.user-data__name');
 const userDataEmail = document.querySelector('.user-data__email');
 const userLogout = document.querySelector('.user-logout-btn');
 
-const googleAuthKey = '1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com';
+const googleAuthKey = '1026855418031-jadtgqm4q4df08hs5dcf6pcu5ks5qklm.apps.googleusercontent.com'; 
 
 const authPanel = `
     <div class="auth-panel">
@@ -52,15 +53,16 @@ function initGoogleAuth() {
     var googleUser = {};
     var startApp = function() {
         gapi.load('auth2', function() {
-            //On success function
+            //Success
             auth2 = gapi.auth2.init({
                 client_id: googleAuthKey,
                 cookiepolicy: 'single_host_origin',
             });
             attachSignin(document.getElementById('google-auth-btn'));
         }, function() {
+            //Failed
             //Add text to auth panel 
-            console.log('Unsuccess log-in');
+            console.log('Unsuccess login');
         });
     };
 
@@ -81,8 +83,7 @@ function initGoogleAuth() {
             }, function() {
                 console.log('Login failed!');
             });
-    };
-    
+    };    
     startApp();
 }
 
