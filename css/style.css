@@ -68,6 +68,8 @@ html, body, #map {
 }
 
 body {
+	width: 100%;
+	height: 100%;
 	overflow: hidden;
 }
 
@@ -1333,10 +1335,28 @@ img.fillPattern {
 		UTILS	
 --------------------------*/
 
+input,
+button {
+	border: none;
+}
+
+	input:focus,
+	button:focus {
+		outline: none;
+	}
+
+
+
+
 .hide {
 	display: none;
 }
 
+.shadow {
+	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+}
 
 /*-------------------------
     	PRELOADER
@@ -1520,9 +1540,6 @@ img.fillPattern {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
-	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
-	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
 }
 
 .top-right {
@@ -1577,20 +1594,18 @@ img.fillPattern {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+
 /*-------------------------
     	OPTION MENU
 ---------------------------*/
 
 .option-menu {
-	width: 60px;
-	height: 40px;
+	width: 40px;
+	height: 60px;
 	z-index: 15;
 	border-radius: 20px;
 	background-color: #31ee79;
 	transition: .5s ease;
-	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
-	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
-	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
 	white-space: nowrap;
 	overflow: hidden;
 
@@ -1603,41 +1618,44 @@ img.fillPattern {
 		height: 40px;
 		cursor: pointer;
 	}
-		.option-item-left {
+		.option-item-bottom {
 			position: absolute;
-			left: 0;
-			width: 20px;
+			right: 0;
+			bottom: 0;
+			width: 40px;
+			height: 20px;
 		}
 		
-			.option-item-left img {
-				width: 15px;
-				height: 20px;
-				transform: rotateY(180deg);
+			.option-item-bottom img {
+				width: 20px;
+				height: 15px;
+				transform: rotateZ(90deg);
 				transition: transform .5s ease;
 			}
 
 			.rotate {
-				transform: rotateY(180deg);
+				transform: rotateX(180deg);
 				transition: transform .5s ease;
 			}
 
-		.option-item-right {
+		.option-item-top {
 			position: absolute;
 			right: 0px;
 			width: 40px;
+			transition: .3s ease;
 		}
 
 		.option-btn {
 			width: 30px;
 			height: 30px;
 			background: rgb(236, 155, 48);
-			transition: transform .3s;
+			transition: .3s ease;
 		}
 
 			.option-btn:hover,
 			.option-btn:active {
 				transform: scale(1.1);
-				transition: transform .3s;
+				transition: .3s ease;
 			}
 
 			.option-btn img {
@@ -1645,9 +1663,6 @@ img.fillPattern {
 				height: 20px;
 				opacity: .6;
 			}
-	
-
-
 
 
 
@@ -1669,6 +1684,14 @@ img.fillPattern {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+
+
+/*-------------------------
+    	MESSAGE	
+---------------------------*/
+
+		
 
 
 /*-------------------------

@@ -6,7 +6,7 @@ const rightSideMenu = document.querySelector('.menu');
 
 const optionsMenu = document.querySelector('.option-menu');
 const arrowSVG = document.querySelector('#arrow');
-var options = document.querySelectorAll('.option-item-right');
+var options = document.querySelectorAll('.option-item-top');
 
 function burgerAnimate() {
     [topBurgerLine, middleBurgerLine, bottomBurgerLine, rightSideMenu]
@@ -21,18 +21,18 @@ burgerBlock.addEventListener('click', () => {
 arrowSVG.addEventListener('click', () => {
     if (optionsMenu.classList.contains('open')) {
         options.forEach(el => {
-            el.style.right = '0px';
+            el.style.top = '0px';
         });
         arrowSVG.parentElement.classList.toggle('rotate');
-        optionsMenu.style.width = '60px';
+        optionsMenu.style.height = '60px';
         optionsMenu.classList.remove('open');
 
     } else {
         optionsMenu.classList.add('open');
         arrowSVG.parentElement.classList.toggle('rotate');
-        optionsMenu.style.width = `${60 + options.length * 40}px`;
+        optionsMenu.style.height = `${60 + options.length * 40}px`;
         options.forEach((el, index) => {
-            el.style.right = `${(index + 1) * 40}px`;
+            el.style.top = `${(index + 1) * 40}px`;
         });
     }
 });
