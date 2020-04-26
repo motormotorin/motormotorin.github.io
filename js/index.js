@@ -6,19 +6,22 @@ const rightSideMenu = document.querySelector('.menu');
 
 const optionsMenu = document.querySelector('.option-menu');
 const arrowSVG = document.querySelector('#arrow');
-var options = document.querySelectorAll('.option-item-top');
+const options = document.querySelectorAll('.option-item-top');
 
-function burgerAnimate() {
+const messageOption = document.querySelector('#msgopt');
+const messageBox = document.querySelector('.message');
+const sendButton = document.querySelector('.send-btn button');
+
+
+
+
+
+function toggleBurgerButton() {
     [topBurgerLine, middleBurgerLine, bottomBurgerLine, rightSideMenu]
         .forEach(el => el.classList.toggle('open'));
 }
 
-burgerBlock.addEventListener('click', () => {
-    burgerAnimate();
-});
-
-
-arrowSVG.addEventListener('click', () => {
+function toggleOptionMenu() {
     if (optionsMenu.classList.contains('open')) {
         options.forEach(el => {
             el.style.top = '0px';
@@ -35,6 +38,24 @@ arrowSVG.addEventListener('click', () => {
             el.style.top = `${(index + 1) * 40}px`;
         });
     }
+}
+
+
+burgerBlock.addEventListener('click', () => {
+    toggleBurgerButton();
+});
+
+messageOption.addEventListener('click', () => {
+    messageBox.style.bottom = '0%';
+});
+
+sendButton.addEventListener('click', () => {
+    messageBox.style.bottom = '-100%';
+    console.log('Send...');
+});
+
+arrowSVG.addEventListener('click', () => {
+    toggleOptionMenu();
 });
 
 $(window).on('load', () => {
