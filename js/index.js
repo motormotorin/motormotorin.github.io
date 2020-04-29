@@ -82,15 +82,14 @@ function cleanMessageBox() {
 }
 
 async function sendMessage(JSONdata) {
-
-    return await fetch("https://fefumap.ru/bot.php", {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSONdata
-    });
+    $.ajax({
+        type: "POST",
+        url: "bot.php",
+        data: {JSONdata},
+        success: function(res) {
+          alert("Ваше сообщение появится на карте сразу после модерации...");
+        }
+ });
 }
 
 messageSendButton.addEventListener('click', () => {
