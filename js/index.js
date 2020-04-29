@@ -93,7 +93,7 @@ messageSendButton.addEventListener('click', () => {
         $.ajax({
             type: "POST",
             url: "bot.php",
-            data: {reqest:JSONdata},
+            data: {request:JSONdata},
             success: function(res) {
               alert("Ваше сообщение появится на карте сразу после модерации...");
             }
