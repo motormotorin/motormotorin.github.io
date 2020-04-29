@@ -19,6 +19,8 @@
 	<link rel='stylesheet' href='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.css'>
 </head>
 <body>
+	<div class="centered-marker">
+	</div>
 	<div class="preloader">
 		<img class="campus" src="/media/logo/campus_gis.svg"/>
 		<svg class="filter" version="1.1">
@@ -38,9 +40,6 @@
 		  <div class="dot"></div>
 		</div>
 	</div>
-	<!--<div id="user-icon" class="top-button user">
-		<img class="user-img" src="/media/socials/user.svg" alt="">
-	</div>-->
 	<div class="btn shadow top-right open-overlay">
 		<span class="stripe bar-top"></span>
 		<span class="stripe bar-middle"></span>
@@ -55,24 +54,16 @@
 			<div id="msgopt" class="btn shadow option-btn">
 				<img src="./media/icons/email.svg"></img>
 			</div>
-		</div>
+		</div>		
 	</div>
 	<div class="menu-wrapper">
 		<div class="menu">
 			<nav class="navbar">
 				<ul class="side-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="">About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="">Feed</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="">Organization</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="">More</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="">Feed</a></li>
+					<li class="nav-item"><a class="nav-link" href="">Organization</a></li>
+					<li class="nav-item"><a class="nav-link" href="">More</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -88,10 +79,12 @@
 			<button class="shadow">
 				<img src="./media/icons/gallery-file.svg"></img>
 			</button>
-			<input type="text" placeholder="Comment" class="shadow" maxlength="100">
+			<div class="text-cont shadow">
+				<textarea name="mess" id="mess" onlyread="false" placeholder="Comment" maxlength="110" cols="30" rows="1"></textarea>
+			</div>
 		</div>
 		<div class="send-btn">
-			<button>Send</button>
+			<button disabled="true">Send</button>
 		</div>
 	</div>
 	<div id="logo_tele2">

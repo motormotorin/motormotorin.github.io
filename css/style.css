@@ -1334,15 +1334,22 @@ img.fillPattern {
 /*-------------------------
 		UTILS	
 --------------------------*/
+ 
+.leaflet-gmx-center,
+.gmx-bottom-shift {
+	display: none;
+}
 
 input,
-button {
+button,
+textarea {
 	border: none;
 	background-color: #fff;
 }
 
 	input:focus,
-	button:focus {
+	button:focus, 
+	textarea:focus {
 		outline: none;
 	}
 
@@ -1354,6 +1361,30 @@ button {
 	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
 	-moz-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
 	box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
+}
+
+.stripe {
+	display: block;
+	height: 2px;
+	width: 16px;
+	background: rgb(95, 94, 94);
+	opacity: 1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: .2s ease;
+}
+
+.centered-marker .pin {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 40px;
+	height: 40px;
+	z-index: 10;
+	transform: translate(-50%, -100%);
+	border: none;
 }
 
 /*-------------------------
@@ -1512,19 +1543,6 @@ button {
 		}
 
 
-.stripe {
-	display: block;
-	height: 2px;
-	width: 16px;
-	background: rgb(95, 94, 94);
-	opacity: 1;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	transition: .2s ease;
-}
-
 /*-------------------------
     		BUTTONS
 ---------------------------*/
@@ -1599,12 +1617,12 @@ button {
 
 .option-menu {
 	width: 40px;
-	height: 60px;
+	height: 70px;
 	z-index: 15;
 	border-radius: 20px;
-	background-color: #31ee79;
+	background-color: rgba(255, 255, 255, 1);
+	/* background-color: #31ee79; */
 	transition: .5s ease;
-	white-space: nowrap;
 	overflow: hidden;
 
 }
@@ -1621,12 +1639,13 @@ button {
 			right: 0;
 			bottom: 0;
 			width: 40px;
-			height: 20px;
+			height: 30px;
 		}
 		
 			.option-item-bottom img {
-				width: 20px;
+				width: 15px;
 				height: 15px;
+				transform-origin: center;
 				transform: rotateZ(90deg);
 				transition: transform .5s ease;
 			}
@@ -1638,9 +1657,10 @@ button {
 
 		.option-item-top {
 			position: absolute;
+			top: 0;
 			right: 0px;
 			width: 40px;
-			transition: .3s ease;
+			transition: .5s ease;
 		}
 
 		.option-btn {
@@ -1664,26 +1684,6 @@ button {
 
 
 
-/*-------------------------
-    	USER ICON
----------------------------*/
-
-.user {
-	right: 65px;
-	z-index: 17;
-	background-color: rgb(255, 255, 255);
-	overflow: hidden;
-}
-
-.user .user-img {
-	position: absolute;
-	width: 40px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-
 
 /*-------------------------
     	MESSAGE	
@@ -1691,38 +1691,56 @@ button {
 
 .message {
 	position: absolute;
-	bottom: -100%;
+	bottom: 0;
 	left: 50%;
-	transform: translateX(-50%);
-	width: calc(100% - 20px);
-	max-width: 400px;
+	width: 400px;
 	min-width: 250px;
 	background: rgba(255, 255, 255, 1);
+	transform: translate(-50%, calc(100% + 20px));
 	margin-bottom: 20px;
+	text-align: center;
 	z-index: 999;
 	transition: .5s ease;
-	overflow: scroll;
-}		
+}
+
+	@media (max-width:  450px) {
+		.message {
+			width: 100%;
+			margin: 0;
+		}
+	}
 
 	.content-field {
+		position: relative;
 		display: flex;
 		justify-content: center;
-		height: 40px;
+		height: 50px;
 		margin: 10px 0;
 	}
 
-		.content-field input {
+		.content-field .text-cont {
+			position: relative;
+			display: flex;
+			align-items: center;
 			width: 60%;
-			height: 40px;
-			border-radius: 0 20px 20px 0;
+			height: 50px;
+			border-radius: 0 25px 25px 0;
 			background-color: rgba(255, 255, 255, 1);
 			padding: 0 15px;
+			vertical-align: middle;
+			overflow: hidden;
 		}
 
+			.content-field .text-cont textarea {
+				resize: none;
+				line-height: 1.2;
+				color: rgba(0, 0, 0, .8);
+			}
+
 		.content-field button {
-			width: 40px;
-			height: 40px;
-			border-radius: 20px 0 0 20px;
+			width: 50px;
+			height: 50px;
+			border-radius: 25px 0 0 25px;
 			z-index: 22;
 		}
 
@@ -1734,16 +1752,40 @@ button {
 	
 	.send-btn button {
 		display: inline-block;
-		background-color: rgb(43, 231, 128);
+		background-color: rgb(57, 243, 141);
 		width: 100%;
-		height: 40px;
+		height:50px;
+		text-transform: uppercase;
+		text-align: center;
 		transition: .2s ease;
+		overflow: hidden;
 	}
 
 		.send-btn button:hover {
-			background-color: rgb(8, 175, 83);
+			background-color: rgb(16, 218, 107);
 			transition: .2s ease;
 		}
+
+		.send-btn button:disabled {
+			background-color: rgb(105, 230, 161);
+		}
+
+		.send-btn button svg {
+			width: 20px;
+			height: 20px;
+		}
+		
+		.path {
+			stroke-dasharray: 1000;
+			stroke-dashoffset: 1000;
+			animation: dash 15s linear forwards;
+		}
+
+			@keyframes dash {
+				to {
+					stroke-dashoffset: 0;
+				}
+			}
 
 
 /*-------------------------

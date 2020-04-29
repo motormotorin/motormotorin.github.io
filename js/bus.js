@@ -2,6 +2,8 @@ var locConfig = {
     permID: 'FPOQ7'
 };
 
+var map = null;
+
 L.Map.addInitHook(function () {
     lid = 'F2F3E51EFA1C4CFB87F5EEDBEB9201F9';
     mid = '5d4c240a69caa174d2aed035915c95cc';
@@ -11,7 +13,7 @@ L.Map.addInitHook(function () {
 
     var busMarkers = {};
     var data = {};
-    var map = this;
+    map = this;
     var gmxMap = null;
     var fg = L.geoJSON([], {
         onEachFeature: (feature, layer) => {
