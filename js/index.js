@@ -81,17 +81,6 @@ function cleanMessageBox() {
     messageSendButton.disabled = true;
 }
 
-async function sendMessage(JSONdata) {
-    $.ajax({
-        type: "POST",
-        url: "bot.php",
-        data: {JSONdata},
-        success: function(res) {
-          alert("Ваше сообщение появится на карте сразу после модерации...");
-        }
- });
-}
-
 messageSendButton.addEventListener('click', () => {
 
     if (textArea.value.replace(/\s/g, '').length) {
@@ -101,16 +90,14 @@ messageSendButton.addEventListener('click', () => {
             mess: textArea.value
         });
 
-        sendMessage(JSONdata)
-        .then(response => {
-            if (response.status === 200) {
-                console.log('Message has been sent!');
-            } else {
-                console.log(response.status);
-                console.log('Something went wrong!');
+        $.ajax({
+            type: "POST",
+            url: "bot.php",
+            data: {reqest:JSONdata},
+            success: function(res) {
+              alert("Ваше сообщение появится на карте сразу после модерации...");
             }
-        })
-        .catch(err => console.log(err)); 
+     });
         cleanMessageBox();
     }
 });
