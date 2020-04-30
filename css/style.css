@@ -1699,7 +1699,7 @@ textarea {
 	transform: translate(-50%, calc(100% + 20px));
 	margin-bottom: 20px;
 	text-align: center;
-	z-index: 999;
+	z-index: 12;
 	transition: .5s ease;
 }
 
