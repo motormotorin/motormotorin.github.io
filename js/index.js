@@ -9,6 +9,8 @@ const messageOption = document.querySelector('#msgopt');
 const messageBox = document.querySelector('.message');
 const messageSendButton = document.querySelector('.send-btn button');
 const textArea = messageBox.querySelector('#mess');
+const errorDiv = messageBox.querySelector('.error-div');
+const galleryUpload = messageBox.querySelector('.gallery-upload');
 
 var marker = document.querySelector('.centered-marker');
 
@@ -33,6 +35,19 @@ function toggleOptionMenu() {
             el.style.top = `${(index + 1) * 40}px`; 
         });
 
+    }
+}
+
+function toggleErrorDiv() {
+    if (errorDiv.classList.contains('active')) {
+        errorDiv.classList.remove('active');
+        errorDiv.style.cssText = 'height: 0; margin-bottom: 0px;';
+    } else {
+        errorDiv.classList.remove('active');
+        errorDiv.style.cssText = 'height: 30px; margin-bottom: 5px;';
+        setTimeout(() => {
+            errorDiv.style.cssText = 'height: 0px; margin-bottom: 0px';
+        }, 2000);
     }
 }
 
@@ -118,6 +133,7 @@ messageOption.addEventListener('click', () => {
 
 arrowSVG.addEventListener('click', () => toggleOptionMenu());
 burgerBlock.addEventListener('click', () => toggleRightSideMenu());
+galleryUpload.addEventListener('click', () => toggleErrorDiv());
 
 $(window).on('load', () => {
     let $preloader = $('.preloader');	
