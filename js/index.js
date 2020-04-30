@@ -86,7 +86,7 @@ messageSendButton.addEventListener('click', () => {
     if (textArea.value.replace(/\s/g, '').length) {
         const JSONdata = JSON.stringify({ 
             Date: new Date(),
-            latlng: marker._latlng,
+            latlng: map.getCenter(),
             mess: textArea.value
         });
 
@@ -95,10 +95,14 @@ messageSendButton.addEventListener('click', () => {
             url: "bot.php",
             data: {request:JSONdata},
             success: function(res) {
-              alert("Ваше сообщение появится на карте сразу после модерации...");
+                alert("Ваше сообщение появится на карте сразу после модерации...");
+                destroyMessageInterface();
+                cleanMessageBox();
+            },
+            error: () => {
+                alert('Ошибка отправки сообщения!');
             }
      });
-        cleanMessageBox();
     }
 });
 
