@@ -52,19 +52,22 @@ L.Map.addInitHook(function () {
 						},
 						properties: it
 					};
-					let layer = data[it.id];
-					let messLiveTime = (new Date() - new Date(it.Date)) / 3600000;
-					if (layer) {
-						if (messLiveTime > 12) {
-							layer.remove([it.id])
+
+					if (feature.geometry.coordinates[0] && feature.geometry.coordinates[1]) {
+						let layer = data[it.id];
+						let messLiveTime = (new Date() - new Date(it.Date)) / 3600000;
+						if (layer) {
+							if (messLiveTime > 12) {
+								layer.remove([it.id])
+							} else {
+								layer.setLatLng([it.latlng["lat"],it.latlng["lng"]]);
+							}
 						} else {
-							layer.setLatLng([it.latlng["lat"],it.latlng["lng"]]);
+							if (messLiveTime < 12) {
+								mess.addData([feature]);
+							}
 						}
-					} else {
-						if (messLiveTime < 12) {
-							mess.addData([feature]);
-						}
-					}
+					} 
 				})
 			});
 		}
