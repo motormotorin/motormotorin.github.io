@@ -22,13 +22,13 @@ L.Map.addInitHook(function () {
 		var timeOfAdd = Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000).toString();
 
 		if (timeOfAdd == '0') {
-			timeOfAdd.concat('только что');
+			timeofAdd += ' только что';
 		} else if (timeOfAdd == '1') {
-			timeOfAdd.concat('час назад');
+			timeofAdd += ' час назад';
 		} else if (timeOfAdd > '1' && timeOfAdd < '5' ) {
-			timeOfAdd.concat(' часа назад');
+			timeofAdd += ' часа назад';
 		} else if (timeOfAdd >= '5') {
-			timeOfAdd.concat(' часов назад');
+			timeofAdd += ' часов назад';
 		}
 
 		var textInPopup = JSON.stringify(layer.feature.properties["mess"], null, 2).replace(/\\"/g, "'")
