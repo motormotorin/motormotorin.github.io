@@ -62,14 +62,10 @@ html, body, #map {
     height: 100%;
 	width: 100%;
 	margin: 0px;
+	padding: 0px;
 	display: flex;
 	flex-direction: row;
 	font-family: 'Tele2DisplaySerif-Regular';
-}
-
-body {
-	width: 100vw;
-	height: 100vh;
 	overflow: hidden;
 }
 
