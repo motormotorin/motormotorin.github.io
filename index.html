@@ -20,8 +20,7 @@
 	<link rel='stylesheet' href='https://winnie.kosmosnimki.ru/2.0/winnie_2.0.css'>
 </head>
 <body>
-	<div class="centered-marker">
-	</div>
+	<div class="centered-marker"></div>
 	<div class="preloader">
 		<img class="campus" src="/media/logo/campus_gis.svg"/>
 		<svg class="filter" version="1.1">
@@ -84,11 +83,12 @@
 				<textarea name="mess" id="mess" onlyread="false" placeholder="Comment" maxlength="110" cols="30" rows="1"></textarea>
 			</div>
 		</div>
-		<div class="error-div">
-			<p>Coming soon...</p>
-		</div>
 		<div class="send-btn">
-			<button disabled="true">Send</button>
+			<button disabled="true">
+				<span class="pre-state-msg">Send</span>
+				<span class="">Sending...</span>
+				<span class="">Done!</span>
+			</button>
 		</div>
 	</div>
 	<div id="logo_tele2">

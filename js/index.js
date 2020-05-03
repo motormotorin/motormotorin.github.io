@@ -14,6 +14,7 @@ const galleryUpload = messageBox.querySelector('.gallery-upload');
 
 var marker = document.querySelector('.centered-marker');
 
+var openedElements = [];
 
 function toggleRightSideMenu() {
     [rightSideMenu, ...burgerBlock.children].forEach(el => el.classList.toggle('open'));
@@ -97,27 +98,39 @@ function cleanMessageBox() {
 }
 
 messageSendButton.addEventListener('click', () => {
-
+    
     if (textArea.value.replace(/\s/g, '').length) {
+        messageSendButton.classList.add('state-1');
+
         const JSONdata = JSON.stringify({ 
             Date: new Date(),
             latlng: map.getCenter(),
             mess: textArea.value
         });
 
-        $.ajax({
-            type: "POST",
-            url: "bot.php",
-            data: {request:JSONdata},
-            success: function(res) {
-                alert("Ваше сообщение появится на карте сразу после модерации...");
-                destroyMessageInterface();
-                cleanMessageBox();
-            },
-            error: () => {
-                alert('Ошибка отправки сообщения!');
-            }
-     });
+        setTimeout(() => {
+            $.ajax({
+                type: "POST",
+                url: "bot.php",
+                data: {request:JSONdata},
+                success: function(res) {
+                    messageSendButton.classList.add('state-2');
+                    setTimeout(() => {
+                        destroyMessageInterface();
+                        cleanMessageBox();
+                        messageSendButton.classList.remove('state-1', 'state-2');
+                    }, 1500);
+                },
+                error: () => {
+                    messageSendButton.lastElementChild.innerText = 'Failed!';
+                    messageSendButton.classList.add('state-2');
+                    //alert('Ошибка отправки сообщения!');
+                    setTimeout(() => {
+                        messageSendButton.classList.remove('state-1', 'state-2');
+                    }, 2000);
+                }
+            }); 
+        }, 1000);
     }
 });
 
@@ -141,4 +154,3 @@ $(window).on('load', () => {
         $(this).remove();
     });
 });
-
