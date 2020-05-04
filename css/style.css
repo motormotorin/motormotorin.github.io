@@ -1375,12 +1375,12 @@ textarea {
 	transition: .2s ease;
 }
 
-.centered-marker .pin {
+.centered-marker .pin-marker {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	z-index: 10;
-	transform: translate(-50%, -100%) scale(.7);
+	transform: translate(-50%, -100%) scale(.55);
 	border: none;
 }
 
@@ -1712,18 +1712,18 @@ textarea {
 		justify-content: center;
 		height: 50px;
 		margin: 10px 0;
+		
 
 	}
 
 		.content-field .text-cont {
 			position: relative;
 			display: flex;
-			align-items: center;
-			width: 60%;
+			justify-content: center;
+			flex-direction: column;
 			height: 50px;
-			border-radius: 0 25px 25px 0;
+			/* border-radius: 0 25px 25px 0; */
 			background-color: rgba(255, 255, 255, 1);
-			padding: 0 15px;
 			vertical-align: middle;
 			overflow: hidden;
 		}
@@ -1732,6 +1732,19 @@ textarea {
 				resize: none;
 				line-height: 1.2;
 				color: rgba(0, 0, 0, .8);
+				padding: 5px 2px;
+				border-bottom: 1px solid rgba(105, 105, 105, .8);
+			}
+
+			.content-field .text-cont .message-length {
+				display: none;
+				text-align: left;
+				padding: 2px;
+				font-family: Helvetica, sans-serif;
+				font-size: .8rem;
+				font-weight: 300;
+				color: rgba(0, 0, 0, .6);
+				transition: .2s ease;
 			}
 
 		.content-field button {
