@@ -55,7 +55,7 @@ function toggleErrorDiv() {
 function addCenteredMarker() {
     const imgEl = document.createElement('img');
     imgEl.classList.add('pin');
-    imgEl.src = './media/icons/placeholder.svg';
+    imgEl.src = './media/icons/Blue-Pin.svg';
     marker.appendChild(imgEl);
 }
 
@@ -85,16 +85,16 @@ function closeMessageBox() {
     messageBox.style.transform = 'translate(-50%, calc(100% + 20px)';
 }
 
+function cleanMessageBox() {
+    textArea.value = '';
+    messageSendButton.disabled = true;
+}
+
 function destroyMessageInterface() {
     removeCenteredMarker();
     closeMessageBox();
     removeMapListeners();
     cleanMessageBox();
-}
-
-function cleanMessageBox() {
-    textArea.value = '';
-    messageSendButton.disabled = true;
 }
 
 messageSendButton.addEventListener('click', () => {
@@ -117,9 +117,10 @@ messageSendButton.addEventListener('click', () => {
                 success: function(res) {
                     messageSendButton.classList.add('state-2');
                     setTimeout(() => {
-                        destroyMessageInterface();
-                        cleanMessageBox();
                         messageSendButton.classList.remove('state-1', 'state-2');
+                        setTimeout(() => {
+                            destroyMessageInterface();
+                        }, 300);
                     }, 1500);
                 },
                 error: () => {
@@ -143,7 +144,6 @@ textArea.addEventListener('input', () => {
 messageOption.addEventListener('click', () => {
     toggleOptionMenu();
     initMessageInterface();
-    addCenteredMarker();
 });
 
 arrowSVG.addEventListener('click', () => toggleOptionMenu());
