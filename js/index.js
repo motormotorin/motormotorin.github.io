@@ -100,6 +100,7 @@ function cleanMessageBox() {
 messageSendButton.addEventListener('click', () => {
     
     if (textArea.value.replace(/\s/g, '').length) {
+        messageSendButton.setAttribute('disabled', true);
         messageSendButton.classList.add('state-1');
 
         const JSONdata = JSON.stringify({ 
@@ -123,11 +124,12 @@ messageSendButton.addEventListener('click', () => {
                 },
                 error: () => {
                     messageSendButton.lastElementChild.innerText = 'Failed!';
-                    messageSendButton.classList.add('state-2');
-                    //alert('Ошибка отправки сообщения!');
-                    setTimeout(() => {
-                        messageSendButton.classList.remove('state-1', 'state-2');
-                    }, 2000);
+                    messageSendButton.classList.add('state-2');               
+                    setTimeout(() =>  {
+                        messageSendButton.classList.remove('state-1', 'state-2');      
+                        messageSendButton.disabled = false;
+                        setTimeout(() => messageSendButton.lastElementChild.innerText = 'Done!', 300);
+                    }, 1500);
                 }
             }); 
         }, 1000);
