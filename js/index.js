@@ -5,9 +5,9 @@ const optionMenu = document.querySelector('.option-menu');
 const arrowSVG = document.querySelector('#arrow');
 const options = document.querySelectorAll('.option-item-top');
 
-const messageOption = document.querySelector('#msgopt');
-const messageBox = document.querySelector('.message');
-const messageSendButton = document.querySelector('.send-btn button');
+const createMessageOption = document.querySelector('#msgopt');
+const creatingMessageBlock = document.querySelector('.create-message');
+const sendMessageButton = document.querySelector('.send-btn button');
 const textArea = document.querySelector('#mess');
 const messageLength = document.querySelector('.message-length');
 
@@ -38,28 +38,16 @@ function toggleOptionMenu() {
     }
 }
 
-function toggleErrorDiv() {
-    if (errorDiv.classList.contains('active')) {
-        errorDiv.classList.remove('active');
-        errorDiv.style.cssText = 'height: 0; margin-bottom: 0px;';
-    } else {
-        errorDiv.classList.remove('active');
-        errorDiv.style.cssText = 'height: 30px; margin-bottom: 5px;';
-        setTimeout(() => {
-            errorDiv.style.cssText = 'height: 0px; margin-bottom: 0px';
-        }, 2000);
-    }
-}
-
 function addCenteredMarker() {
     const imgEl = document.createElement('img');
     imgEl.classList.add('pin-marker');
-    imgEl.src = './media/icons/Blue-Pin.svg';
+    imgEl.src = './media/icons/blue-pin-msg.svg';
     marker.appendChild(imgEl);
 }
 
-function openMessageBox() {
-    messageBox.style.transform = 'translate(-50%, 0%)';
+function opencreatingMessageBlock() {
+    creatingMessageBlock.style.transform = 'translate(-50%, 0%)';
+    creatingMessageBlock.classList.add('active');
 }
 
 function removeCenteredMarker() {
@@ -72,7 +60,7 @@ function initMapListeners() {
 
 function initMessageInterface() {
     addCenteredMarker();
-    openMessageBox();
+    opencreatingMessageBlock();
     initMapListeners();
 }
 
@@ -80,23 +68,61 @@ function removeMapListeners() {
     map.off('click', destroyMessageInterface);
 }
 
-function closeMessageBox() {
-    messageBox.style.transform = 'translate(-50%, calc(100% + 20px)';
+function closecreatingMessageBlock() {
+    creatingMessageBlock.style.transform = 'translate(-50%, calc(100% + 20px))';
+    creatingMessageBlock.classList.remove('active');
 }
 
-function cleanMessageBox() {
+function cleancreatingMessageBlock() {
     textArea.value = '';
     messageLength.innerText = 0;
     messageLength.style.display = 'none';
-    messageSendButton.disabled = true;
+    sendMessageButton.disabled = true;
 }
 
 function destroyMessageInterface() {
+    closecreatingMessageBlock();
+    cleancreatingMessageBlock();
     removeCenteredMarker();
-    closeMessageBox();
     removeMapListeners();
-    cleanMessageBox();
 }
+
+var _mesId = 0;
+function openMessage(mess, date) {
+    closeMessage();
+    const messageHTML = `
+        <div id="mess-${_mesId}" class="message shadow">
+            <div class="text-cont">
+                <div class="message-text">
+                    <p>${mess}</p>
+                </div>
+                <div class="message-date">
+                    <p>${date}</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', messageHTML);
+    setTimeout(() => {
+        document.querySelector(`#mess-${_mesId}`).style.transform = 'translate(-50%, 0%)';
+        _mesId++;
+    }, 100);
+}
+
+function closeMessage() {
+    let elem = document.querySelector(`#mess-${_mesId - 1}`);
+    if (elem) {
+        elem.style.backgroundColor = 'rgb(216, 216, 216)';
+        elem.style.transform = 'translate(-50%, calc(100% + 50px))';
+        setTimeout(() => {
+            elem.parentNode.removeChild(elem);
+        }, 300);
+    }
+}
+
+
+
 
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
@@ -111,12 +137,12 @@ function setCookieTimer() {
     document.cookie = `_msgtimer=true; path=/; expires=${newTime.toUTCString()}`;
 }
 
-messageSendButton.addEventListener('click', () => {
+sendMessageButton.addEventListener('click', () => {
     
     if (textArea.value.replace(/\s/g, '').length) {
         if (!getCookie('_msgtimer')) {
-            messageSendButton.setAttribute('disabled', true);
-            messageSendButton.classList.add('state-1');
+            sendMessageButton.setAttribute('disabled', true);
+            sendMessageButton.classList.add('state-1');
 
             const JSONdata = JSON.stringify({ 
                 Date: new Date(),
@@ -130,9 +156,9 @@ messageSendButton.addEventListener('click', () => {
                     url: "bot.php",
                     data: {request:JSONdata},
                     success: function(res) {
-                        messageSendButton.classList.add('state-2');
+                        sendMessageButton.classList.add('state-2');
                         setTimeout(() => {
-                            messageSendButton.classList.remove('state-1', 'state-2');
+                            sendMessageButton.classList.remove('state-1', 'state-2');
                             setTimeout(() => {
                                 destroyMessageInterface();
                             }, 300);
@@ -140,13 +166,13 @@ messageSendButton.addEventListener('click', () => {
                         setCookieTimer();
                     },
                     error: () => {
-                        messageSendButton.lastElementChild.innerText = 'Failed!';
-                        messageSendButton.classList.add('state-2');               
+                        sendMessageButton.lastElementChild.innerText = 'Failed!';
+                        sendMessageButton.classList.add('state-2');               
                         setTimeout(() =>  {
-                            messageSendButton.classList.remove('state-1', 'state-2');      
-                            messageSendButton.disabled = false;
+                            sendMessageButton.classList.remove('state-1', 'state-2');      
+                            sendMessageButton.disabled = false;
                             setTimeout(() => {
-                                messageSendButton.lastElementChild.innerText = 'Done!'
+                                sendMessageButton.lastElementChild.innerText = 'Done!'
                             }, 300);
                         }, 1500);
                     }
@@ -161,7 +187,7 @@ messageSendButton.addEventListener('click', () => {
 textArea.addEventListener('input', () => {
     const maxLength = 100;
     let length = textArea.value.length;
-    messageSendButton.disabled = textArea.value.replace(/\s/g, '').length ? false : true;
+    sendMessageButton.disabled = textArea.value.replace(/\s/g, '').length ? false : true;
 
     if (length >= 1) {
         if (length >= maxLength) {
@@ -174,9 +200,11 @@ textArea.addEventListener('input', () => {
     }
 });
 
-messageOption.addEventListener('click', () => {
-    toggleOptionMenu();
-    initMessageInterface();
+createMessageOption.addEventListener('click', () => {
+    if (!creatingMessageBlock.classList.contains('active')) {
+        toggleOptionMenu();
+        initMessageInterface();  
+    }
 });
 
 arrowSVG.addEventListener('click', () => toggleOptionMenu());

@@ -24,8 +24,8 @@ L.Map.addInitHook(function () {
                 iconSize: [35, 35],
 				iconAnchor: [0, 0],
 				popupAnchor: [17, -1]
-            });
-        }
+			});
+		}
     }).bindPopup(function (layer) {
 		return JSON.stringify(layer.feature.properties['type'], null, 2);
 	});
@@ -73,41 +73,6 @@ L.Map.addInitHook(function () {
         }
     }).setMinZoom(14).setMaxZoom(18);
 
-	map.gmxDrawing.on('add', (e) => {
-		e.object._obj.on('popupopen', (ev) => {
-			let cont = ev.popup._container.getElementsByClassName('leaflet-popup-content')[0];
-			if (!cont.getElementsByClassName('button-cont').length) {
-				let div = L.DomUtil.create('div', 'button-cont', cont),
-					button = L.DomUtil.create('button', 'button-in-popup', div);
-				
-				L.DomEvent.on(button, 'click', () => {
-					map.gmxDrawing.clear(L.marker);
-					let text = cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value;
-					var date = new Date();
-					var JsonData = JSON.stringify({
-							Date: date,
-							latlng: ev.popup._latlng,
-							mess: text
-					});
-					if (cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value == ''|cont.getElementsByClassName('leaflet-gmx-popup-textarea')[0].value == ' ') { 
-						alert('Зачем балуетесь?')
-					}
-					else {
-					$.ajax({
-   						type: "POST",
-   						url: "bot.php",
-   						data: {request:JsonData},
-   						success: function(res) {
-     						alert("Ваше сообщение появится на карте сразу после модерации...");
-   						}
-					});
-					}
-				});
-				button.innerText = 'Отправить сообщение';
-			}
-		});
-	});
-
     map
 		.on('locationfound', (e) => { map.gmxDrawing.add(L.marker(e.latlng)); })
 		.on('locationerror', (e) => { alert(e.message); })
@@ -120,5 +85,4 @@ L.Map.addInitHook(function () {
 				map.locate({setView: true, maxZoom: 18});
 			})
 		);
-
 });
