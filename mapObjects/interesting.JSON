@@ -1,0 +1,13 @@
+{
+    "interestingObj": [
+    [1, "Памятник", "Рука помощи", " Helping hand", {
+        "type": "POINT", "coordinates": [14681978.93, 5317067.1]
+    }
+    ], [2, "Памятник", "Философский камень", "Philosopher's Stone", {
+        "type": "POINT", "coordinates": [14682807.87, 5315556.95]
+    }
+    ], [3, "Макет острова \"Русский\"", "Макет находится на 2 уровне", "Russian island installation", {
+        "type": "POINT", "coordinates": [14681853.6, 5315987.28]
+    }
+    ]]
+}

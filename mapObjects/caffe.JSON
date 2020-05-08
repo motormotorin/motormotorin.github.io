@@ -1,0 +1,93 @@
+{
+    "caffe": [
+        [2, "Coffee place #1", "Кафе", "D", 4, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee place #1", "Coffee_place_D_4.jpg", "https://www.instagram.com/coffeeplace.one/", {
+        "type": "POINT", "coordinates": [14682079.93, 5315847.62]
+        }
+        ], [4, "Bio food", "Кафе", "C", 6, "8:00-19:00, сб 8:00-18:00, вс - выходной ", "Bio food", "Bio_food_C_6.jpg", "", {
+            "type": "POINT", "coordinates": [14682423.9, 5315624.35]
+        }
+        ], [5, "Bio food", "Кафе", "F", 4, "8:30-17:00, вс - выходной", "Bio food", null, null, {
+            "type": "POINT", "coordinates": [14682840.72, 5315624.95]
+        }
+        ], [6, "Bio food", "Кафе", "G", 2, "8:00-19:00, сб 8:00-18:00, вс - выходной", "Bio food", "Bio_food_G_2.jpg", "", {
+            "type": "POINT", "coordinates": [14681727.23, 5315896.44]
+        }
+        ], [13, "Coffee place #1", "Кафе", "E", 6, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee place #1", "Coffee_place_E_6.jpg", "https://www.instagram.com/coffeeplace.one/", {
+            "type": "POINT", "coordinates": [14682604.24, 5315567.77]
+        }
+        ], [14, "Coffee place #1", "Кафе", "A", 6, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee place #1", "Coffee_place_A_6.jpg", "https://www.instagram.com/coffeeplace.one/", {
+            "type": "POINT", "coordinates": [14682390.53, 5315704.45]
+        }
+        ], [15, "Coffee place #1", "Кафе", "B", 5, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee place #1", "Coffee_place_B_5.jpg", "https://www.instagram.com/coffeeplace.one/", {
+            "type": "POINT", "coordinates": [14682257.29, 5315678.47]
+        }
+        ], [16, "Coffee place #1", "Кафе", "D", 7, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee place #1", "Coffee_place_D_7.jpg", "https://www.instagram.com/coffeeplace.one/", {
+            "type": "POINT", "coordinates": [14682015.66, 5315820.97]
+        }
+        ], [17, "Столовая", "Столовая", "G", 2, "8:00-17:00, сб, вс - выходной", "canteen", null, null, {
+            "type": "POINT", "coordinates": [14681724.39, 5315950.7]
+        }
+        ], [18, "Star coffee", "Кафе", "A", 8, "9:30-19:30, сб, вс - выходной", "Star coffee", null, null, {
+            "type": "POINT", "coordinates": [14682370.15, 5315756.7]
+        }
+        ], [19, "Столовая", "Столовая", "B", 5, "8:30-17:30, сб 8:30-15:00, вс - выходной", "canteen", "Canteen_B_5.jpg", "", {
+            "type": "POINT", "coordinates": [14682177.19, 5315765.21]
+        }
+        ], [21, "ISLAND", "Кафе", "3", 1, "8:00-22:00", "Cafe ISLAND", null, null, {
+            "type": "POINT", "coordinates": [14681751.41, 5316654.24]
+        }
+        ], [22, "ISLAND", "Кафе", "7", 1, "пн-пт 10:00-20:00, сб, вс - выходной", "Cafe ISLAND", "", null, {
+            "type": "POINT", "coordinates": [14681937.8, 5317043.81]
+        }
+        ], [24, "Столовая", "Столовая", "1", null, "8:00-20:00", "canteen", null, null, {
+            "type": "POINT", "coordinates": [14681818.67, 5316157.99]
+        }
+        ], [25, "Bistro", "Кафе", "7", 1, "10:00-22:00", "Bistro", null, null, {
+            "type": "POINT", "coordinates": [14681519.19, 5316598.03]
+        }
+        ], [26, "Полка", "Хорошее кафе", "E", 3, "08:00-18:00, сб 09:00-15:00, вс - выходной", "Polka", "polka.jpg", "https://www.instagram.com/polka_coffee/", {
+            "type": "POINT", "coordinates": [14682577.96, 5315644.96]
+        }
+        ], [27, "Фудкорт", "Кафе", "S", 2, "8:30-18:00", "", null, null, {
+            "type": "POINT", "coordinates": [14681944.67, 5316003.4]
+        }
+        ], [28, "Coffee Place #1", "Кафе", "D", 7, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee Place #1", "", "https://www.instagram.com/coffeeplace.one/", {
+            "type": "POINT", "coordinates": [14682019.02, 5315826.94]
+        }
+        ], [29, "Coffee place #1", "Кафе", "F", 4, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee place #1", "", "https://www.instagram.com/coffeeplace.one/", {
+            "type": "POINT", "coordinates": [14682878.34, 5315631.59]
+        }
+        ], [30, "Столовая ", "", "F", 1, "пн-пт 08:00-17:00", "", null, null, {
+            "type": "POINT", "coordinates": [14682756.52, 5315682.43]
+        }
+        ], [31, "Столовая", "Столовая", "E", 6, "пн-пт 7:30-19:00, сб 7:30-18:00", "Eatery", "Canteen_E_6.jpg", "", {
+            "type": "POINT", "coordinates": [14682603.05, 5315549.78]
+        }
+        ], [33, "Bio food", "", "E", 7, "пн-пт 8:30-17:00, сб 8:30-16:00", "Bio food", "Biofood_E_7.jpg", "", {
+            "type": "POINT", "coordinates": [14682634.1, 5315624.35]
+        }
+        ], [34, "Древо", "Фудкорт", "E", 5, "пн-пт с 9:00 до 17:00", "", null, null, {
+            "type": "POINT", "coordinates": [14682589.31, 5315665.63]
+        }
+        ], [36, "Аякс", "Коворкинг|лекторий|кофе-бар", "А", 4, "пн-сб 10:00-22:00, вс 12:00-22:00", "", null, null, {
+            "type": "POINT", "coordinates": [14682314.02, 5315718.18]
+        }
+        ], [37, "Coffee place #1", "Кафе", "C", 6, "8:00-19:00, сб 8:00-17:00, вс - выходной", "Coffee place #1", "Coffee_place_C_6.jpg", "https://www.instagram.com/coffeeplace.one/", {
+            "type": "POINT", "coordinates": [14682420.31, 5315610.69]
+        }
+        ], [38, "Pryanik", "Кафе", "D", 5, "В обработке", "Pryanik", "Pryanik_D_5.jpg", "", {
+            "type": "POINT", "coordinates": [14682067.31, 5315830.38]
+        }
+        ], [39, "Lavka", "Кафе", "G", 5, "08:00-18:00, сб 09:00-15:00, вс - выходной", "Lavka", "Lavka_G_5.jpg", "", {
+            "type": "POINT", "coordinates": [14681797.55, 5315819.78]
+        }
+        ], [40, "Pryanik", "Cafe", "G", 4, "В обработке", "Pryanik", "Pryanik_G_4.jpg", "https://www.instagram.com/pryanik_cafe/", {
+            "type": "POINT", "coordinates": [14681808.89, 5315832.84]
+        }
+        ], [41, "Pryanik", "Cafe", "G", 2, "В обработке", "Pryanik", "Pryanik_G_2.jpg", "https://www.instagram.com/pryanik_cafe/", {
+            "type": "POINT", "coordinates": [14681690.5, 5315924.2]
+        }
+        ], [42, "Коворкинг \"Море внутри\"", "Coworking", "G", 5, "Круглосуточно", "Coworking", "Coworking_G_5.jpg", "https://vk.com/shem_dvfu?w=wall-30778834_6398", {
+            "type": "POINT", "coordinates": [14681842.78, 5315870.46]
+        }]]
+}
