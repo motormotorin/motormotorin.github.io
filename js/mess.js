@@ -12,16 +12,35 @@ L.Map.addInitHook(function () {
 			let props = feature.properties;
 			data[props.id] = layer;
 			layer.options.icon = L.icon({
-				iconUrl: '//' + kosmosnimki + '/GetImage.ashx?usr=motorin%40scanex.ru&img=MESSAGE.png',
+				iconUrl: './media/icons/blue-pin-msg-min.svg',
 				iconSize: [25, 25],
 				shadowSize:   [27, 27],
 				iconAnchor: [15, 15],
 				popupAnchor: [-4, -20]
 			});
+
+			var timeOfAdd = Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000);
+			if (timeOfAdd == '0') {
+				timeOfAdd = 'только что';
+			} else if (timeOfAdd == '1') {
+				timeOfAdd = 'час назад';
+			} else if (timeOfAdd > '1' && timeOfAdd < '5' ) {
+				timeOfAdd += ' часа назад';
+			} else if (timeOfAdd >= '5') {
+				timeOfAdd += ' часов назад';
+			}
+
+			const obj = {
+				mess: JSON.stringify(layer.feature.properties["mess"], null, 2).replace(/\\"/g, "'")
+																			   .replace(/\\n/g, '<br>')
+																			   .replace(/\"/g, ''),
+				date: timeOfAdd
+			}
+			const clickHandl = openMessage.bind(obj);
 			layer.on({
-				click: openMessage(layer.feature.properties['mess'], layer.feature.properties['Date'])
+				click: clickHandl
 			});
-		}
+		}	
 	});
 
 	var reget = () => {
