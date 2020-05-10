@@ -6,6 +6,7 @@ L.Map.addInitHook(function () {
 	const mid = '5d4c240a69caa174d2aed035915c95cc';
 	const kosmosnimki = 'maps.kosmosnimki.ru';
 
+	
 	var mess = L.geoJSON([], {
 		onEachFeature: function (feature, layer) {
 			let props = feature.properties;
@@ -16,6 +17,9 @@ L.Map.addInitHook(function () {
 				shadowSize:   [27, 27],
 				iconAnchor: [15, 15],
 				popupAnchor: [-4, -20]
+			});
+			layer.on({
+				click: openMessage(layer.feature.properties['mess'], layer.feature.properties['Date'])
 			});
 		}
 	}).bindPopup(function (layer) {
