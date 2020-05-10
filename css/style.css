@@ -1682,6 +1682,25 @@ img {
 			transform: rotateZ(90deg);
 		}
 
+		.level-switcher .switch-top:active,
+		.level-switcher .switch-bottom:hover:active {
+			transition: transform .5s ease;
+			animation: switch-an .5s linear forwards;
+		}
+
+		@keyframes switch-an {
+			0% {
+				transform: scale(1);
+			}
+			50% {
+				transform: scale(.9);
+			}
+			100% {
+				transform: scale(1);
+			}
+
+		}
+
 /*-------------------------
     	OPTION MENU
 ---------------------------*/
