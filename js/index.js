@@ -1,4 +1,4 @@
-const burgerBlock = document.querySelector('.open-overlay');
+const burgerBlock = document.querySelector('.burger');
 const rightSideMenu = document.querySelector('.menu');
 
 const optionMenu = document.querySelector('.option-menu');
@@ -216,3 +216,55 @@ $(window).on('load', () => {
         $(this).remove();
     });
 });
+
+
+// var _mode = 'drag';
+
+// setTimeout(() => {
+//     var imageUrl = "./Plans/BuildingA/Level-6.png",
+//     imageBounds = [[43.02957659333306, 131.8904507160187], [43.03161568636769, 131.89506411552432]];
+
+//     var imgOv = new L.imageOverlay(imageUrl, imageBounds);
+//     map.addLayer(imgOv);
+
+//     map.fitBounds(imageBounds);
+
+//     var rect = new L.rectangle(imageBounds, {
+//         color: 'blue', 
+//         weight: 1,
+//         draggable: true
+//     });
+    
+//     rect.on('click', function (e) {
+//         rect.on('drag, dragend', (e) => {
+//             imgOv.setBounds(rect.getBounds());
+//         });
+//     }).addTo(map);
+
+
+//     var marker = new L.marker(imageBounds[0], {
+//         draggable: 'true'
+//     });
+
+//     var leftBottomCorner = marker.getLatLng();
+//     var rightTopCorner = L.latLng(imageBounds[1]);
+
+//     function drag() {
+//         var position = marker.getLatLng();
+//         marker.setLatLng(position, {
+//             draggable: 'true'
+//         });
+
+//         var latRight = rightTopCorner['lat'] + (position['lat'] - leftBottomCorner['lat']) * (_mode === 'drag' ? 1 : -1);
+//         var lngRight = rightTopCorner['lng'] + (position['lng'] - leftBottomCorner['lng']) * (_mode === 'drag' ? 1 : -1);
+
+//         leftBottomCorner = L.latLng(position);
+//         rightTopCorner = L.latLng(latRight, lngRight);
+
+//         rect.setBounds(L.latLngBounds(position, L.latLng(latRight, lngRight)));
+//         imgOv.setBounds(L.latLngBounds(position, L.latLng(latRight, lngRight)));
+//     }
+
+//     marker.addTo(map).on('drag', drag);
+
+// }, 2000);

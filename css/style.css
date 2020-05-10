@@ -1575,46 +1575,112 @@ img {
 	right: 10px;
 }
 
+.right-middle {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+}
+
 /*-------------------------
     	MENU BUTTON
 ---------------------------*/
   
-.open-overlay {
+.burger {
 	z-index: 20;
 	transition: .2s ease;
 }
 
-.open-overlay .bar-bottom {
+.burger .bar-bottom {
 	margin: 5px auto;
 	transition: .2s ease;
 }
   
-.open-overlay .bar-top {
+.burger .bar-top {
 	margin: -5px auto;
 	transition: .2s ease;
 }
 
-.open-overlay:hover span {
+.burger:hover span {
 	background: rgb(112, 231, 72);
 	transition: .2s ease;
 }
 
-.open-overlay .bar-middle.open {
+.burger .bar-middle.open {
 	opacity: 0;
 }
 
-.open-overlay .bar-top.open {
+.burger .bar-top.open {
 	margin: 0px auto;
 	background: rgb(112, 231, 72);
 	transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.open-overlay .bar-bottom.open {
+.burger .bar-bottom.open {
 	margin: 0px auto;
 	background: rgb(112, 231, 72);
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+/*-------------------------
+    	LEVEL SWITCHER
+---------------------------*/
+
+.level-switcher {
+	height: 120px;
+	width: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: cener;
+	flex-direction: column;
+	background: rgba(255, 255, 255, .8);
+	border-radius: 20px;
+	border: 1px solid rgba(10, 10, 10, 0.4);
+	z-index: 30;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+	.level-switcher .level-container {
+		width: 36px;
+		height: 36px;
+		margin: 2px;
+		text-align: center;
+		overflow: hidden;
+		font-family: Helvetica, sans-serif;
+		font-size: 20px;
+		color: rgba(0, 0, 0, .7);
+
+	}
+
+	.level-switcher .level-container span {
+		line-height: 36px;
+		display: inline-block;
+		width: 36px;
+		height: 36px;
+		transition: .35s ease;
+	}
+
+	.level-switcher button {
+		width: 36px;
+		height: 36px;
+		margin: 2px;
+		border-radius: 19px;
+		border: 1px solid rgba(10, 10, 10, 0.4);
+		cursor: pointer;
+	}
+
+		.level-switcher .switch-top img {
+			width: 15px;
+			height: 15px;
+			transform: rotateZ(-90deg);
+		}
+
+		.level-switcher .switch-bottom img {
+			width: 15px;
+			height: 15px;
+			transform: rotateZ(90deg);
+		}
 
 /*-------------------------
     	OPTION MENU
