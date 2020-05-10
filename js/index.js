@@ -92,6 +92,7 @@ function openMessage(mess, date) {
     closeMessage();
     const messageHTML = `
         <div id="mess-${_mesId}" class="message shadow">
+            <div class="close-btn"></div>
             <div class="text-cont">
                 <div class="message-text">
                     <p>${mess}</p>
@@ -104,6 +105,10 @@ function openMessage(mess, date) {
     `;
     
     document.body.insertAdjacentHTML('beforeend', messageHTML);
+    document.querySelector('.close-btn').addEventListener('click', () => {
+        closeMessage();
+    });
+
     setTimeout(() => {
         document.querySelector(`#mess-${_mesId}`).style.transform = 'translate(-50%, 0%)';
         _mesId++;
@@ -120,9 +125,6 @@ function closeMessage() {
         }, 300);
     }
 }
-
-
-
 
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
