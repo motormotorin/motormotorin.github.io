@@ -92,7 +92,7 @@ function openMessage(mess, date) {
     closeMessage();
     const messageHTML = `
         <div id="mess-${_mesId}" class="message shadow">
-            <div class="close-btn"></div>
+            <div id="mess-close-${_mesId}"class="close-btn"></div>
             <div class="text-cont">
                 <div class="message-text">
                     <p>${mess}</p>
@@ -105,7 +105,7 @@ function openMessage(mess, date) {
     `;
     
     document.body.insertAdjacentHTML('beforeend', messageHTML);
-    document.querySelector('.close-btn').addEventListener('click', () => {
+    document.querySelector(`#mess-close-${_mesId}`).addEventListener('click', () => {
         closeMessage();
     });
 
