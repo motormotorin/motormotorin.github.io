@@ -1,24 +1,27 @@
+
+
 L.Map.addInitHook(function () {
     const _map = this;
-    const duration = 2000;
+    const duration = duration;
     const _timerId = null;
+
     var busesObjectsArray = []; 
 
     const init = async () => {
         await _buildDefaultLayer();
-        _setLayersOnMap();
+        await _setLayersOnMap();
         _setTimer();
     }
 
-    const _buildDefaultLayer = () => {
-        _getDataFromServer()
+    const _buildDefaultLayer = async () => {
+        await _getDataFromServer()
         .then(data => JSON.parse(data))
         .then(data => {
             data.forEach(el => {
+                console.log(el);
                 el.marker = L.Marker.movingMarker(
-                    [[el.latLng.lat, el.latLng.lng], [el.latLng.lat, el.latLng.lng]], 
-                    [duration], 
-                    {autostart: true});
+                    [ [el.latLng.lat, el.latLng.lng], [el.latLng.lat, el.latLng.lng] ], 
+                    [duration], {autostart: true});
                 busesObjectsArray.push(el);
             });
         });
@@ -35,32 +38,33 @@ L.Map.addInitHook(function () {
     const _setTimer = () => {
         timeId = setInterval(() => {
             _updateBusPosition();
-        }, 5000);
+        }, duration);
     }
 
     const _getDataFromServer = () => {
-        // add get request 
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(JSON.stringify(busObjExmpl));
-            }, 2000);
+                resolve(JSON.stringify(data));
+            }, duration);
         });
     }
 
     const _setDataToMarker = (data) => {
         data.forEach(busObj => {
-            let index = busesObjectsArray.findIndex(el => el.id == busObj.id);
-            if (index !== -1) {
-                busesObjectsArray[index].marker.addLatLng([busObj.latLng.lat, busObj.latLng.lng], [duration]);
+            let ind = busesObjectsArray.findIndex(el => el.id == busObj.id);
+
+            if (ind !== -1) {
+                busesObjectsArray[ind].marker.moveTo([busObj.latLng.lat, busObj.latLng.lng], [duration]); 
             }
         });
     }
 
-    const _setLayersOnMap = () => {
-        let groupedLayers = [];
+    const _setLayersOnMap = (buses) => {
+        var groupedLayers = [];
         busesObjectsArray.forEach(bus => {
             groupedLayers.push(bus.marker);
         });
         L.layerGroup(groupedLayers).addTo(_map);
     }
+
 });
