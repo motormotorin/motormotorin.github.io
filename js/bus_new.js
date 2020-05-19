@@ -7,6 +7,20 @@ L.Map.addInitHook(function () {
 
     var busesObjectsArray = []; 
 
+    // const busObj = [
+    //     {
+    //         id: "0123012",
+    //         curLatLng: {
+    //             lat: 
+    //             lng: 
+    //         },
+    //         prevLatLng: {
+    //             lat: 
+    //             lng:
+    //         }
+    //     }
+    // ];
+
     const init = async () => {
         await _buildDefaultLayer();
         await _setLayersOnMap();
@@ -20,7 +34,7 @@ L.Map.addInitHook(function () {
             data.forEach(el => {
                 console.log(el);
                 el.marker = L.Marker.movingMarker(
-                    [ [el.latLng.lat, el.latLng.lng], [el.latLng.lat, el.latLng.lng] ], 
+                    [[el.prevLatLng.lat, el.prevLatLng.lng], [el.curLatLng.lat, el.curLatLng.lng]], 
                     [duration], {autostart: true});
                 busesObjectsArray.push(el);
             });
@@ -36,25 +50,21 @@ L.Map.addInitHook(function () {
     }
 
     const _setTimer = () => {
-        timeId = setInterval(() => {
+        _timerId = setInterval(() => {
             _updateBusPosition();
         }, duration);
     }
 
     const _getDataFromServer = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(JSON.stringify(data));
-            }, duration);
-        });
+        const url = "";
+        return fetch(url);
     }
 
     const _setDataToMarker = (data) => {
         data.forEach(busObj => {
             let ind = busesObjectsArray.findIndex(el => el.id == busObj.id);
-
             if (ind !== -1) {
-                busesObjectsArray[ind].marker.moveTo([busObj.latLng.lat, busObj.latLng.lng], [duration]); 
+                busesObjectsArray[ind].marker.moveTo([busObj.curLatLng.lat, busObj.curLatLng.lng], [duration]); 
             }
         });
     }
@@ -66,5 +76,5 @@ L.Map.addInitHook(function () {
         });
         L.layerGroup(groupedLayers).addTo(_map);
     }
-
+    init();
 });
