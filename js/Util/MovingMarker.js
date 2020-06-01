@@ -118,6 +118,7 @@ L.Marker.MovingMarker = L.Marker.extend({
     addLatLng: function(latlng, duration) {
         this._latlngs.push(L.latLng(latlng));
         this._durations.push(duration);
+        
     },
 
     moveTo: function(latlng, duration) {

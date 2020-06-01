@@ -30,31 +30,31 @@ L.Map.addInitHook(function () {
 		return JSON.stringify(layer.feature.properties['type'], null, 2);
 	});
 	map.setMaxBounds([[43.050952, 131.85915],[42.994509, 131.94232]]);
-   		reget = () => {
-		 if (fg._map) {
-			//prefix + '/proxy?' + url 
-			 fetch('get.php', {mode: 'cors'})
-				.then((res) => res.json())
-				.then((arr) => {
-					arr.forEach(it => {
-						let feature = {
-							type: 'Feature',
-							geometry: {
-								type: 'Point',
-								coordinates: [it.longitude, it.latitude]
-							},
-							properties: it
-						};
-						let layer = data[it.id];
-						if (layer) {
-							layer.setLatLng([it.latitude, it.longitude]);
-						} else if (it.type == 'shuttle') {
-							fg.addData([feature]);
-						}
-					})
-			 });
-		 }
-		};
+	reget = () => {
+		if (fg._map) {
+		//prefix + '/proxy?' + url 
+			fetch('get.php', {mode: 'cors'})
+			.then((res) => res.json())
+			.then((arr) => {
+				arr.forEach(it => {
+					let feature = {
+						type: 'Feature',
+						geometry: {
+							type: 'Point',
+							coordinates: [it.longitude, it.latitude]
+						},
+						properties: it
+					};
+					let layer = data[it.id];
+					if (layer) {
+						layer.setLatLng([it.latitude, it.longitude]);
+					} else if (it.type == 'shuttle') {
+						fg.addData([feature]);
+					}
+				})
+			});
+		}
+	};
 
     map.on('layeradd', (ev) => {
         if (!gmxMap && L.gmx._maps['maps.kosmosnimki.ru']) {
@@ -72,17 +72,4 @@ L.Map.addInitHook(function () {
             setInterval(reget, delay);
         }
     }).setMinZoom(14).setMaxZoom(18);
-
-    map
-		.on('locationfound', (e) => { map.gmxDrawing.add(L.marker(e.latlng)); })
-		.on('locationerror', (e) => { alert(e.message); })
-		.addControl(L.control.gmxIcon({
-				id: 'info',
-				position: 'right',
-				title: 'Моя позиция'
-			})
-			.on('click', function (ev) {
-				map.locate({setView: true, maxZoom: 18});
-			})
-		);
 });

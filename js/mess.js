@@ -20,13 +20,13 @@ L.Map.addInitHook(function () {
 			});
 
 			var timeOfAdd = Math.floor((new Date() -  new Date(layer.feature.properties["Date"])) / 3600000);
-			if (timeOfAdd == '0') {
+			if (timeOfAdd == 0) {
 				timeOfAdd = 'только что';
-			} else if (timeOfAdd == '1') {
+			} else if (timeOfAdd == 1) {
 				timeOfAdd = 'час назад';
-			} else if (timeOfAdd > '1' && timeOfAdd < '5' ) {
+			} else if (timeOfAdd > 1 && timeOfAdd < 5 ) {
 				timeOfAdd += ' часа назад';
-			} else if (timeOfAdd >= '5') {
+			} else if (timeOfAdd >= 5) {
 				timeOfAdd += ' часов назад';
 			}
 
