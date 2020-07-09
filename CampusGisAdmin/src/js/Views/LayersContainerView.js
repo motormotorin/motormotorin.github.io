@@ -41,6 +41,10 @@ LayersContainerView.clearLayer = function(item) {
     item.parentNode.removeChild(item);
 }
 
+LayersContainerView.clearAll = function() {
+    this.container.innerHTML = "";
+}
+
 LayersContainerView.getInputValue = function(item) {
     return item.querySelector('input').value || "";
 }
