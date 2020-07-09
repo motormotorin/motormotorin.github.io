@@ -1,8 +1,11 @@
 import { editorBarDOM } from '../Util/Base';
 
-const EditingBarView = {
-    editorBar: document.querySelector(`.${editorBarDOM.editorBar}`),
-};
+const EditingBarView = {}
+
+EditingBarView.init = function() {
+    this.editorBar = document.querySelector(`.${editorBarDOM.editorBar}`);
+    return this;
+}
 
 EditingBarView.show = function() {
     this.editorBar.style.transform = "translateX(0%)";
