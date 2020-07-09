@@ -24,7 +24,9 @@ LayersContainerView.renderLayer = function(layer) {
                 <img src="./media/file.svg">
             </span>
             <span>
-                <input class="item-row__input"type="text" placeholder="Название слоя" value="${layer.title}" disabled>
+                <input class="item-row__input"type="text" 
+                    placeholder="Название слоя" 
+                    value="${layer.title}" disabled>
             </span>
             <button id="save-btn" class="item-row__btn">
                 <img src="./media/${layer.state === "new" ? "unsaved" : "saved"}.svg">
@@ -35,9 +37,8 @@ LayersContainerView.renderLayer = function(layer) {
     this.container.insertAdjacentHTML("afterbegin", layerHTML);
 };
 
-LayersContainerView.clearLayer = function(id) {
-    const layer = this.container.querySelector(`#${id}`);
-    this.container.removeChild(layer);
+LayersContainerView.clearLayer = function(item) {
+    item.parentNode.removeChild(item);
 }
 
 LayersContainerView.getInputValue = function(item) {
