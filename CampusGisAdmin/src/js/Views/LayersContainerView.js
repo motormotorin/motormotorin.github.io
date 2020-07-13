@@ -1,4 +1,4 @@
-import { layersContainerDOM } from '../Util/Base';
+import { layersContainerDOM, elementDOM } from '../Util/Base';
 import Layer from '../Models/Layer';
 
 
@@ -8,26 +8,22 @@ const LayersContainerView = {};
 LayersContainerView.init = function() {
     this.container = document.querySelector(`.${layersContainerDOM.container}`);
     return this;
-}
+};
 
 LayersContainerView.highlightSelectedLayer = function(layer) {
     Array.from(this.container.children).forEach(chld => {
-        chld.classList.remove(layersContainerDOM.itemActive);
+        chld.classList.remove(elementDOM.itemActive);
     });
-    layer.classList.add(layersContainerDOM.itemActive);
+    layer.classList.add(elementDOM.itemActive);
 };
 
 LayersContainerView.renderLayer = function(layer) {     
     const layerHTML = `
         <div id="${layer.id}" class="item-row">
-            <span class="item-row__img">
-                <img src="./media/file.svg">
-            </span>
-            <span>
-                <input class="item-row__input"type="text" 
-                    placeholder="Название слоя" 
-                    value="${layer.title}" disabled>
-            </span>
+            <img class="item-row__img" src="./media/file.svg">
+            <input class="item-row__input"type="text" 
+                placeholder="Название слоя" 
+                value="${layer.title}" disabled>
             <button id="save-btn" class="item-row__btn">
                 <img src="./media/${layer.state === "new" ? "unsaved" : "saved"}.svg">
             </button>
@@ -39,23 +35,23 @@ LayersContainerView.renderLayer = function(layer) {
 
 LayersContainerView.clearLayer = function(item) {
     item.parentNode.removeChild(item);
-}
+};
 
 LayersContainerView.clearAll = function() {
     this.container.innerHTML = "";
-}
+};
 
 LayersContainerView.getInputValue = function(item) {
     return item.querySelector('input').value || "";
-}
+};
 
 LayersContainerView.setAsSaved = function(item) {
-    const img = item.querySelector(`#${layersContainerDOM.itemSaveBtnID} img`);
+    const img = item.querySelector(`#${elementDOM.itemSaveBtnID} img`);
     img.src = "./media/saved.svg";
 };
 
 LayersContainerView.setAsUnsaved = function(item) {
-    const img = item.querySelector(`#${layersContainerDOM.itemSaveBtnID} img`);
+    const img = item.querySelector(`#${elementDOM.itemSaveBtnID} img`);
     img.src = "./media/unsaved.svg";
 };
 
