@@ -1,13 +1,13 @@
-import { layersContainerDOM } from '../Util/Base';
+import { layersContainerDOM, elementDOM } from '../Util/Base';
 import LayersContainerView from '../Views/LayersContainerView';
 import Layer from '../Models/Layer';
 
 
 function LayersContainer(data) {
-    this.dataArray = data || [];
-    this.selectedLayerID = null;
+    this.layers = data || [];
+    this.selectedLayer = null;
 
-    this._lContView = LayersContainerView;
+    this._lContView = LayersContainerView.init();
     this.initHandlers();
 } 
 
@@ -16,16 +16,11 @@ LayersContainer.prototype.initHandlers = function() {
     this.toolbar = document.querySelector(`#${layersContainerDOM.toolbarID}`);
 
     this.toolbar.addEventListener("click", (e) => {
-        e.preventDefault();
         if (e.target.closest(`#${layersContainerDOM.acordionID}`)) {
             this._lContView.toggleContainer();
 
         } else if (e.target.closest(`#${layersContainerDOM.addBtnID}`)) {
-            if (this.newLayer === undefined || this.newLayer === null) {
-                this.addNewLayer();
-            } else {
-                alert("Сохраните предыдущий слой");
-            } 
+            this.addNewLayer();
 
         } else if (e.target.closest(`#${layersContainerDOM.delBtnID}`)) {
             this.delLayer();
@@ -33,68 +28,88 @@ LayersContainer.prototype.initHandlers = function() {
     });
 
     this.container.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (e.target.closest(`.${layersContainerDOM.item}`)) {
-            let item = e.target.closest(`.${layersContainerDOM.item}`);
+        if (e.target.closest(`.${elementDOM.item}`)) {
+            let item = e.target.closest(`.${elementDOM.item}`);
             this.selectLayer(item);
+        }
+
+        if (e.target.closest(`#${elementDOM.itemSaveBtnID}`)) {
+            let item = e.target.closest(`.${elementDOM.item}`);
+            this.saveLayer(item);
         }
     });
 
     this.container.addEventListener("dblclick", (e) => {
-        e.preventDefault();
-        if (e.target.className === layersContainerDOM.itemInput) {
-            let item = e.target.closest(`.${layersContainerDOM.item}`);
+        if (e.target.className === elementDOM.itemInput) {
+            let item = e.target.closest(`.${elementDOM.item}`);
             e.target.disabled = false;
             e.target.focus();
             this._lContView.highlightSelectedLayer(item);
         }
     });
 
+    this.container.addEventListener("input", (e) => {
+       const item = e.target.closest(`.${elementDOM.item}`);
+       const layer = this.layers.find(layer => layer.id === item.id);
+       layer.title === e.target.value ? this._lContView.setAsSaved(item) 
+        : this._lContView.setAsUnsaved(item);
+    });
+
     this.container.addEventListener("change", (e) => {
-        e.preventDefault();
         e.target.blur();
         e.target.disabled = true;
     });
 
     this.container.addEventListener("focusout", (e) => {
-        e.preventDefault();    
         e.target.disabled = true;
     });
 }
 
+
+LayersContainer.prototype.update = function(newlayers) {
+    this.layers = newlayers;
+    this.selectedLayer = null;
+    this._lContView.clearAll();
+
+    this.layers.forEach(layer => {
+        this._lContView.renderLayer(layer);
+    });
+}
+
 LayersContainer.prototype.selectLayer = function(item) {
-    this.selectedLayerID = item.id;
+    this.selectedLayer = item;
     this._lContView.highlightSelectedLayer(item);
 }
 
 LayersContainer.prototype.addNewLayer = function() {
-    let newLayer = new Layer();
-    this.dataArray.push(newLayer);
+    const newLayer = new Layer();
+    this.layers.push(newLayer);
     this._lContView.renderLayer(newLayer);
 }
 
-LayersContainer.prototype.saveLayer = function() {
+LayersContainer.prototype.saveLayer = function(item) {
+    const layer = this.layers.find(layer => layer.id === item.id);
+    layer.title = this._lContView.getInputValue(item);
+    this._lContView.setAsSaved(item);
+
     // -- maker server request
     // -- play animation 
     // -- on succes changeSaveIcon
+    // -- on faoilure show error
 }
 
 LayersContainer.prototype.delLayer = function() {
-    if (this.selectedLayerID === null || this.selectedLayerID === undefined) return;
+    if (this.selectedLayer === null || this.selectedLayer === undefined) return;
 
-    const layer = this.dataArray.find(layer => layer.id === this.selectedLayerID);
+    const layer = this.layers.find(layer => layer.id === this.selectedLayer.id);
     if (layer.state === "new") {
-        this.dataArray = this.dataArray.filter(l => l.id !== layer.id);
-        this.selectedLayerID = null;
-        this._lContView.clearLayer(layer.id);
+        this.layers = this.layers.filter(l => l.id !== layer.id);
+        this._lContView.clearLayer(this.selectedLayer);
+        this.selectedLayer = null;
         
     } else {
         console.log("server request on deleting");
     }
-    // -- if layer.state === "new" delete layer 
-    // -- else make server request on deleting 
-    //    -- on success delete layer
-    //    -- on failure show error message
 } 
 
 export default LayersContainer;
