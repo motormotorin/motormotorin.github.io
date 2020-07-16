@@ -1,15 +1,19 @@
 import { layersContainerDOM, elementDOM } from '../Util/Base';
 import LayersContainerView from '../Views/LayersContainerView';
 import Layer from '../Models/Layer';
+import Event from '../Util/Event';
 
 
-function LayersContainer(data) {
+function LayersContainer(editingBar, data) {
     this.layers = data || [];
     this.selectedLayer = null;
 
+    this._editingBar = editingBar;
     this._lContView = LayersContainerView.init();
     this.initHandlers();
 } 
+
+LayersContainer.prototype = Object.create(Event.prototype);
 
 LayersContainer.prototype.initHandlers = function() {
     this.container = document.querySelector(`.${layersContainerDOM.container}`);
@@ -28,14 +32,12 @@ LayersContainer.prototype.initHandlers = function() {
     });
 
     this.container.addEventListener("click", (e) => {
-        if (e.target.closest(`.${elementDOM.item}`)) {
-            let item = e.target.closest(`.${elementDOM.item}`);
-            this.selectLayer(item);
-        }
-
         if (e.target.closest(`#${elementDOM.itemSaveBtnID}`)) {
             let item = e.target.closest(`.${elementDOM.item}`);
             this.saveLayer(item);
+        } else if (e.target.closest(`.${elementDOM.item}`)) {
+            let item = e.target.closest(`.${elementDOM.item}`);
+            this.selectLayer(item);
         }
     });
 
@@ -77,11 +79,13 @@ LayersContainer.prototype.update = function(newlayers) {
 }
 
 LayersContainer.prototype.selectLayer = function(item) {
+    this.emit("layerSelected", []);
     this.selectedLayer = item;
     this._lContView.highlightSelectedLayer(item);
 }
 
 LayersContainer.prototype.addNewLayer = function() {
+    this.emit("layerAdded", []);
     const newLayer = new Layer();
     this.layers.push(newLayer);
     this._lContView.renderLayer(newLayer);
@@ -99,6 +103,7 @@ LayersContainer.prototype.saveLayer = function(item) {
 }
 
 LayersContainer.prototype.delLayer = function() {
+    this.emit("layerDeleted");
     if (this.selectedLayer === null || this.selectedLayer === undefined) return;
 
     const layer = this.layers.find(layer => layer.id === this.selectedLayer.id);
