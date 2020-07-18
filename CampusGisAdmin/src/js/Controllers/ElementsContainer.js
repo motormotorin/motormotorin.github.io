@@ -1,11 +1,27 @@
 import ElementsContainerView from '../Views/ElementsContainerView';
 import { elementsContainerDOM, elementDOM, layersContainerDOM } from '../Util/Base';
 import Marker from '../Models/Marker';
+import Event from '../Util/Event';
 
-function ElementsContainer(data) {
+function ElementsContainer(editingBar, data) {
     this.elements = data || [];
+
+    this._editingBar = editingBar;
     this._elContView = ElementsContainerView.init();
+
+    this.prototype = new Event();
     this.initHandlers();
+    this.disable();
+}
+
+ElementsContainer.prototype = Object.create(Event.prototype);
+
+ElementsContainer.prototype.disable = function() {
+    this._elContView.disable();
+}
+
+ElementsContainer.prototype.enable = function() {
+    this._elContView.enable();
 }
 
 ElementsContainer.prototype.initHandlers = function() {
