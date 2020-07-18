@@ -11,12 +11,6 @@ export const editorBarDOM = {
     selectorLiActive: "selectors__li--active",
     layerSelectorID: "layers-slctr",
     buildingsSelectorID: "buildings-slctr",
-
-    elementsToolbarID: "elements-toolbar",
-
-
-    containerShowBtn: "toolbar__toogle--show",
-    containerHideBtn: "toolbar__toogle--hide",
 }
 
 export const layersContainerDOM = {
@@ -24,7 +18,24 @@ export const layersContainerDOM = {
     addBtnID: "add-layer",
     delBtnID: "del-layer",
     container: "layers-container",
-    containerShow: "toolbar__toogle--show",
-    containerHide: "toolbar__toogle--hide",
-    acordionID: "acrd"
+    containerHide: "layers-container--hide",
+    acordionHide: "toolbar__toggle--hide",
+    acordionID: "acrd-layers",
+}
+
+export const elementsContainerDOM = {
+    toolbarID: "elements-toolbar",
+    addBtnID: "add-elem",
+    delBtnID: "del-elem",
+    container: "elements-container",
+    containerHide: "elements-container--hide",
+    acordionHide: "toolbar__toggle--hide",
+    acordionID: "acrd-elements"
+}
+
+export const elementDOM = {
+    item: "item-row",
+    itemActive: "item-row--active",
+    itemInput: "item-row__input",
+    itemSaveBtnID: "save-btn",
 }
