@@ -1,9 +1,15 @@
-import { editorBarDOM } from '../Util/Base';
-
-const EditingBarView = {}
+const EditingBarView = {
+    DOMstrings: {
+        editorBar: "left-sidebar",
+        selectorLi: "selectors__li",
+        selectorLiActive: "selectors__li--active",
+        layerSelectorID: "layers-slctr",
+        buildingsSelectorID: "buildings-slctr",
+    }
+}
 
 EditingBarView.init = function() {
-    this.editorBar = document.querySelector(`.${editorBarDOM.editorBar}`);
+    this.editorBar = document.querySelector(`.${this.DOMstrings.editorBar}`);
     return this;
 }
 
@@ -16,9 +22,9 @@ EditingBarView.hide = function() {
 }
 
 EditingBarView.highlightSelected = function(id) {
-    this.editorBar.querySelectorAll(`.${editorBarDOM.selectorLi}`).forEach(slctr => {
-        slctr.id === id ? slctr.classList.add(editorBarDOM.selectorLiActive) 
-            : slctr.classList.remove(editorBarDOM.selectorLiActive);
+    this.editorBar.querySelectorAll(`.${this.DOMstrings.selectorLi}`).forEach(slctr => {
+        slctr.id === id ? slctr.classList.add(this.DOMstrings.selectorLiActive) 
+            : slctr.classList.remove(this.DOMstrings.selectorLiActive);
     });
 }
 
