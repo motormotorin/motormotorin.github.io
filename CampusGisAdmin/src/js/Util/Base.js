@@ -39,3 +39,25 @@ export const elementDOM = {
     itemInput: "item-row__input",
     itemSaveBtnID: "save-btn",
 }
+
+export const MarkerEditingBarDOMs = {
+    markerEditingBarID: "marker-editing-bar",
+    dataContainer: "data-container",
+
+    worktimeField: "worktime-field",
+    worktimeWeek: "worktime-field__week",
+    worktimeDay: "worktime-field__day",
+    worktimeActiveDay: "worktime-field__day--active",
+
+    iconsLib: "icons-library",
+    selectFromLibBtnId: "select-from-library",
+    iconsLibContainer: "icons-library__container",
+    iconsLibItem: "icons-library__item",  
+    unselectIconBtn: "selected-icon__unselect-icon",
+
+    imageForm: "image-form",
+    imageFormPreview: "image-form__preview",
+    imageFormImg: "image-form__img",
+
+    changesApply: "changes-apply"
+}
