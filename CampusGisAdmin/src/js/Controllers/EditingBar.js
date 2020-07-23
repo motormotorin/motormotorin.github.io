@@ -4,25 +4,26 @@ import LayersContainer from '../Controllers/LayersContainer';
 import ElementsContainer from '../Controllers/ElementsContainer';
 import MarkerEditingBar from './MarkerEditingBar';
 
+import { editorBarDOM as elements } from '../Util/Base';
 
-import { editorBarDOM } from '../Util/Base';
+
 
 function EditingBar(map, mapData) {
     this.selectedType = "layers";
 
     this.typesToId = {
-        "layers": editorBarDOM.layerSelectorID,
-        "buildings": editorBarDOM.buildingsSelectorID
+        "layers": elements.layerSelectorID,
+        "buildings": elements.buildingsSelectorID
     }
 
     this._map = map;
     this._mapData = mapData;
-    this._edBarView = EditingBarView.init();
+    this._edBarView = new EditingBarView();
 
-    this._layersContainer = new LayersContainer(this, []);
-    this._elementsContainer = new ElementsContainer(this, []);
+    this._layersContainer = new LayersContainer([]);
+    this._elementsContainer = new ElementsContainer([]);
     this._rightBar = new MarkerEditingBar();
-    this._edBarView.show();
+    
     this.initHandlers();
     this.selectType(this.selectedType);
 }
@@ -31,11 +32,10 @@ EditingBar.prototype.initHandlers = function() {
     this._edBarView.editorBar.addEventListener("click", (e) => {
         e.preventDefault();
         
-        if (e.target.closest(`.${this._edBarView.DOMstrings.selectorLi}`)) {
+        if (e.target.closest(`.${elements.selectorLi}`)) {
             const type = Object.keys(this.typesToId)
-                .find(key => this.typesToId[key] === e.target.id);
-                
-            type ? this.selectType(type) : void 0;
+                .find(key => this.typesToId[key] === e.target.id);     
+            if (type) this.selectType(type);
         } 
     });
 
