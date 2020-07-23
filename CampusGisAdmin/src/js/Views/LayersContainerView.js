@@ -1,23 +1,34 @@
-import { layersContainerDOM, elementDOM } from '../Util/Base';
-import Layer from '../Models/Layer';
+import { layersContainerDOM as elements, 
+         elementDOM as row } from '../Util/Base';
 
 
+function LayersContainerView() {
+    this.container = document.querySelector(`.${elements.container}`);
+    this.toolbar = document.querySelector(`#${elements.toolbarID}`);
+}
 
-const LayersContainerView = {};
+LayersContainerView.prototype.highlightSelectedLayer = function(layerId) {
+    const layers = Array.from(this.container.children);
+    const selectedLayer = layers.find(layer => layer.id === layerId);
 
-LayersContainerView.init = function() {
-    this.container = document.querySelector(`.${layersContainerDOM.container}`);
-    return this;
-};
-
-LayersContainerView.highlightSelectedLayer = function(layer) {
-    Array.from(this.container.children).forEach(chld => {
-        chld.classList.remove(elementDOM.itemActive);
+    layers.forEach(layer => {
+        layer.classList.remove(row.itemActive);
     });
-    layer.classList.add(elementDOM.itemActive);
+    selectedLayer.classList.add(row.itemActive);
 };
 
-LayersContainerView.renderLayer = function(layer) {     
+LayersContainerView.prototype.isLayerSelected = function(layerId) {
+    return this.container.querySelector(`#${layerId}`).classList.contains(row.itemActive) || false;
+}
+
+LayersContainerView.prototype.getSelectedLayerId = function() {
+    const selectedLayer = this.container.querySelector(`.${row.itemActive}`);
+    return selectedLayer 
+        ? selectedLayer.id 
+        : undefined;    
+}
+
+LayersContainerView.prototype.renderLayer = function(layer) {     
     const layerHTML = `
         <div id="${layer.id}" class="item-row">
             <img class="item-row__img" src="./media/file.svg">
@@ -33,33 +44,34 @@ LayersContainerView.renderLayer = function(layer) {
     this.container.insertAdjacentHTML("afterbegin", layerHTML);
 };
 
-LayersContainerView.clearLayer = function(item) {
-    item.parentNode.removeChild(item);
+LayersContainerView.prototype.clearLayer = function(layerId) {
+    const layer = this.container.querySelector(`#${layerId}`);
+    this.container.removeChild(layer);
 };
 
-LayersContainerView.clearAll = function() {
+LayersContainerView.prototype.clearContainer = function() {
     this.container.innerHTML = "";
 };
 
-LayersContainerView.getInputValue = function(item) {
-    return item.querySelector('input').value || "";
+LayersContainerView.prototype.getInputValue = function(layerId) {
+    return this.container.querySelector(`#${layerId} input`).value || "";
 };
 
-LayersContainerView.setAsSaved = function(item) {
-    const img = item.querySelector(`#${elementDOM.itemSaveBtnID} img`);
-    img.src = "./media/saved.svg";
+LayersContainerView.prototype.setAsSaved = function(layerId) {
+    const layerStateImg = this.container.querySelector(`#${layerId} #${row.itemSaveBtnID} img`);
+    layerStateImg.src = "./media/saved.svg";
 };
 
-LayersContainerView.setAsUnsaved = function(item) {
-    const img = item.querySelector(`#${elementDOM.itemSaveBtnID} img`);
-    img.src = "./media/unsaved.svg";
+LayersContainerView.prototype.setAsUnsaved = function(layerId) {
+    const layerStateImg = this.container.querySelector(`#${layerId} #${row.itemSaveBtnID} img`);
+    layerStateImg.src = "./media/unsaved.svg";
 };
 
-LayersContainerView.toggleContainer = function() {
-    const toolbarToggler = document.querySelector(`#${layersContainerDOM.toolbarID} #${layersContainerDOM.acordionID}`);
+LayersContainerView.prototype.toggleContainer = function() {
+    const toggleBtn = this.toolbar.querySelector(`.${elements.toolbarToggleBtn}`);
 
-    toolbarToggler.classList.toggle(layersContainerDOM.acordionHide);
-    this.container.classList.toggle(layersContainerDOM.containerHide);
+    toggleBtn.classList.toggle(elements.acordionHide);
+    this.container.classList.toggle(elements.containerHide);
 };
 
 
