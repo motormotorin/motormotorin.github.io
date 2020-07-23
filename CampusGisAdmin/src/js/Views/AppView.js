@@ -1,13 +1,18 @@
-import { headerDOM } from '../Util/Base';
+import { headerDOM as elements } from '../Util/Base';
 
-const AppView = {}
+function AppView() {
+    this.selectorsList = document.querySelector(`.${elements.headerUl}`);
+}
 
-AppView.highlightSelected = function(id) {
-    const elems = document.querySelectorAll(`.${headerDOM.headerLi}`)
-    elems.forEach(elem => {
-        elem.id === id ? elem.classList.add(headerDOM.headerLiActive) 
-            : elem.classList.remove(headerDOM.headerLiActive);
+AppView.prototype.highlightSelected = function(id) {
+    const selectors = Array.from(this.selectorsList.children); 
+    const selector = selectors.find(slctr => slctr.id === id);
+
+    selectors.forEach(slctr => {
+        slctr.classList.remove(elements.headerLiActive);
     });
+
+    selector.classList.toggle(elements.headerLiActive);
 };
 
 export default AppView;
