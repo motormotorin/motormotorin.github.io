@@ -1,30 +1,24 @@
-const EditingBarView = {
-    DOMstrings: {
-        editorBar: "left-sidebar",
-        selectorLi: "selectors__li",
-        selectorLiActive: "selectors__li--active",
-        layerSelectorID: "layers-slctr",
-        buildingsSelectorID: "buildings-slctr",
-    }
+import { editorBarDOM as elements } from '../Util/Base';
+
+function EditingBarView() {
+    this.editorBar = document.querySelector(`.${elements.editorBar}`);
+    this.show();
 }
 
-EditingBarView.init = function() {
-    this.editorBar = document.querySelector(`.${this.DOMstrings.editorBar}`);
-    return this;
-}
-
-EditingBarView.show = function() {
+EditingBarView.prototype.show = function() {
     this.editorBar.style.transform = "translateX(0%)";
 }
 
-EditingBarView.hide = function() {
+EditingBarView.prototype.hide = function() {
     this.editorBar.style.transform = "translateX(-100%)";
 }
 
-EditingBarView.highlightSelected = function(id) {
-    this.editorBar.querySelectorAll(`.${this.DOMstrings.selectorLi}`).forEach(slctr => {
-        slctr.id === id ? slctr.classList.add(this.DOMstrings.selectorLiActive) 
-            : slctr.classList.remove(this.DOMstrings.selectorLiActive);
+EditingBarView.prototype.highlightSelected = function(id) {
+    this.editorBar.querySelectorAll(`.${elements.selectorLi}`)
+    .forEach(slctr => {
+        slctr.id === id 
+            ? slctr.classList.add(elements.selectorLiActive) 
+            : slctr.classList.remove(elements.selectorLiActive);
     });
 }
 
