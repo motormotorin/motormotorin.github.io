@@ -15,22 +15,22 @@ export const editorBarDOM = {
 
 export const layersContainerDOM = {
     toolbarID: "layers-toolbar",
+    toolbarToggleBtn: "toolbar__toggle",
     addBtnID: "add-layer",
     delBtnID: "del-layer",
     container: "layers-container",
     containerHide: "layers-container--hide",
     acordionHide: "toolbar__toggle--hide",
-    acordionID: "acrd-layers",
 }
 
 export const elementsContainerDOM = {
     toolbarID: "elements-toolbar",
+    toolbarToggleBtn: "toolbar__toggle",
     addBtnID: "add-elem",
     delBtnID: "del-elem",
     container: "elements-container",
     containerHide: "elements-container--hide",
     acordionHide: "toolbar__toggle--hide",
-    acordionID: "acrd-elements"
 }
 
 export const elementDOM = {
@@ -38,6 +38,7 @@ export const elementDOM = {
     itemActive: "item-row--active",
     itemInput: "item-row__input",
     itemSaveBtnID: "save-btn",
+    itemEditBtnID: "edit-btn"
 }
 
 export const MarkerEditingBarDOMs = {
