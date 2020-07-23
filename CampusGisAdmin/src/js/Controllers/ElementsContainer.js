@@ -1,20 +1,54 @@
+import { 
+    elementsContainerDOM as elements, 
+    elementDOM as row
+} from '../Util/Base';
+
 import ElementsContainerView from '../Views/ElementsContainerView';
-import { elementsContainerDOM, elementDOM, layersContainerDOM } from '../Util/Base';
+
 import Marker from '../Models/Marker';
 import Event from '../Util/Event';
 
-function ElementsContainer(editingBar, data) {
+
+function ElementsContainer(data) {
     this.elements = data || [];
+    this._elContView = new ElementsContainerView();
 
-    this._editingBar = editingBar;
-    this._elContView = ElementsContainerView.init();
-
-    this.prototype = new Event();
     this.initHandlers();
     this.disable();
 }
 
 ElementsContainer.prototype = Object.create(Event.prototype);
+
+ElementsContainer.prototype.initHandlers = function() {
+
+    // toolbar events: toggle btn; add element; delete element;
+    this._elContView.toolbar.addEventListener("click", (e) => {
+        if (e.target.closest(`.${elements.toolbarToggleBtn}`)) {
+            this._elContView.toggleContainer();
+
+        } else if (e.target.closest(`#${elements.addBtnID}`)) {
+            this.addNewElement();
+
+        } else if (e.target.closest(`#${elements.delBtnID}`)) {
+            this.deleteElement();
+        }
+    });
+
+    // container events: select element; edit element;
+    this._elContView.container.addEventListener("click", (e) => {
+        if (e.target.closest(`#${row.itemEditBtnID}`)) {
+            console.log("edit marker");
+
+        } else if (e.target.closest(`.${row.item}`)) {
+            let elementId = e.target.closest(`.${row.item}`).id;
+            this.selectElement(elementId);
+        }
+
+        // add listener of edit button click
+    });
+}
+
+ElementsContainer.prototype.update = function() {}
 
 ElementsContainer.prototype.disable = function() {
     this._elContView.disable();
@@ -24,44 +58,24 @@ ElementsContainer.prototype.enable = function() {
     this._elContView.enable();
 }
 
-ElementsContainer.prototype.initHandlers = function() {
-    this.container = document.querySelector(`.${elementsContainerDOM.container}`);
-    this.toolbar = document.querySelector(`#${elementsContainerDOM.toolbarID}`);
+ElementsContainer.prototype.selectElement = function(elementId) {
+    this._elContView.highlightSelectedElement(elementId);
 
-    this.toolbar.addEventListener("click", (e) => {
-        if (e.target.closest(`#${elementsContainerDOM.acordionID}`)) {
-            this._elContView.toggleContainer();
-
-        } else if (e.target.closest(`#${elementsContainerDOM.addBtnID}`)) {
-            this.addNewElement();
-
-        } else if (e.target.closest(`#${elementsContainerDOM.delBtnID}`)) {
-            this.delElement();
-        }
-    });
-
-    this.container.addEventListener("click", (e) => {
-        if (e.target.closest(`.${elementDOM.item}`)) {
-            let item = e.target.closest(`.${elementDOM.item}`);
-            this.selectElement(item);
-        }
-    });
-}
-
-ElementsContainer.prototype.update = function() {}
-
-ElementsContainer.prototype.selectElement = function(item) {
-    this.selectedElement = item;
-    this._elContView.highlightSelectedElement(item);
+    // notify that element has been selected
 }
 
 ElementsContainer.prototype.addNewElement = function() {
+
+    if (this.elements.filter(element => element.state === "new").length >= 1) return;
     const newMarker = new Marker();
+
     this.elements.push(newMarker);
     this._elContView.renderElement(newMarker);
+
+    // notify than element has been added
 }
 
-ElementsContainer.prototype.delElement = function() {
+ElementsContainer.prototype.deleteElement = function() {
     if (this.selectedElement == null && this.selectedElement == undefined) return;
 
     const element = this.elements.find(element => element.id === this.selectedElement.id);
