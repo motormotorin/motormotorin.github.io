@@ -33,23 +33,35 @@ const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 module.exports = {
     context: path.resolve(__dirname, "src"),
     mode: "development",
-    entry: './index.js',
+    entry: {
+        app: './js/app/app.js',
+        admin: './js/admin/admin.js'
+    },
     output: {
         filename: '[name].[hash].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
     },
-    optimization: optimization(),
+    // optimization: optimization(),
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         hot: true
     },
     plugins: [
         new HtmlWebpackPlugin({
-            filename: "index.html",
-            template: "./index.html",
+            filename: "app.html",
+            template: "./pages/app.html",
             minify: {
                 collapseWhitespace: isProd
-            }
+            },
+            chunks: ["app"]
+        }),
+        new HtmlWebpackPlugin({
+            filename: "admin.html",
+            template: "./pages/admin.html",
+            minify: {
+                collapseWhitespace: isProd
+            },
+            chunks: ["admin"]
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
@@ -79,8 +91,17 @@ module.exports = {
                 use: ['file-loader']
             },
             {
-                test: /\.html$/i,
+                test: /\.html$/,
                 use: ['html-loader']
+                // use: [
+                //     {
+                //         loader: 'file-loader',
+                //         options: {
+                //             name: '[name].[ext]'
+                //         }
+                //     }
+                // ],
+                // exclude: path.resolve(__dirname, "./src/app.html")
             }
         ]
     }

@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<title> Campus GIS </title>
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
+</head>
+<body>
+    <div class="app">
+        <section id="app-head" class="shadow">
+            <aside>
+                <div class="app-logo"></div>
+                <div class="toolbar">
+                    <div id="edit-buttons">
+                        <div id="place-btn" class="toolbar-submenu place-submenu">
+                            <img src="../media/main/Place.svg" alt="" class="toolbar-icon">
+                            <div class="toolbar-top-level-item-title">Place</div>
+                            <menu class="dropdown-menu"></menu>
+                        </div>
+                        <div id="building-btn" class="toolbar-submenu buildings-submenu">
+                            <img src="../media/main/Building.svg" alt="" class="toolbar-icon">
+                            <div class="toolbar-top-level-item-title">Building</div>
+                            <menu class="dropdown-menu">
+                                <div class="toolbar-group-item">
+                                    <div class="item-container">
+                                        <form>
+                                            <label for="contour-input">Выбрать полигон</label>
+                                            <input type="file" id="contour-input">
+                                        </form>
+                                    </div>        
+                                </div>
+                            </menu>
+                        </div>
+                        <div id="remove-btn" class="toolbar-submenu toolbar-button-with-icon">
+                            <div class="item-container">
+                                <img src="../media/main/Trash.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="user-buttons">
+                        <div id="save-button">
+                            <div class="toolbar-button">Save</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+        <div class="edit-area">
+            <aside id="sidebar" style="width: 0px;">
+                <div id="place-editing-panel" class="sidebar" style="display: none;">
+                    <div class="data-container">
+                        <div class="data-container__info-form">
+                            <div class="info-line">
+                                <label for="type" class="info-line__label">Тип</label>
+                                <input type="text" id="type" class="info-line__input" autocomplete="off">
+                            </div>
+                            <div class="info-line">
+                                <label for="title" class="info-line__label">Имя</label>
+                                <input type="text" id="title" class="info-line__input" autocomplete="off">
+                            </div>
+                            <div class="whitespace-line"></div>
+                            <div class="info-line">
+                                <label for="building" class="info-line__label">Корпус</label>
+                                <input type="text" id="building" class="info-line__input" autocomplete="off">
+                            </div>
+                            <div class="info-line">
+                                <label for="level" class="info-line__label">Уровень</label>
+                                <input type="text" id="level" class="info-line__input" autocomplete="off">
+                            </div>
+                            <div class="whitespace-line"></div>
+                            <div class="info-line worktime-field">
+                                <label for="worktime" class="info-line__label">Рабочее время</label>
+                                <ul class="worktime-field__week">
+                                    <li id="mon" class="worktime-field__day">пн</li>
+                                    <li id="tue" class="worktime-field__day">вт</li>
+                                    <li id="wed" class="worktime-field__day">ср</li>
+                                    <li id="thu" class="worktime-field__day">чт</li>
+                                    <li id="fri" class="worktime-field__day">пт</li>
+                                    <li id="sat" class="worktime-field__day">сб</li>
+                                    <li id="sun" class="worktime-field__day">вс</li>
+                                </ul>
+                                <input type="text" id="worktime" class="info-line__input worktime-field__input" autocomplete="off">
+                            </div>
+                            <div class="whitespace-line"></div>
+                            <div class="info-line">
+                                <label for="" class="info-line__label">Значок</label>
+                            </div>
+                            <div class="icons-library">
+                                <button id="select-from-library" class="icons-library__button data-container__button data-container__button-100per">
+                                    Выбрать из галереи
+                                </button>
+                                <div class="icons-library__container">
+                                </div>
+                            </div> 
+                            <div class="whitespace-line"></div>
+                            <div class="info-line">
+                                <label for="" class="info-line__label">Фотография</label>
+                            </div>
+                            <form class="image-form">
+                                <label for="marker-img" class="image-form__label">Загрузить фотографию</label>
+                                <input type="file" id="marker-img" class="image-form__input" accept="image/*">
+                                <div class="image-form__preview">
+                                    <div class="image-form__delete-btn">
+                                        <img src="../media/main/delete.svg" alt="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="building-editing-panel" class="sidebar">
+                    <div class="data-container">
+                        <div class="data-container__info-form">
+                            <div class="info-line">
+                                <label for="building-name" class="info-line__label">Номер корпуса</label>
+                                <input type="text" id="building-name" class="info-line__input" autocomplete="off">
+                            </div>
+                            <div class="info-line">
+                                <label for="defaultLevel" class="info-line__label">Базовый уровень</label>
+                                <input type="text" id="defaultLevel" class="info-line__input" autocomplete="off">
+                            </div>
+                            <div class="whitespace-line"></div>
+                            <div class="info-line">
+                                <label for="_contour" class="info-line__label">Контур</label>
+                                <input type="file" id="_contour" class="info-line__input" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </aside>
+            <div class="editor-container">
+                <div id="mapid"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

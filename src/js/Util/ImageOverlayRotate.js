@@ -1,6 +1,6 @@
 L.ImageOverlay.Rotated = L.ImageOverlay.extend({
-	initialize: function (image, topleft, topright, bottomleft, options) {
-
+	initialize: function (map, image, topleft, topright, bottomleft, options) {
+		this._map = map;
 		if (typeof(image) === 'string') {
 			this._url = image;
 		} else {
@@ -54,7 +54,7 @@ L.ImageOverlay.Rotated = L.ImageOverlay.extend({
 		var div = this._image = L.DomUtil.create('div',
 				'leaflet-image-layer ' + (this._zoomAnimated ? 'leaflet-zoom-animated' : ''));
 
-		this._updateZIndex();
+		//this._updateZIndex();
 		
 		div.appendChild(img);
 
@@ -126,6 +126,8 @@ L.ImageOverlay.Rotated = L.ImageOverlay.extend({
 	}
 });
 
-L.imageOverlay.rotated = function(imgSrc, topleft, topright, bottomleft, options) {
-	return new L.ImageOverlay.Rotated(imgSrc, topleft, topright, bottomleft, options);
+L.imageOverlay.rotated = function(map, imgSrc, topleft, topright, bottomleft, options) {
+	return new L.ImageOverlay.Rotated(map, imgSrc, topleft, topright, bottomleft, options);
 };
+
+export default L.imageOverlay.rotated;
