@@ -422,6 +422,11 @@ input {
     transition: .3s ease;
 }
 
+.icons-library__item img {
+    width: 30px; 
+    height: 30px;
+}
+
 .icons-library__item--active,
 .icons-library__item:hover {
     background-color: #00a4eb;
