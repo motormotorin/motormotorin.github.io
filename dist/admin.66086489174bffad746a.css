@@ -19,169 +19,6 @@ body {
     overflow: hidden;
 }
 
-.app {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-}
-
-section {
-    display: block;
-}
-
-#app-head {
-    position: relative;
-    z-index: 2;
-    height: 56px;
-    background-color: #fff;
-    min-width: 700px;
-}
-
-#app-head aside {
-    display: flex;
-    height: inherit;
-}
-
-#app-head .app-logo {
-    min-width: 330px;
-    max-width: 330px;
-    height: inherit;
-    background-color: #fff;
-}
-
-#app-head .toolbar {
-    display: flex;
-    flex-grow: 1;
-    height: inherit;
-}
-
-
-.toolbar #edit-buttons {
-    height: inherit;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-    flex-grow: 1;
-}
-
-.toolbar #edit-buttons .toolbar-submenu {
-    display: flex;
-    position: relative;
-    height: inherit;
-    margin: 0 8px;
-    cursor: pointer;
-}
-
-.toolbar #edit-buttons .toolbar-submenu .toolbar-top-level-item-title {
-    height: 56px;
-    font-weight: 600;
-    margin-left: 8px;
-    line-height: 56px;
-    display: inline-flex;
-}
-
-.toolbar #edit-buttons .toolbar-button-with-icon {
-    height: 56px;
-    display: flex;
-    justify-self: flex-end;
-    justify-content: center;
-    align-items: center;
-}
-
-.toolbar #user-buttons {
-    width: 120px;
-    height: inherit;
-    display: flex;
-    justify-content: center;
-}
-
-.toolbar #user-buttons .toolbar-button {
-    position: relative;
-    background: #00a4eb;
-    color: white;
-    height: 40px;
-    line-height: 40px;
-    margin: 8px 0;
-    padding: 0 20px;
-    border-radius: 10px;
-    user-select: none;
-    text-decoration: none;
-    display: inline-flex;
-}
-
-.toolbar menu.dropdown-menu {
-    width: auto;
-}
-
-.toolbar menu.dropdown-menu {
-    display: none;
-    position: absolute;
-    min-width: 160px;
-    top: 100%;
-    padding: 0;
-    float: left;
-    font-family: Helvetica;
-    font-size: 14px;
-    list-style: none;
-    text-align: left;
-    z-index: 1;
-    transition: .3s ease;
-}
-
-.toolbar menu.dropdown-menu .toolbar-group-item {
-    background-color: rgb(235, 235, 235);
-}
-
-.toolbar menu.dropdown-menu .toolbar-group-item:hover {
-    background-color: #dadada;
-    transition: .2s ease;
-}
-
-.toolbar menu.dropdown-menu .item-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0 20px;
-    font-size: 13px;
-    min-height: 32px;
-    position: relative;
-}
-
-.toolbar .toolbar-group-item .item-title {
-    line-height: 32px;
-    user-select: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.toolbar .toolbar-group-item .item-container form {
-    width: auto;
-    height: 100%;
-    margin: 10px auto;
-    padding: 8px 12px;
-    border-radius: 5px;
-    background-color: rgb(105, 168, 228);
-    cursor: pointer;
-}
-
-.toolbar .toolbar-group-item .item-container form input {
-    display: none;
-}
-
-.toolbar .toolbar-group-item .item-container form label {
-    width: 100%;
-    line-height: 80%;
-    white-space: nowrap;
-    color: #fff;
-    -webkit-user-select: none;
-}
-
-
-
-
-
 #mapid {
     position: absolute;
     width: 100%;
@@ -202,74 +39,151 @@ input {
     background: none;
 }
 
-
-
-
-.edit-area {
-    display: block;
-    height: calc(100% - 65px);
-}
-
-#sidebar {
-    position: relative;
-    width: 330px;
-    height: 100%;
-    z-index: 5;
+.editor {
+    position: absolute;
     top: 0;
-    left: auto;
-    transition: .3s ease;
-    overflow: hidden;
-}
-
-
-.edit-area {
-    display: flex;
+    left: 0;
     width: 100%;
-    height: calc(100% - 56px);
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
 }
 
-.edit-area #sidebar {
-    display: block;
-    width: 330px;
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+.wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+.marker-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    z-index: 3;
+    cursor: pointer;
+}
+
+/*-------------
+    HEADER
+-------------*/
+
+.editor-header {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    margin-top: 16px;
+    pointer-events: auto;
+}
+
+.editor-app-bar {
+    position: relative;
+    margin: 0 16px;
+    flex-shrink: 0;
+    pointer-events: auto;
+}
+
+.editor-button {
+    position: relative;
+    display: inline-block;
     margin: 0;
     padding: 0;
-    position: relative;
-    height: 100%;
-    z-index: 20;
-    background: rgb(238, 238, 238);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: none;
+    text-align: center;
+    white-space: nowrap;
+    touch-action: manipulation;
+    background-color: #fff;
+    box-shadow: 0 2px 3px 1px rgba(0,0,0,.2);
+
 }
 
-.edit-area .editor-container {
-    position: relative;
-    display: flex;
-    flex-grow: 1;
-    width: auto;
-    height: 100%;
+.editor-button_size_xl {
+    border-radius: 19px;
+    font-size: 16px; 
+    line-height: 38px;
 }
 
+.editor-button_size_xl .editor-button__text {
+    margin: 0 12px;
+}
+
+.editor-button_size_l {
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.editor-button_size_l .editor-button__text {
+    margin: 8px 12px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
 
 /*-------------
     SIDEBAR
 -------------*/
 
-.sidebar {
-    width: 330px;
-    height: 100%;
-    color: rgba(0, 0, 0, .6);
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300;
-    z-index: 20;
+.editor-sidebar {
+    position: absolute;
+    z-index: 3;
+    top: 60px;
+    right: 16px;
+    pointer-events: auto;
+    transition: all .3s ease;
 }
 
-.data-container {
+.editor-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.editor-sidebar.editor-sidebar-hide {
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: all .3s ease;
+}
+
+.editor-geoobject-editor {
+    width: 360px;
+    height: auto;
+    max-height: 600px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: auto;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 3px 0 0 rgba(0,0,0,.05);
+}
+
+.editor-place-panels {
     position: relative;
-    height: 100%;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, .6);
-    font-family: Arial;
-    font-weight: 300;
-    color: #333;
+}
+
+.editor-height-observer {
+    position: relative;
 }
 
 .data-container__info-form::-webkit-scrollbar {
@@ -277,12 +191,13 @@ input {
 }
   
 .data-container__info-form {
+    padding: 15px;
     -ms-overflow-style: none; 
     scrollbar-width: none;
 }
 
 .data-container__info-form {
-    height: inherit;
+    height: 100%;
     overflow-y: scroll;
 }
 
@@ -407,13 +322,16 @@ input {
     display: none;
 }
 .icons-library__container {
+    display: none;
+    height: auto;
     -ms-overflow-style: none; 
     scrollbar-width: none;
+    max-height: 300px;
 }
 
 .icons-library__item {
-    width: 40px;
-    height: 40px;
+    width: 39px;
+    height: 39px;
     margin: 1px;
     display: flex;
     align-items: center;
@@ -460,7 +378,7 @@ input {
     position: relative;
     margin-top: 5px;
     width: 100%;
-    height: 300px;
+    height: auto;
     border: 1px solid #00a4eb;
     display: none;
 }
@@ -472,15 +390,40 @@ input {
 }
 
 .image-form__img {
+    width: 100%;
+    height: 100%;
     margin-top:10px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 
 .image-form__input {
     display: none;
 }
-        
+    
+
+.editor-submit-form {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 15px;
+}
+
+.editor-submit-form .editor-submit-form__submit {
+    margin-left: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .shadow {
 	-webkit-box-shadow: -1px 1px 5px 0px rgb(95, 94, 94, .5);
