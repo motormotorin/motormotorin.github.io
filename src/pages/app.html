@@ -4,15 +4,6 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<!-- <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
-	<script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
-	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-	crossorigin=""></script>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-	crossorigin=""/>
-	<link rel="stylesheet" href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" /> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
     <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
     <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
@@ -21,23 +12,12 @@
 </head>
 <body>
 	<div class="preloader">
-		<div class="preloader__container">
-			<div class="preloader__logo"></div>
-			<div class="preloader__animation">
-					<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-			</div>
-		</div>
+		<img src="../media/main/logo fefumap.jpg" alt="">
 	</div>
 	<div class="app">
 		<section class="main">
 			<aside id="layers-sidebar" class="sidebar">
 				<div class="sidebar__container">
-					<div class="sidebar__checkbox">
-						<div class="sidebar__btn user-btn user-btn--big shadow">
-							<img src="../media/layers/building.svg" alt="">
-						</div>
-						<span>Корпуса</span>
-					</div>
 					<div class="sidebar__checkbox">
 						<div class="sidebar__btn user-btn user-btn--big shadow">
 							<img src="../media/layers/canteen.svg" alt="">
@@ -64,13 +44,9 @@
 					</div>
 				</div>
 			</aside>
-			<div class="container">
-				<div id="layers-btn" class="user-btn top-left shadow">
-					<img src="../media/main/layers.svg" alt="">
-				</div>
-				
-				<div id="about-btn" class="user-btn bottom-left shadow">
-					<img src="../media/main/about.svg" alt="">
+			<div class="container">	
+				<div class="centered-marker">
+					<img src="../media/main/blue-pin-msg.svg" alt="">
 				</div>
 
 				<div class="btns-group top-right shadow">
@@ -83,12 +59,6 @@
 					</div>
 				</div>
 
-				<div class="centered-marker">
-					<img src="../media/main/blue-pin-msg.svg" alt="">
-				</div>
-
-				<div class="notifications"></div>
-
 				<div id="lvl-switch" class="level-switcher btns-group middle-right shadow">
 					<div id="lvl-up" class="user-btn user-btn--small shadow">
 						<img src="../media/main/arrow.svg" style="transform: rotateZ(180deg);" alt="">
@@ -98,9 +68,55 @@
 						<img src="../media/main/arrow.svg" alt="">
 					</div>
 				</div>
+
+				<div id="about-btn" class="user-btn bottom-left shadow">
+					<img src="../media/main/about.svg" alt="">
+				</div>
+
+				<div class="notifications"></div>
+
+				<!-- <div class="description">
+					<div class="description__card shadow">
+						<div class="description__container">
+							<div class="description__info">
+								<div class="line">
+									<div class="label">Каффе</div>
+									<div class="value">Coffe Place</div>
+								</div>
+								<div class="line">
+									<div class="label">Местоположение</div>
+									<div class="value">Корпус А, уровень 6</div>
+								</div>
+								<div class="line">
+									<div class="label">Рабочее время</div>
+									<ul>
+										<li id="mon">пн</li>
+										<li id="tue">вт</li>
+										<li id="wed">ср</li>
+										<li id="thu">чт</li>
+										<li id="fri">пт</li>
+										<li id="sat">сб</li>
+										<li id="sun">вс</li>
+									</ul>
+									<div class="value">Работает: 9.30 - 18.00</div>
+								</div>
+							</div>
+							<div class="description__view">
+								<div class="description__img shadow">
+									<img src="../media/places/Barbershop_A_6.jpg" alt="">
+								</div>
+							</div>
+						</div>
+						<button class="description__learn-more">
+							<span class="description__learn-more--text">Узнать больше</span>
+						</button>
+					</div>
+				</div> -->
 			</div>
 		</section>
 	</div>
-	<div id="mapid"></div>
+	<div id="mapid">
+		<p><a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a></p>
+	</div>
 </body>
 </html>
