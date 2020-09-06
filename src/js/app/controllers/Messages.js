@@ -20,9 +20,7 @@ class Messages {
                 });
 
                 var mess = JSON.stringify(layer.feature.properties["mess"], null, 2)
-                    .replace(/\\"/g, "'")
-                    .replace(/\\n/g, '<br>')
-                    .replace(/\"/g, '');
+                    .replace(/\\"/g, "'").replace(/\\n/g, '<br>').replace(/\"/g, '');
 
                 layer.on("click", this.showMessage.bind(this, mess));
             }
@@ -59,24 +57,30 @@ class Messages {
     }
 
     getMessages() {
-        fetch("https://fefumap.ru/getmess.php")
-        .then(res => JSON.parse(res))
-        .then(arr => {
-            arr.forEach(message => {
-                let feature = {
-                    type: "Feature",
-                    geometry: {
-                        type: "Point",
-                        coordinates: [
-                            message.latlng["lng"], 
-                            message.latlng["lat"]
-                        ],
-                        properties: message
+        try {
+            fetch("getmess.php")
+            .then(res => JSON.parse(res))
+            .then(arr => {
+                arr.forEach(message => {
+                    let feature = {
+                        type: "Feature",
+                        geometry: {
+                            type: "Point",
+                            coordinates: [
+                                message.latlng["lng"], 
+                                message.latlng["lat"]
+                            ],
+                            properties: message
+                        }
                     }
-                }
-                this.addMessage(feature, message);
-            });
-        });
+                    this.addMessage(feature, message);
+                });
+            })
+            .catch(e => console.error(e));
+
+        } catch(e) {
+            console.log(`[messages]: ${e}`);
+        }
     }
 
     showMessage(message) {
