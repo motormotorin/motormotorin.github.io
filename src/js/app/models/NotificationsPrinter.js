@@ -14,10 +14,10 @@ class NotificationsPrinter {
         document.addEventListener("click", this._clear.bind(this), {once: true});
     }
 
-    _clear() {    
+    _clear() {   
         Array.from(this.$notificationsBlock.children).forEach(ntf => {
             ntf.classList.add("hide");
-            setTimeout(() => this.$notificationsBlock.removeChild(ntf), 300);
+            setTimeout(() => ntf && ntf.parentNode === this.$notificationsBlock ? this.$notificationsBlock.removeChild(ntf) : void 0, 300);
         });
     }
 }
