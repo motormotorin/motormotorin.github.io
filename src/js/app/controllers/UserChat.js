@@ -2,68 +2,83 @@ import UserChatView from '../views/UserChatView';
 import Evt from '../../Util/Event';
 
 class UserChat {
-    constructor() {
+    constructor(map) {
+        this._map = map;
         this._cookieName = "nextmsgsndg";
         this.view = new UserChatView();
-        this.enable();
 
         this.clickHandler = (e) => this.close();
-        this.dragHandler = (e) => e.stopPropagation();
 
         this.notifyEvent = new Evt();
+
+        this.enable();
     }
 
     enable() {
         this.view.$messageBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            this.open();
+            this.enableChat();
         });
 
         return this;
     }
 
-    enableChatListeners() {
-        this.view.$sendMessageBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            var value = this.view.getValuerFromInput();     
-            this.sendMessage(value);
-        }, {once: true});
+    enableChat() {
+        this.view.buildMessageBlock();
+        this.view.showMarker();
 
-        this.view.$messageBlock.addEventListener("click", (e) =>  {
+        this.view.$messageBlock.addEventListener("click", (e) => {
+            if (e.target.id === "send-btn") {
+                var text = this.view.getValuerFromInput();
+                this.sendMessage(text);
+            }
+
             e.stopPropagation();
         });
 
-        document.addEventListener("drag", this.dragHandler);
         document.addEventListener("click", this.clickHandler, {once: true});
     }
 
-    open() {
-        var html = this.view.createMsgBlockHTML();
-        this.view.showMarker();
-        this.view.renderMsgBlock(html).then(() => this.enableChatListeners());
-    }
-
     close() {    
-        this.view.removeMsgBlock();
+        this.view.removeMessageBlock();
         this.view.hideMarker();
-
-        document.removeEventListener("drag", this.dragHandler);
         document.removeEventListener("click", this.clickHandler);
     }
 
     sendMessage(messageText) {
         const messageLock = this._getCookie(this._cookieName);
 
-        if (messageText.length > 5 && messageLock === undefined) {
+        if (messageText.trim().length > 5 && messageLock === undefined) {
+            try {
+                var JSONData = JSON.stringify({
+                    Date: new Date(), 
+                    latlng: this._map.getCenter(),
+                    mess: messageText
+                });
+
+                fetch("bot.php", {
+                    method: "POST", 
+                    body: JSONData,
+                    headers: { 
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then(() => this.notifyEvent("user-notification", messageText),
+                      () => this.notifyEvent.notify("system-notification", 'Возникла ошибка при отправке сообщения')
+                ).catch((e) => console.error(e));
+                
+                    
+            } catch(e) {
+                this.notifyEvent.notify("system-notification", 'Возникла ошибка при отправке сообщения');
+            }
+
             this._writeCookie();
             this.close();
-
             this.notifyEvent.notify("user-notification", messageText);
     
         } else if (messageLock !== undefined) {
             var timeDifference = new Date(messageLock) - new Date().getTime();
             this.close();
-
             this.notifyEvent.notify("system-notification", `Отправка сообщений будет доступна через: ${this._msToTime(timeDifference)}`);
         }
     }
