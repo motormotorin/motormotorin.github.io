@@ -31,17 +31,7 @@ class MapBuildings {
                 this.levelsSwitcher.unselectBuilding();
             }
         });
-        // this.masterBuildingsLayer.on("layeradd", (e) => {
-        //     var layer = e.layer;
-
-        //     this._map.on("moveend zoomend", (e) => {                
-        //         if (layer.getBounds().contains(this._map.getBounds().getCenter())
-        //             && this._map.getZoom() >= 18) {
-        //             this.levelsSwitcher.selectBuilding(this.buildings[layer._customId]);
-        //         }
-        //     });
-        // });
-
+        
         return this;
     }
 
