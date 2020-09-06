@@ -215,6 +215,10 @@ h1 {
 	cursor: pointer;
 }
 
+.user-btn img {
+	pointer-events: none;
+}
+
 .user-btn.user-btn--small {
 	width: 30px;
 	height: 30px;
