@@ -27,7 +27,7 @@ window.addEventListener("load", (e) => {
 
 function App() {
     this.map = new Map();
-    this.userChat = new UserChat();
+    this.userChat = new UserChat(this.map._map);
     // this.mapObjects = new MapObjects();
     this.geolocation = new Geolocation(this.map._map);
     this.messages = new Messages(this.map._map);
