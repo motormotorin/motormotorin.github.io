@@ -215,6 +215,10 @@ h1 {
 	cursor: pointer;
 }
 
+.user-btn img {
+	pointer-events: none;
+}
+
 .user-btn.user-btn--small {
 	width: 30px;
 	height: 30px;
@@ -646,25 +650,4 @@ h1 {
 
 .leaflet-image-layer {
 	transition: opacity .5s ease;
-}
-
-
-
-.z15 .leaflet-marker-icon,
-.z14 .leaflet-marker-icon {
-	width: 15px;
-	height: 15px;
-}
-
-.z17 .leaflet-marker-icon,
-.z16 .leaflet-marker-icon {
-
-	width: 20px; 
-	height: 20px;
-}
-
-.z19 .leaflet-marker-icon,
-.z18 .leaflet-marker-icon {
-	width: 25px;
-	height: 25px;
 }
