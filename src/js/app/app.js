@@ -4,7 +4,6 @@ import Map from './controllers/Map';
 
 
 import UserChat from './controllers/UserChat';
-import MapObjects from './models/MapObjects';
 import Geolocation from './controllers/Geolocation';
 import NotificationsPrinter from './models/NotificationsPrinter';
 import Notification from './models/Notification';
@@ -28,7 +27,6 @@ window.addEventListener("load", (e) => {
 function App() {
     this.map = new Map();
     this.userChat = new UserChat(this.map._map);
-    // this.mapObjects = new MapObjects();
     this.geolocation = new Geolocation(this.map._map);
     this.messages = new Messages(this.map._map);
     this.notificationsPrinter = new NotificationsPrinter();

@@ -5,9 +5,6 @@ import A_6 from '../../../media/buildings/A/A_6.svg';
 import A_7 from '../../../media/buildings/A/A_7.svg';
 import A_8 from '../../../media/buildings/A/A_8.svg';
 
-import defaultIcon from '../../../media/icons/default.svg';
-
-
 const buildings = {
     "building_0x12idww": {
         id: "building_0x12idww",
@@ -48,7 +45,9 @@ Map.prototype = {
             renderer: L.canvas()
         })
         .setView([43.02450002995938, 131.89426848759467], 13)
-        .setMaxBounds([[43.050952, 131.85915],[42.994509, 131.94232]]);
+        .setMaxBounds([[43.01961, 131.88065],[43.03954, 131.90511]]);
+
+        // 131.88065,43.01961,131.90511,43.03954
 
         var gl = L.mapboxGL({
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',

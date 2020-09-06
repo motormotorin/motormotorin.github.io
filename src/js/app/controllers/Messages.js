@@ -58,7 +58,7 @@ class Messages {
 
     getMessages() {
         try {
-            fetch("getmess.php")
+            fetch("./php/getmess.php")
             .then(res => JSON.parse(res))
             .then(arr => {
                 arr.forEach(message => {

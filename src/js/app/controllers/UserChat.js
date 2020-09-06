@@ -56,7 +56,7 @@ class UserChat {
                     mess: messageText
                 });
 
-                fetch("bot.php", {
+                fetch("./php/bot.php", {
                     method: "POST", 
                     body: JSONData,
                     headers: { 
