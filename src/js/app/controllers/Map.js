@@ -25,114 +25,103 @@ const buildings = {
 }
 
 
-function Map() {
-    this._map;
+class Map {
+    constructor() {
+        this._map;
+        this.layers = {};
+        this.masterLayer = new L.LayerGroup([]);
+        this._masterBuildingsLayers = new L.LayerGroup();
 
-    this._masterPlacesLayers = {};
-    this._masterBuildingsLayers = new L.LayerGroup();
+        this.init().loadLayers();
 
-    this.init();
-    this.bildingsController = new MapBuildings(buildings, this._map);
-}
+        this.bildingsController = new MapBuildings(buildings, this._map);
+    }
 
-Map.prototype = {
-    init: function() {
+    init() {
         this._map = L.map('mapid', {
             zoomControl: false,
             minZoom: 16, 
             maxZoom: 20,
-            preferCanvas: true,
-            renderer: L.canvas()
         })
         .setView([43.02450002995938, 131.89426848759467], 13)
         .setMaxBounds([[43.01961, 131.88065],[43.03954, 131.90511]]);
-
-        // 131.88065,43.01961,131.90511,43.03954
 
         var gl = L.mapboxGL({
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
             style: 'https://api.maptiler.com/maps/3e6107a7-760f-4855-ac6e-6c94360165c4/style.json?key=igVG6WwwjMMykgtyfqwM'
         }).addTo(this._map);
-    },
 
-    
+        this.masterLayer.addTo(this._map);
 
-    addPlacesLayers: function(layers) {
-        if (!(layers instanceof Array)) layers = Object.values(layers);
-        layers.forEach(layer => {
-            this.addPlacesLayer(layer);
-            //this.addPlaces(layer.id, layer.places);
+        return this;
+    }
+
+    async loadLayers() {
+        fetch("./php/getJsonNames.php")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
         });
-    },
 
-    addPlacesLayer: function(l) {
+        return this;
+    }
+
+    addLayers(layers) {
+        if (!(layers instanceof Array)) layers = [layers];
+        layers.forEach(layers => {
+            this.addLayer(layer);
+        });
+    }
+
+
+    addLayer(layer) {
         var featureGroup = L.geoJSON([], {
-            onEachFeature: (feature, layer) => {
-                layer._leaflet_id = feature.properties.id;
-                layer.state = "inactive";
-                layer.options.icon = L.icon({
-                    iconUrl: `/media/placesicons/${feature.properties.icon || "default"}.svg`,
-                    iconSize: [20, 20],
-                    iconAnchor: [10, 10],
-                    popupAnchor: [0, 0]
-                });
-                layer.setLatLng(feature.geometry.coordinates); 
+            onEachFeature: (feature, leafletLayer) => {
+                let size = leafletLayer.markersSize;
 
-                layer.on("click", (e) => {
-                    console.log("click on place");
-                    //this.selectPlaceEvent.notify(l.id, feature.properties.id);
+                leafletLayer.id = feature.properties.id;
+                leafletLayer.options.icon = L.icon({
+                    iconUrl: `./media/icons/${layer.markersIcon || "default"}.svg`,
+                    iconSize: [size, size],
+                    iconAnchor: [size/2 , size/2],
+                });
+
+                leafletLayer.setLatLng(feature.geometry.coordinates); 
+
+                leafletLayer.on("click", (e) => {
+                    this._map.setView(e.target.getLatLng());
                 });
             }
         });
+
+        featureGroup.maxZoom = layer.maxZoom;
+        featureGroup.minZoom = layer.minZoom;
         
-        this._masterPlacesLayers[l.id] = featureGroup;
+        this.masterLayer.addLayer(featureGroup)
 
         if (l.state === "active") featureGroup.addTo(this._map);
-    },
-
-    addPlaces: function(places, layerId) {
-        if (!(places instanceof Array)) places = Object.values(places);
-        places.forEach(place => {
-            this.addPlaces(place, layerId);
-        });
-    },
-
-    addPlace: function(place, layerId) {
-        const feature = {
-            type: "Feature",
-            geometry: {
-                type: "Point",
-                coordinates: [place.latlng.lat, place.latlng.lng]
-            },
-            properties: {
-                id: place.id,
-                icon: place.icon || "default",
-            },
-        }
-
-        const layer = this._masterPlacesLayer.getLayer(layerId);
-        layer.addData(feature);
-    },
-
-    addBuilding: function(building) {
-        // if (!(building instanceof Building)) throw TypeError();
-
-
-    },
-
-    showLayer: function(layerId) {
-        const layer = this._masterPlacesLayers[layerId];
-        if (layer && !this._map.hasLayer(layer)) {
-            layer.addTo(this._map);
-        }
-    },
-
-    hideLayer: function(layerId) {
-        const layer = this._masterPlacesLayers[layerId];
-        if (layer && this._map.hasLayer(layer)) {
-            this._map.removeLayer(layer);
-        }
     }
+
+    addFeatures(features, parentLayerId) {
+        if (!(features instanceof Array)) features = [features];
+        var layer = this.layers[parentLayerId];
+        layer ? layer.addData(features) : void 0;
+    }
+
+
+    // showLayer: function(layerId) {
+    //     const layer = this._masterPlacesLayers[layerId];
+    //     if (layer && !this._map.hasLayer(layer)) {
+    //         layer.addTo(this._map);
+    //     }
+    // },
+
+    // hideLayer: function(layerId) {
+    //     const layer = this._masterPlacesLayers[layerId];
+    //     if (layer && this._map.hasLayer(layer)) {
+    //         this._map.removeLayer(layer);
+    //     }
+    // }
 }
 
 export default Map;
