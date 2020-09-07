@@ -14,7 +14,7 @@ class Messages {
                 this.messages[props.id] = layer;
 
                 layer.options.icon = new L.Icon({
-                    iconUrl: 'https://fefumap.ru/media/main/blue-pin-msg.svg',
+                    iconUrl: './media/main/blue-pin-msg.svg',
                     iconSize: [18.5, 12.5],
                     iconAnchor: [9.25, 6.25]
                 });
@@ -56,30 +56,28 @@ class Messages {
         }
     }
 
-    getMessages() {
+    async getMessages() {
         try {
-            fetch("./php/getmess.php")
-            .then((res) => res.json())
-            .then((arr) => {
-                arr.forEach(message => {
-                    let feature = {
-                        type: "Feature",
-                        geometry: {
-                            type: "Point",
-                            coordinates: [
-                                message.latlng["lng"], 
-                                message.latlng["lat"]
-                            ],
-                            properties: message
-                        }
+            const response = await fetch("php/getmess.php");
+            const array = await response.json();
+
+            array.forEach(message => {
+                let feature = {
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [
+                            message.latlng["lng"], 
+                            message.latlng["lat"]
+                        ],
+                        properties: message
                     }
-                    this.addMessage(feature, message);
-                });
-            })
-            .catch(e => console.error(e));
+                }
+                this.addMessage(feature, message);
+            });
 
         } catch(e) {
-            console.log(`[messages]: ${e}`);
+            console.error(`[messages]: ${e}`);
         }
     }
 

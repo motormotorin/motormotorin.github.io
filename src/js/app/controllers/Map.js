@@ -32,7 +32,8 @@ class Map {
         this.masterLayer = new L.LayerGroup([]);
         this._masterBuildingsLayers = new L.LayerGroup();
 
-        this.init().loadLayers();
+        this.init();
+        this.loadLayers();
 
         this.bildingsController = new MapBuildings(buildings, this._map);
     }
@@ -57,13 +58,20 @@ class Map {
     }
 
     async loadLayers() {
-        fetch("./php/getJsonNames.php")
-        .then((res) => res.json())
-        .then((data) => {
+        try {
+            const response = await fetch("php/getJsonNames.php", {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                }
+            });
+            const data = await response.json();
+    
+            console.log("map");
             console.log(data);
-        });
-
-        return this;
+        } catch(e) {
+            console.error("[map]: " + e);
+        }
     }
 
     addLayers(layers) {

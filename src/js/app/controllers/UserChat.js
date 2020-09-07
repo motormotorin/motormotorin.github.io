@@ -49,28 +49,31 @@ class UserChat {
         const messageLock = this._getCookie(this._cookieName);
 
         if (messageText.trim().length > 5 && messageLock === undefined) {
-            var JSONData = JSON.stringify({
+            var data = {
                 Date: new Date(), 
                 latlng: this._map.getCenter(),
                 mess: messageText
-            });
+            };
 
-            await fetch("./php/bot.php", {
-                method: "POST", 
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSONData,
-            })
-            .then((resp) => {
-                if (resp.status >= 200 && resp.status < 300) {
-                    this.notifyEvent("user-notification", messageText)
+            try {
+                const response = await fetch("php/bot.php", {
+                    method: "POST", 
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify(data),
+                });
+                
+                if (response.status >= 200 && response.status < 300) {
+                    this._writeCookie();
+                    this.notifyEvent.notify("user-notification", messageText)
                 } else {
                     this.notifyEvent.notify("system-notification", 'Возникла ошибка при отправке сообщения')
-                }
-            });
+                } 
+            } catch(e) {
+                console.error(e);
+            }
 
-            this._writeCookie();
             this.close();
     
         } else if (messageLock !== undefined) {
