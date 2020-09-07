@@ -4,7 +4,7 @@ ini_set('display_errors',1); //включаем вывод ошибок
 error_reporting(E_ALL);
 echo "<pre>";
 
-$filename = "/var/www/html/motormotorin.github.io/mess.txt";
+$filename = "/var/www/html/motormotorin.github.io/dist/txt/mess.txt";
 $name_var='request';
 
 if (file_exists($filename)) {
