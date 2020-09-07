@@ -4,7 +4,7 @@ ini_set('display_errors',1); //включаем вывод ошибок
 error_reporting(E_ALL);
 echo "<pre>";
 
-$filename = "https://fefumap.ru/txt/acmess.txt";
+$filename = "../txt/acmess.txt";
 $name_var='request';
 
 if (file_exists($filename)) {
@@ -13,7 +13,7 @@ if (file_exists($filename)) {
   $file = fopen($filename, "w+");
 }
 
-$id = sizeof(file('mess.txt'))+1 ;
+$id = sizeof(file('../txt/mess.txt'))+1 ;
 
 $text = $_POST[$name_var];
 $text = json_decode($text, TRUE);
