@@ -1,5 +1,5 @@
 <?php
-$path = './json/';
+$path = '../json/';
 $files = array_diff(scandir($path), array('.', '..'));
 $jsonFiles = json_encode($files, true);
 header('Content-type:application/json;charset=utf-8');
