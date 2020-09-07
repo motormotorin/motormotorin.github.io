@@ -59,8 +59,8 @@ class Messages {
     getMessages() {
         try {
             fetch("./php/getmess.php")
-            .then(res => JSON.parse(res))
-            .then(arr => {
+            .then((res) => res.json())
+            .then((arr) => {
                 arr.forEach(message => {
                     let feature = {
                         type: "Feature",

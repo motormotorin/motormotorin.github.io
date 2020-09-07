@@ -45,36 +45,33 @@ class UserChat {
         document.removeEventListener("click", this.clickHandler);
     }
 
-    sendMessage(messageText) {
+    async sendMessage(messageText) {
         const messageLock = this._getCookie(this._cookieName);
 
         if (messageText.trim().length > 5 && messageLock === undefined) {
-            try {
-                var JSONData = JSON.stringify({
-                    Date: new Date(), 
-                    latlng: this._map.getCenter(),
-                    mess: messageText
-                });
+            var JSONData = JSON.stringify({
+                Date: new Date(), 
+                latlng: this._map.getCenter(),
+                mess: messageText
+            });
 
-                fetch("./php/bot.php", {
-                    method: "POST", 
-                    body: JSONData,
-                    headers: { 
-                        "Content-type": "application/json; charset=UTF-8"
-                    }
-                })
-                .then(() => this.notifyEvent("user-notification", messageText),
-                      () => this.notifyEvent.notify("system-notification", 'Возникла ошибка при отправке сообщения')
-                ).catch((e) => console.error(e));
-                
-                    
-            } catch(e) {
-                this.notifyEvent.notify("system-notification", 'Возникла ошибка при отправке сообщения');
-            }
+            await fetch("./php/bot.php", {
+                method: "POST", 
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSONData,
+            })
+            .then((resp) => {
+                if (resp.status >= 200 && resp.status < 300) {
+                    this.notifyEvent("user-notification", messageText)
+                } else {
+                    this.notifyEvent.notify("system-notification", 'Возникла ошибка при отправке сообщения')
+                }
+            });
 
             this._writeCookie();
             this.close();
-            this.notifyEvent.notify("user-notification", messageText);
     
         } else if (messageLock !== undefined) {
             var timeDifference = new Date(messageLock) - new Date().getTime();
