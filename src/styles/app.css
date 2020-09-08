@@ -30,6 +30,7 @@ body {
 	bottom: 0;
 	right: 0;
 	z-index: 1;
+	user-select: none;
 }
 
 textarea, input {
@@ -139,6 +140,7 @@ textarea::-webkit-scrollbar {
 	overflow: hidden;
 	z-index: 3;
 	pointer-events: none;
+	user-select: none;
 }
 
 .app .main {
@@ -177,6 +179,12 @@ textarea::-webkit-scrollbar {
 	transform: translateY(-50%);
 }
 
+.middle-left {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 .bottom-left {
 	position: absolute;
 	bottom: 16px;
@@ -203,6 +211,7 @@ textarea::-webkit-scrollbar {
 
 .user-btn img {
 	pointer-events: none;
+	user-select: none;
 }
 
 .user-btn.user-btn--small {
@@ -264,27 +273,29 @@ textarea::-webkit-scrollbar {
 --------------------*/
 
 .sidebar {
-	position: absolute;
-	top: 0;
+	position: absolute;;
+	top: 50%;
 	left: 0;
 	width: auto;
-	height: 100%;
-	padding: 16px 6px;
+	height: auto;
+	max-height: calc(100% - 32px);
 	background: #fff;
-	/* background: linear-gradient(90deg,rgba(76,162,205,.77),rgba(103,178,111,0)); */
+	border-radius: 0 30px 30px 0;
+	/* background: linear-gradient(90deg,rgba(76,162,205,.77),rgba(255, 255, 255, 0)); */
+	/* backdrop-filter: blur(10px); */
+	transform: translate(-100%, -50%);
 	pointer-events: all;
-	transform: translateX(-100%);
-	transition: transform .3s ease;
+	transition: .3s ease;
 	z-index: 5;
+	overflow: hidden;
 }
 
 .sidebar.show {
-	transform: translateX(0%);
-	transition: transform .3s ease;
+	transform: translate(0%, -50%);
+	transition: .3s ease;
 }
 
 .sidebar__container {
-	width: auto;
 	height: 100%;
 	display: flex;
 	justify-content: flex-start;
@@ -306,29 +317,45 @@ textarea::-webkit-scrollbar {
 
 .sidebar__checkbox {
 	width: 70px;
-	margin: 5px 0;
+	padding: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	cursor: pointer;
+	transition: .3s ease;
 }
 
-.sidebar__checkbox--disabled .sidebar__btn {
-	background: rgb(172, 222, 245);
-	transition: background .3s ease;
+.sidebar__checkbox--disabled {
+	background: linear-gradient(90deg,rgba(187, 211, 223, 0.77),rgba(255,255,255,0));
+	box-shadow: inset 5px 2px 5px 0px rgba(0,0,0,0.25);	
+	transition: .3s ease;
 }
 
 .sidebar__checkbox .sidebar__btn {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin: 0;
+	padding: 0;
+	pointer-events: none;
 	transition: background .3s ease;
+}
+
+.sidebar__checkbox .sidebar__btn img {
+	width: 40px;
+	height: 40px;
+	pointer-events: none;
 }
 
 .sidebar__checkbox span {
 	margin-top: 5px;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: 400;
 	color: rgba(17,43,92,.619);
 	text-align: center;
 	overflow-wrap: break-word;
+	pointer-events: none;
 }
 
 
@@ -347,7 +374,7 @@ textarea::-webkit-scrollbar {
 	padding: 5px 16px 10px 16px;
 	font-size: 14px;
 	pointer-events: auto;
-	z-index: 4;
+	z-index: 3;
 }
 
 @media screen and (max-width: 320px)
@@ -520,11 +547,14 @@ textarea::-webkit-scrollbar {
 		flex-shrink: 1;
 		align-items: flex-start;
 		z-index: 3;
+		transition: .3s ease;
+		pointer-events: all;
 	}
 
 		.description__container {
 			display: flex;
 			justify-content: flex-start;
+			pointer-events: fill;
 		}
 
 		.description__info {
@@ -567,6 +597,7 @@ textarea::-webkit-scrollbar {
 						padding: 2px 4px;
 						margin: 0;
 						color: rgb(148, 148, 148);
+						cursor: pointer;
 						transition: .3s ease;
 					}
 
@@ -630,7 +661,14 @@ textarea::-webkit-scrollbar {
 
 
 
-
+.wrapper {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0; left: 0;
+	pointer-events: all;
+	background: none;
+}
 
 
 
