@@ -51,6 +51,10 @@ class Map {
         loadLayer('layer_7gdt8bfan');
         loadLayer('layer_a84waq888');
         loadLayer('layer_z2zzty2yz');
+        loadLayer('layer_uu3tsrpq4');
+        loadLayer('layer_4drxl0x5g');
+
+        this.loadLayers();
     }
 
     init() {
@@ -73,6 +77,12 @@ class Map {
         this.layersController.selectLayerEvent.attach(this.selectLayer.bind(this));
 
         return this;
+    }
+
+    async loadLayers() {
+        const response = await fetch('php/getJsonNames.php');
+        const data = await response.json();
+        console.log(data);
     }
 
     addLayers(layers) {
@@ -100,7 +110,7 @@ class Map {
                     if (feature.properties.description) {
                         this.descriptionsController.printDescription(feature.properties.description);
                     }
-                    this._map.setView(e.target.getLatLng(), 17);
+                    this._map.setView(e.target.getLatLng());
                 });
             }
         });
