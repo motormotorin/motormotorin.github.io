@@ -1,9 +1,12 @@
 import MapBuildings from './MapBuildings';
+import LayersController from './LayersController';
+import DescriptionsController from './DescriptionsController';
 
 import A_contour from '../../../media/buildings/A/A_contour.svg';
 import A_6 from '../../../media/buildings/A/A_6.svg';
 import A_7 from '../../../media/buildings/A/A_7.svg';
 import A_8 from '../../../media/buildings/A/A_8.svg';
+
 
 const buildings = {
     "building_0x12idww": {
@@ -29,13 +32,25 @@ class Map {
     constructor() {
         this._map;
         this.layers = {};
+        this.localStorageLayers = JSON.parse(localStorage.getItem("layers")) || {};
+    
         this.masterLayer = new L.LayerGroup([]);
-        this._masterBuildingsLayers = new L.LayerGroup();
+        this.descriptionsController = new DescriptionsController();
+        this.layersController = new LayersController();
 
         this.init();
-        this.loadLayers();
+        
+        const loadLayer = async (name) => {
+            const response = await fetch(`./json/${name}.json`);
+            const data = await response.json();
+ 
+            this.addLayer(data);
+            this.addFeatures(Object.values(data.places), data.id);
+        }
 
-        this.bildingsController = new MapBuildings(buildings, this._map);
+        loadLayer('layer_7gdt8bfan');
+        loadLayer('layer_a84waq888');
+        loadLayer('layer_z2zzty2yz');
     }
 
     init() {
@@ -53,30 +68,16 @@ class Map {
         }).addTo(this._map);
 
         this.masterLayer.addTo(this._map);
+        this.bildingsController = new MapBuildings(buildings, this._map);
+
+        this.layersController.selectLayerEvent.attach(this.selectLayer.bind(this));
 
         return this;
     }
 
-    async loadLayers() {
-        try {
-            const response = await fetch("php/getJsonNames.php", {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                }
-            });
-            const data = await response.json();
-    
-            console.log("map");
-            console.log(data);
-        } catch(e) {
-            console.error("[map]: " + e);
-        }
-    }
-
     addLayers(layers) {
         if (!(layers instanceof Array)) layers = [layers];
-        layers.forEach(layers => {
+        layers.forEach(layer => {
             this.addLayer(layer);
         });
     }
@@ -85,19 +86,21 @@ class Map {
     addLayer(layer) {
         var featureGroup = L.geoJSON([], {
             onEachFeature: (feature, leafletLayer) => {
-                let size = leafletLayer.markersSize;
-
+                let size = Number.parseInt(layer.markersSize);
                 leafletLayer.id = feature.properties.id;
                 leafletLayer.options.icon = L.icon({
-                    iconUrl: `./media/icons/${layer.markersIcon || "default"}.svg`,
+                    iconUrl: `./media/icons/${(feature.properties.icon === "default" ? undefined : feature.properties.icon) || layer.markersIcon || "default"}.svg`,
                     iconSize: [size, size],
                     iconAnchor: [size/2 , size/2],
                 });
 
-                leafletLayer.setLatLng(feature.geometry.coordinates); 
-
                 leafletLayer.on("click", (e) => {
-                    this._map.setView(e.target.getLatLng());
+                    // e.originalEvent.stopPropagation();
+
+                    if (feature.properties.description) {
+                        this.descriptionsController.printDescription(feature.properties.description);
+                    }
+                    this._map.setView(e.target.getLatLng(), 17);
                 });
             }
         });
@@ -105,9 +108,20 @@ class Map {
         featureGroup.maxZoom = layer.maxZoom;
         featureGroup.minZoom = layer.minZoom;
         
-        this.masterLayer.addLayer(featureGroup)
+        this.layers[layer.id] = featureGroup;
 
-        if (l.state === "active") featureGroup.addTo(this._map);
+        var lclStrgLayerState = this.localStorageLayers[layer.id];
+        if (lclStrgLayerState) {
+            lclStrgLayerState === "active" ? this.masterLayer.addLayer(featureGroup) : undefined;
+            this.layersController.addLayer({id: layer.id, title: layer.title, icon: layer.markersIcon, state: lclStrgLayerState});
+        } else {
+            this.setToStorage({id: layer.id, state: "active"});
+            this.masterLayer.addLayer(featureGroup);
+            this.layersController.addLayer({id: layer.id, title: layer.title, icon: layer.markersIcon, state: "active"});
+        }
+
+        // this.masterLayer.addLayer(featureGroup);
+        // this.layersController.addLayer({id: layer.id, title: layer.title, icon: layer.markersIcon});
     }
 
     addFeatures(features, parentLayerId) {
@@ -116,20 +130,34 @@ class Map {
         layer ? layer.addData(features) : void 0;
     }
 
+    showLayer(layerId) {
+        const layer = this.layers[layerId];
+        if (layer && !this.masterLayer.hasLayer(layer)) {
+            this.masterLayer.addLayer(layer);
+        }
+    }
 
-    // showLayer: function(layerId) {
-    //     const layer = this._masterPlacesLayers[layerId];
-    //     if (layer && !this._map.hasLayer(layer)) {
-    //         layer.addTo(this._map);
-    //     }
-    // },
+    hideLayer(layerId) {
+        const layer = this.layers[layerId];
+        if (layer && this.masterLayer.hasLayer(layer)) {
+            this.masterLayer.removeLayer(layer);
+        }   
+    }
 
-    // hideLayer: function(layerId) {
-    //     const layer = this._masterPlacesLayers[layerId];
-    //     if (layer && this._map.hasLayer(layer)) {
-    //         this._map.removeLayer(layer);
-    //     }
-    // }
+    selectLayer(layer) {
+        layer.state === "active" 
+            ? this.showLayer(layer.id)
+            : this.hideLayer(layer.id);
+        
+        this.setToStorage(layer);
+    }
+
+    setToStorage(layer) {
+        this.localStorageLayers[layer.id] = layer.state;
+
+        localStorage.removeItem("layers");
+        localStorage.setItem("layers", JSON.stringify(this.localStorageLayers));
+    }
 }
 
 export default Map;
