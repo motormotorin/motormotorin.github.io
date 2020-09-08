@@ -16,6 +16,7 @@ class UserChat {
 
     enable() {
         this.view.$messageBtn.addEventListener("click", (e) => {
+            document.querySelector("body").click();
             e.stopPropagation();
             this.enableChat();
         });
