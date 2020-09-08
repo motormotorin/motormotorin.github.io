@@ -25,7 +25,12 @@ class Geolocation {
             this.throwLocationErrorNotification("Возникла ошибка при опеределении вашей геопозиции");
         });
 
-        this.$geolocationBtn.addEventListener("click", this.getLocation.bind(this));
+        this.$geolocationBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.getLocation();
+
+            document.querySelector("body").click();
+        });
     }
 
     getLocation() {
