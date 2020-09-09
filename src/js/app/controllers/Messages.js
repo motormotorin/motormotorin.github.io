@@ -50,7 +50,6 @@ class Messages {
                 if (layer) layer.remove([message.id]);
 
             } else if (messageLiveTime < 12) {
-                this.messages[message.id] = 
                 this.messagesLayer.addData([feature]);
             }
         }
