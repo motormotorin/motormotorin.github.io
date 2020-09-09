@@ -17,6 +17,7 @@ $id = sizeof(file('../txt/mess.txt'))+1 ;
 
 $text = file_get_contents('php://input');
 $text = json_decode($text, TRUE);
+$text['id'] = $id;
 $text = json_encode($text, JSON_UNESCAPED_UNICODE);
 
 
