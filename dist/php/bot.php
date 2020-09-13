@@ -4,7 +4,7 @@ ini_set('display_errors',1); //включаем вывод ошибок
 error_reporting(E_ALL);
 echo "<pre>";
 
-$filename = "../txt/mess.txt";
+$filename = "../txt/acmess.txt";
 $name_var='request';
 
 if (file_exists($filename)) {
@@ -15,7 +15,7 @@ if (file_exists($filename)) {
 
 $id = sizeof(file('../txt/mess.txt'))+1 ;
 
-$text = file_get_contents('php://input');
+$text = $_POST[$name_var];
 $text = json_decode($text, TRUE);
 $text['id'] = $id;
 $text = json_encode($text, JSON_UNESCAPED_UNICODE);
