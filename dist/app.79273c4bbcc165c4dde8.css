@@ -9,7 +9,6 @@ html,
 body {
 	width: 100vw;
 	height: 100%;
-	background: #010204;
 }
 
 html {
@@ -677,7 +676,3 @@ textarea::-webkit-scrollbar {
 	transition: opacity .5s ease;
 }
 
-
-.mapboxgl-ctrl-logo{
-    display: none !important;
-}
